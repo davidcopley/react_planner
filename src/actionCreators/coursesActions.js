@@ -1,0 +1,1 @@
+export const setCourses = courses => {return {type:"SET_COURSES",courses}}

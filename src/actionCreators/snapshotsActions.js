@@ -1,0 +1,1 @@
+export const setSnapshots = snapshots =>{return {type:"SET_SNAPSHOTS",snapshots}}
