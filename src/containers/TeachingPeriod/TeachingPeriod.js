@@ -3,27 +3,8 @@ import {connect} from "react-redux"
 import TeachingPeriodHeader from "./TeachingPeriodHeader"
 import Unit from "../Unit/Unit"
 import EmptyUnit from "../Unit/EmptyUnit"
-import Sortable from "sortablejs"
-import {moveUnit} from "../../actionCreators/planActions"
 
 class TeachingPeriod extends React.Component{
-
-    sortableGroupDecorator = componentBackingInstance => {
-        const {moveUnit} = this.props
-        if(componentBackingInstance){
-            let options = {
-                draggable: "div", // Specifies which items inside the element should be sortable
-                group: "shared",
-                animation: 200,
-                filter:".empty-unit",
-                onStart:e=>console.log(e,e.oldIndex),
-                onAdd:e=>{e.from.append(e.item);moveUnit(e.oldIndex,e.from.parentNode.id,e.newIndex,e.to.parentNode.id);},
-                onUpdate: e=>{e.from.append(e.item);moveUnit(e.oldIndex,e.from.parentNode.id,e.newIndex,e.to.parentNode.id);}
-            };
-            Sortable.create(componentBackingInstance, options);
-        }
-    }
-
     renderUnits = () => {
 
         const calculateTeachingPeriodUnitWidth = (unitsCodes,units) => {
@@ -73,4 +54,4 @@ const mapStateToProps = state => ({
     units:state.planUnitsReducer.units
 })
 
-export default connect(mapStateToProps,{moveUnit})(TeachingPeriod)
+export default connect(mapStateToProps)(TeachingPeriod)
