@@ -2,10 +2,15 @@ import React from "react"
 import {connect} from "react-redux"
 import {compose} from "redux"
 import {DragSource, DropTarget} from "react-dnd"
+import {setDragSource} from "../../actionCreators/dragAndDropActions"
+import {moveUnit} from "../../actionCreators/planActions"
 
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
-        const {teachingPeriodCode, index} = component.props
+        console.log(props)
+        const {teachingPeriodCode, index,setDragSource} = props
+        setDragSource({teachingPeriodCode, index})
+        console.log("SET DRAG SOURCE")
         return {
             teachingPeriodCode,
             index
@@ -14,23 +19,32 @@ const UnitSourceDrag = {
 }
 const UnitSourceDrop = {
     drop(props, monitor, component){
-        console.log(component)
+        const {teachingPeriodCode, index,dragSource,moveUnit} = props
+        moveUnit(dragSource.index,dragSource.teachingPeriodCode,index,teachingPeriodCode)
     }
 }
 
 const collectDrag = (connect, monitor) => {
     return {
-        connectDragSource: connect.dragSource()
+        connectDragSource: connect.dragSource(),
     };
 }
 
 const collectDrop = (connect, monitor) => {
     return {
-        connectDropTarget: connect.dropTarget()
+        connectDropTarget: connect.dropTarget(),
+
     }
 }
 
 class Unit extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={
+            dragSource:null,
+            dropTarget:null
+        }
+    }
     render() {
         const {units, unitCode, unitWidth} = this.props
         const myUnit = units[unitCode]
@@ -55,7 +69,7 @@ class Unit extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return {units: state.planUnitsReducer.units}
+    return {units: state.planUnitsReducer.units,dragSource:state.dragAndDropReducer.dragSource}
 }
 
-export default compose(DragSource("Unit",UnitSourceDrag,collectDrag), DropTarget("Unit",UnitSourceDrop,collectDrop), connect(mapStateToProps))(Unit)
+export default compose(connect(mapStateToProps,{setDragSource,moveUnit}),DragSource("Unit",UnitSourceDrag,collectDrag), DropTarget("Unit",UnitSourceDrop,collectDrop))(Unit)

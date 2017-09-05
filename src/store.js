@@ -5,6 +5,7 @@ import planCourseReducer from "./reducers/planCourseReducer"
 import snapshotsReducer from "./reducers/snapshotsReducer"
 import planTeachingPeriodReducer from "./reducers/planTeachingPeriodReducer"
 import planUnitsReducer from "./reducers/planUnitsReducer"
+import dragAndDropReducer from "./reducers/dragAndDropReducer"
 
 const appReducer = combineReducers({
     planCourseReducer,
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
 
     coursesReducer,
     snapshotsReducer,
+    dragAndDropReducer
 });
 
 export default createStore(appReducer);
