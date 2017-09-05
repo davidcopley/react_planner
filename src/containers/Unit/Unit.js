@@ -50,18 +50,21 @@ class Unit extends React.Component {
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
         const myUnitWidth = unitWidth * (myUnitCredit / 6)
+        console.log(myUnitWidth)
         const {connectDragSource, connectDropTarget } = this.props;
         return compose(connectDragSource,connectDropTarget)(
             <div style={{
                 minHeight: 100,
                 minWidth: myUnitWidth,
+                maxWidth: myUnitWidth,
                 border: "1px solid black",
                 flexGrow: 1,
                 alignItems: "center"
             }}>
-                <div style={{padding: 10, userSelect: "none"}}>
+                <div style={{padding: 10, userSelect: "none",overflow:"hidden"}}>
                     {unitCode}<br/>
-                    {myUnit.name}
+                    {myUnit.name}<br/>
+                    Credits: {myUnitCredit}
                 </div>
             </div>
         )
