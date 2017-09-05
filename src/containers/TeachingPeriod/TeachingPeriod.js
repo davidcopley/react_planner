@@ -22,7 +22,7 @@ class TeachingPeriod extends React.Component{
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
         let unitsCodes = myTeachingPeriod["units"]
         let unitWidth = calculateTeachingPeriodUnitWidth(unitsCodes,units)
-        let unitsArray = unitsCodes.map(unitCode=><Unit className="unit" key={`unit${unitCode}`} unitCode={unitCode} unitWidth={unitWidth}/>)
+        let unitsArray = unitsCodes.map((unitCode,i)=><Unit className="unit" key={`unit${unitCode}`} index={i} teachingPeriodCode={teachingPeriodCode} unitCode={unitCode} unitWidth={unitWidth}/>)
         const emptyUnits = 4-unitsArray.length;
         if(emptyUnits){
             for(let i = 0; i < emptyUnits; i++){
