@@ -29,13 +29,13 @@ class TeachingPeriod extends React.Component {
         let unitsCodes = myTeachingPeriod["units"]
         let totalCredits = this.calculateTotalCredits(unitsCodes)
         let unitWidth = calculateTeachingPeriodUnitWidth(unitsCodes, units, totalCredits)
-        let unitsArray = unitsCodes.map((unitCode, i) => <Unit className="unit" key={`unit${unitCode}`} index={i}
+        let unitsArray = unitsCodes.map((unitCode, i) => <Unit className="unit" key={`unit${unitCode}${teachingPeriodCode}${i}`} index={i}
                                                                teachingPeriodCode={teachingPeriodCode}
-                                                               unitCode={unitCode} unitWidth={unitWidth}/>)
+                                                               unitCode={unitCode} unitWidth={unitWidth} teachingPeriodTotalCredits={totalCredits}/>)
         const emptyUnits = (24 - totalCredits) / 6;
         if (emptyUnits > 0) {
             for (let i = 0; i < emptyUnits; i++) {
-                unitsArray.push(<EmptyUnit key={`emptyUnit${i}`} unitWidth={unitWidth}/>)
+                unitsArray.push(<EmptyUnit index={i} teachingPeriodCode={teachingPeriodCode}  key={`emptyUnit${i}`} unitWidth={unitWidth}/>)
             }
         }
         return (
