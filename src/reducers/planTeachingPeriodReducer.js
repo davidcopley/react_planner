@@ -56,19 +56,18 @@ export default (state = defaultState, action) => {
         case("SET_TEACHING_PERIOD"):
             return {...state, teachingPeriods: {...state.teachingPeriods, ...action.teachingPeriods}}
         case("MOVE_UNIT"):
-            const {unit1Index, unit1TeachingPeriod, unit2Index, unit2TeachingPeriod} = action
+            const {unitFromIndex, unitFromTeachingPeriod, unitToIndex, unitToTeachingPeriod} = action
             //get unit
-            const unit = state.teachingPeriods[unit1TeachingPeriod]["units"][unit1Index]
-            console.log(unit)
+            const unit = state.teachingPeriods[unitFromTeachingPeriod]["units"][unitFromIndex]
             //remove from old teaching period
             state =
                 {
                     ...state,
                     teachingPeriods: {
                         ...state.teachingPeriods,
-                        [unit1TeachingPeriod]: {
-                            ...state.teachingPeriods[unit1TeachingPeriod],
-                            units: [...state.teachingPeriods[unit1TeachingPeriod]["units"].slice(0, unit1Index), ...state.teachingPeriods[unit1TeachingPeriod]["units"].slice(unit1Index + 1)]
+                        [unitFromTeachingPeriod]: {
+                            ...state.teachingPeriods[unitFromTeachingPeriod],
+                            units: [...state.teachingPeriods[unitFromTeachingPeriod]["units"].slice(0, unitFromIndex), ...state.teachingPeriods[unitFromTeachingPeriod]["units"].slice(unitFromIndex + 1)]
                         }
                     }
                 }
@@ -78,12 +77,45 @@ export default (state = defaultState, action) => {
                     ...state,
                     teachingPeriods: {
                         ...state.teachingPeriods,
-                        [unit2TeachingPeriod]: {
-                            ...state.teachingPeriods[unit2TeachingPeriod],
+                        [unitToTeachingPeriod]: {
+                            ...state.teachingPeriods[unitToTeachingPeriod],
                             units: [
-                                ...state.teachingPeriods[unit2TeachingPeriod]["units"].slice(0, unit2Index),
+                                ...state.teachingPeriods[unitToTeachingPeriod]["units"].slice(0, unitToIndex),
                                 unit,
-                                ...state.teachingPeriods[unit2TeachingPeriod]["units"].slice(unit2Index)
+                                ...state.teachingPeriods[unitToTeachingPeriod]["units"].slice(unitToIndex)
+                            ]
+                        }
+                    }
+                }
+            return state
+        case("REMOVE_UNIT"):
+            const {unitRemoveIndex, unitRemoveTeachingPeriod} = action
+            //remove from old teaching period
+            state =
+                {
+                    ...state,
+                    teachingPeriods: {
+                        ...state.teachingPeriods,
+                        [unitRemoveTeachingPeriod]: {
+                            ...state.teachingPeriods[unitRemoveTeachingPeriod],
+                            units: [...state.teachingPeriods[unitRemoveTeachingPeriod]["units"].slice(0, unitRemoveIndex), ...state.teachingPeriods[unitRemoveTeachingPeriod]["units"].slice(unitRemoveIndex + 1)]
+                        }
+                    }
+                }
+            return state
+        case("APPEND_UNIT"):
+            const {unitAppend,unitAppendIndex,unitAppendTeachingPeriod} = action
+            state =
+                {
+                    ...state,
+                    teachingPeriods: {
+                        ...state.teachingPeriods,
+                        [unitAppendTeachingPeriod]: {
+                            ...state.teachingPeriods[unitAppendTeachingPeriod],
+                            units: [
+                                ...state.teachingPeriods[unitAppendTeachingPeriod]["units"].slice(0, unitAppendIndex),
+                                unitAppend,
+                                ...state.teachingPeriods[unitAppendTeachingPeriod]["units"].slice(unitAppendIndex)
                             ]
                         }
                     }
