@@ -38,8 +38,6 @@ const defaultState = {
                 "FIT3001",
                 "FIT3002",
                 "FIT3003",
-                "FIT3004",
-                "FIT3005",
             ]
         },
         "2019-S2-01": {

@@ -7,13 +7,10 @@ import {moveUnit} from "../../actionCreators/planActions"
 
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
-        console.log(props)
-
         const {teachingPeriodCode, index,setDragSource, units, unitCode,} = props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
         setDragSource({teachingPeriodCode, index})
-        console.log("SET DRAG SOURCE")
         return {
             teachingPeriodCode,
             index,
@@ -33,7 +30,6 @@ const UnitTargetDrop = {
         const item = monitor.getItem()
         const {teachingPeriodTotalCredits} = props
         const {myUnitCredit} = item
-        console.log(teachingPeriodTotalCredits)
         return (myUnitCredit+teachingPeriodTotalCredits)<=36
     }
 }
@@ -47,33 +43,26 @@ const collectDrag = (connect, monitor) => {
 const collectDrop = (connect, monitor) => {
     return {
         connectDropTarget: connect.dropTarget(),
-        isOver: monitor.isOver(),
+        isHovering: monitor.isOver(),
         canDrop: monitor.canDrop()
     }
 }
 
 class Unit extends React.Component {
-    constructor(props){
-        super(props)
-        this.state={
-            dragSource:null,
-            dropTarget:null
-        }
-    }
     render() {
         const {units, unitCode, unitWidth} = this.props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
         const myUnitWidth = unitWidth * (myUnitCredit / 6)
-        console.log(myUnitWidth)
-        const {connectDragSource, connectDropTarget, isOver, canDrop } = this.props;
+
+        const {connectDragSource, connectDropTarget, isHovering, canDrop } = this.props;
         return compose(connectDragSource,connectDropTarget)(
             <div style={{
                 minHeight: 100,
                 minWidth: myUnitWidth,
                 maxWidth: myUnitWidth,
                 border: "1px solid black",
-                borderLeft:isOver?"5px solid red":"1px solid black",
+                borderLeft:isHovering?"5px solid red":"1px solid black",
                 background:canDrop?"#adff6d":"white",
                 flexGrow: 1,
                 alignItems: "center"
