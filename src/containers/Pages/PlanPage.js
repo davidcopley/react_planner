@@ -18,7 +18,7 @@ class PlanPage extends React.Component {
         const nextTeachingPeriodKey = getNextTeachingPeriodKey(teachingPeriodCodes[teachingPeriodCodes.length - 1])
         console.log(nextTeachingPeriodKey)
         return (
-            <div>
+            <div style={{minHeight:"100vh",height:"100%"}}>
                 <div style={{
                     height: 50,
                     width: "100vw",
@@ -31,10 +31,10 @@ class PlanPage extends React.Component {
                         MonPlan
                     </div>
                 </div>
-                <div style={{display: "flex", width: "100%"}}>
+                <div style={{display: "flex", width: "100%", minHeight:"100vh",height:"100%"}}>
                     {isMenuOpen && <Menu/>}
-                    <div style={{display: "flex", width: "100%", justifyContent: "center"}}>
-                        <div style={{display: "flex", flexDirection: "column", width: 1000, maxWidth: 1000}}>
+                    <div style={{display: "flex", width: "100%", justifyContent: "center",minHeight:"100vh",height:"100%"}}>
+                        <div style={{display: "flex", flexDirection: "column", width: 1000, maxWidth: 1000,minHeight:"100vh",height:"100%"}}>
                             <h1>Course Code: {courseCode}</h1>
                             <h2>Course Credit: {courseCredit}</h2>
                             {teachingPeriodCodes.map(teachingPeriodCode =>
