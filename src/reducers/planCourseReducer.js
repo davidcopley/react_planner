@@ -19,6 +19,8 @@ export default (state=defaultState,action)=>{
             return {...state,credit:action.credit}
         case("SET_TEACHING_PERIODS"):
             return {...state,teachingPeriods:{...state.teachingPeriods,...action.teachingPeriods}}
+        case("ADD_TEACHING_PERIOD"):
+            return {...state,teachingPeriods:{...state.teachingPeriods,[action.teachingPeriod]:true}}
         default:
             return state
     }

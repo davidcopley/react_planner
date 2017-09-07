@@ -53,8 +53,10 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case("SET_TEACHING_PERIOD"):
+        case("SET_TEACHING_PERIODS"):
             return {...state, teachingPeriods: {...state.teachingPeriods, ...action.teachingPeriods}}
+        case("ADD_TEACHING_PERIOD"):
+            return {...state,teachingPeriods:{...state.teachingPeriods,[action.teachingPeriod]:{units:[]}}}
         case("MOVE_UNIT"):
             const {unitFromIndex, unitFromTeachingPeriod, unitToIndex, unitToTeachingPeriod} = action
             //get unit
