@@ -1,6 +1,6 @@
 const defaultState = {
-    courseCode:null,
-    credit:null,
+    courseCode:"A2000",
+    credit:144,
     teachingPeriods:{
         "2017-S1-01":true,
         "2017-S2-01":true,
@@ -17,8 +17,8 @@ export default (state=defaultState,action)=>{
             return {...state,courseCode:action.courseCode}
         case("SET_CREDIT"):
             return {...state,credit:action.credit}
-        case("SET_TEACHING_PERIODS"):
-            return {...state,teachingPeriods:{...state.teachingPeriods,...action.teachingPeriods}}
+        case("SET_TEACHING_PERIODS_SET"):
+            return {...state,teachingPeriods:{...action.teachingPeriods}}
         case("ADD_TEACHING_PERIOD"):
             return {...state,teachingPeriods:{...state.teachingPeriods,[action.teachingPeriod]:true}}
         default:

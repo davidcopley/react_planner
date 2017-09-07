@@ -1,0 +1,1 @@
+export const setMenuOpen = isOpen => {return {type:"SET_MENU_OPEN",isOpen}}

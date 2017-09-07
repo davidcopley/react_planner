@@ -6,12 +6,16 @@ import HTML5Backend from "react-dnd-html5-backend"
 import {compose} from "redux"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {getNextTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
-
+import {setMenuOpen} from "../../actionCreators/menuActions"
+import Menu from "../Menu/Menu"
 class PlanPage extends React.Component {
     render() {
-        const {teachingPeriods, addTeachingPeriod} = this.props
+        const {teachingPeriods, addTeachingPeriod, isMenuOpen, setMenuOpen} = this.props
+
+        const {courseCode,courseCredit} = this.props
+        console.log(courseCode,courseCredit)
         const teachingPeriodCodes = Object.keys(teachingPeriods)
-        const nextTeachingPeriodKey = getNextTeachingPeriodKey(teachingPeriodCodes[teachingPeriodCodes.length-1])
+        const nextTeachingPeriodKey = getNextTeachingPeriodKey(teachingPeriodCodes[teachingPeriodCodes.length - 1])
         console.log(nextTeachingPeriodKey)
         return (
             <div>
@@ -23,21 +27,25 @@ class PlanPage extends React.Component {
                     justifyContent: "center"
                 }}>
                     <div style={{display: "flex", width: 1000, maxWidth: 1000, alignItems: "center"}}>
-                        <button>Menu</button>
+                        <button onClick={() => setMenuOpen(!isMenuOpen)}>Menu</button>
                         MonPlan
                     </div>
                 </div>
-                <div style={{display: "flex", width: "100%", justifyContent: "center"}}>
-                    <div style={{display: "flex", flexDirection: "column", width: 1000, maxWidth: 1000}}>
-                        {teachingPeriodCodes.map(teachingPeriodCode =>
-                            <TeachingPeriod key={`teachingPeriod${teachingPeriodCode}`}
-                                            teachingPeriodCode={teachingPeriodCode}/>)
-                        }
-                        <button onClick={() => addTeachingPeriod(nextTeachingPeriodKey)}>
-                            Add Teaching Period
-                        </button>
+                <div style={{display: "flex", width: "100%"}}>
+                    {isMenuOpen && <Menu/>}
+                    <div style={{display: "flex", width: "100%", justifyContent: "center"}}>
+                        <div style={{display: "flex", flexDirection: "column", width: 1000, maxWidth: 1000}}>
+                            <h1>Course Code: {courseCode}</h1>
+                            <h2>Course Credit: {courseCredit}</h2>
+                            {teachingPeriodCodes.map(teachingPeriodCode =>
+                                <TeachingPeriod key={`teachingPeriod${teachingPeriodCode}`}
+                                                teachingPeriodCode={teachingPeriodCode}/>)
+                            }
+                            <button onClick={() => addTeachingPeriod(nextTeachingPeriodKey)}>
+                                Add Teaching Period
+                            </button>
+                        </div>
                     </div>
-
                 </div>
             </div>
         )
@@ -45,7 +53,13 @@ class PlanPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    teachingPeriods: state.planCourseReducer.teachingPeriods
+    teachingPeriods: state.planCourseReducer.teachingPeriods,
+    courseCode:state.planCourseReducer.courseCode,
+    courseCredit:state.planCourseReducer.credit,
+    isMenuOpen: state.menuReducer.isOpen
 })
 
-export default compose(connect(mapStateToProps, {addTeachingPeriod}), DragDropContext(HTML5Backend))(PlanPage)
+export default compose(connect(mapStateToProps, {
+    addTeachingPeriod,
+    setMenuOpen
+}), DragDropContext(HTML5Backend))(PlanPage)
