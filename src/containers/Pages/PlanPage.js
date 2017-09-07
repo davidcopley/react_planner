@@ -7,12 +7,13 @@ import {compose} from "redux"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {getNextTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import {setMenuOpen} from "../../actionCreators/menuActions"
+import {saveSnapshot} from "../../actionCreators/snapshotsActions"
 import Menu from "../Menu/Menu"
 class PlanPage extends React.Component {
     render() {
         const {teachingPeriods, addTeachingPeriod, isMenuOpen, setMenuOpen} = this.props
 
-        const {courseCode,courseCredit} = this.props
+        const {courseCode,courseCredit,snapshotName,saveSnapshot} = this.props
         console.log(courseCode,courseCredit)
         const teachingPeriodCodes = Object.keys(teachingPeriods)
         const nextTeachingPeriodKey = getNextTeachingPeriodKey(teachingPeriodCodes[teachingPeriodCodes.length - 1])
@@ -35,8 +36,10 @@ class PlanPage extends React.Component {
                     {isMenuOpen && <Menu/>}
                     <div style={{display: "flex", width: "100%", justifyContent: "center",minHeight:"100vh",height:"100%"}}>
                         <div style={{display: "flex", flexDirection: "column", width: 1000, maxWidth: 1000,minHeight:"100vh",height:"100%"}}>
-                            <h1>Course Code: {courseCode}</h1>
+                            <h2>Snapshot name: {snapshotName}</h2>
+                            <h2>Course Code: {courseCode}</h2>
                             <h2>Course Credit: {courseCredit}</h2>
+                            <button onClick={()=>saveSnapshot()}>Save Snapshot</button>
                             {teachingPeriodCodes.map(teachingPeriodCode =>
                                 <TeachingPeriod key={`teachingPeriod${teachingPeriodCode}`}
                                                 teachingPeriodCode={teachingPeriodCode}/>)
@@ -55,11 +58,13 @@ class PlanPage extends React.Component {
 const mapStateToProps = state => ({
     teachingPeriods: state.planCourseReducer.teachingPeriods,
     courseCode:state.planCourseReducer.courseCode,
+    snapshotName:state.planCourseReducer.snapshotName,
     courseCredit:state.planCourseReducer.credit,
     isMenuOpen: state.menuReducer.isOpen
 })
 
 export default compose(connect(mapStateToProps, {
     addTeachingPeriod,
-    setMenuOpen
+    setMenuOpen,
+    saveSnapshot
 }), DragDropContext(HTML5Backend))(PlanPage)

@@ -1,7 +1,7 @@
 const defaultState = {
     snapshots:[
         {
-            name:"Snapshot1",
+            snapshotName:"Snapshot1",
             courseCode:"B2000",
             credit:192,
             teachingPeriods: {
@@ -23,7 +23,7 @@ const defaultState = {
             }
         },
         {
-            name:"Snapshot2",
+            snapshotName:"Snapshot2",
             courseCode:"C2000",
             credit:144,
             teachingPeriods: {
@@ -46,7 +46,7 @@ const defaultState = {
             }
         },
         {
-            name:"Some Random Snapshot name",
+            snapshotName:"Some Random Snapshot name",
             courseCode:"A2000",
             credit:144,
             teachingPeriods: {
@@ -108,6 +108,10 @@ export default (state=defaultState,action) => {
     switch(action.type){
         case("SET_SNAPSHOTS"):
             return {...state,snapshots:{...state.snapshots,...action.snapshots}}
+        case("SET_SNAPSHOT"):
+            let newSnapshots = state.snapshots.map(snapshot=>snapshot)
+            newSnapshots[action.snapshotIndex] = action.snapshot
+            return {...state,snapshots:newSnapshots}
         default:
             return state
     }
