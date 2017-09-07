@@ -13,3 +13,8 @@ action naming conventions:
      insert: insert to list by index, list only
      add: add key to object, object only
      remove: remove from list and object
+     
+snapshot naming:
+    
+    loadBy[param name] :loading snapshots with given param
+    saveBy[param name] : saving snapshots with given param

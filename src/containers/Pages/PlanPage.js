@@ -7,13 +7,13 @@ import {compose} from "redux"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {getNextTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import {setMenuOpen} from "../../actionCreators/menuActions"
-import {saveSnapshot, appendSnapshot} from "../../actionCreators/snapshotsActions"
+import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
 import Menu from "../Menu/Menu"
 class PlanPage extends React.Component {
     render() {
         const {teachingPeriods, addTeachingPeriod, isMenuOpen, setMenuOpen} = this.props
 
-        const {courseCode, courseCredit, snapshotName, saveSnapshot,appendSnapshot} = this.props
+        const {courseCode, courseCredit, snapshotName, saveSnapshot,appendSnapshotBySnapshotName} = this.props
         console.log(courseCode, courseCredit)
         const teachingPeriodCodes = Object.keys(teachingPeriods)
         const nextTeachingPeriodKey = getNextTeachingPeriodKey(teachingPeriodCodes[teachingPeriodCodes.length - 1])
@@ -53,7 +53,7 @@ class PlanPage extends React.Component {
                             <h2>Course Code: {courseCode}</h2>
                             <h2>Course Credit: {courseCredit}</h2>
                             {snapshotName ? <button onClick={() => saveSnapshot()}>Save Snapshot</button> : <div>
-                                <button onClick={() => appendSnapshot(this.snapshotName.value)}>New Snapshot</button>
+                                <button onClick={() => appendSnapshotBySnapshotName(this.snapshotName.value)}>New Snapshot</button>
                                 <input ref={snapshotName => this.snapshotName = snapshotName} type="text" placeholder="Enter Snapshot Name"/></div>}
                             {teachingPeriodCodes.map(teachingPeriodCode =>
                                 <TeachingPeriod key={`teachingPeriod${teachingPeriodCode}`}
@@ -82,5 +82,5 @@ export default compose(connect(mapStateToProps, {
     addTeachingPeriod,
     setMenuOpen,
     saveSnapshot,
-    appendSnapshot
+    appendSnapshotBySnapshotName
 }), DragDropContext(HTML5Backend))(PlanPage)
