@@ -105,19 +105,19 @@ export default (state = defaultState, action) => {
                     }
                 }
             return state
-        case("APPEND_UNIT"):
-            const {unitAppend,unitAppendIndex,unitAppendTeachingPeriod} = action
+        case("INSERT_UNIT"):
+            const {unitInsert,unitInsertIndex,unitInsertTeachingPeriod} = action
             state =
                 {
                     ...state,
                     teachingPeriods: {
                         ...state.teachingPeriods,
-                        [unitAppendTeachingPeriod]: {
-                            ...state.teachingPeriods[unitAppendTeachingPeriod],
+                        [unitInsertTeachingPeriod]: {
+                            ...state.teachingPeriods[unitInsertTeachingPeriod],
                             units: [
-                                ...state.teachingPeriods[unitAppendTeachingPeriod]["units"].slice(0, unitAppendIndex),
-                                unitAppend,
-                                ...state.teachingPeriods[unitAppendTeachingPeriod]["units"].slice(unitAppendIndex)
+                                ...state.teachingPeriods[unitInsertTeachingPeriod]["units"].slice(0, unitInsertIndex),
+                                unitInsert,
+                                ...state.teachingPeriods[unitInsertTeachingPeriod]["units"].slice(unitInsertIndex)
                             ]
                         }
                     }
