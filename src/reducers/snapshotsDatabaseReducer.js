@@ -112,6 +112,8 @@ export default (state=defaultState,action) => {
             let newSnapshots = state.snapshots.map(snapshot=>snapshot)
             newSnapshots[action.snapshotIndex] = action.snapshot
             return {...state,snapshots:newSnapshots}
+        case("APPEND_SNAPSHOT"):
+            return {...state,snapshots:[...state.snapshots,action.snapshot]}
         default:
             return state
     }

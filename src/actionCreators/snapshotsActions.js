@@ -21,3 +21,10 @@ export const saveSnapshot = () => (dispatch,getState) => {
     const snapshot = {courseCode,credit,snapshotName,teachingPeriods}
     dispatch(setSnapshot(snapshot,snapshotIndex))
 }
+export const appendSnapshot = snapshotName => (dispatch,getState) => {
+    const {planCourseReducer,planTeachingPeriodReducer} = getState()
+    const {courseCode,credit} = planCourseReducer
+    const {teachingPeriods} = planTeachingPeriodReducer
+    const snapshot = {courseCode,credit,snapshotName,teachingPeriods}
+    dispatch({type:"APPEND_SNAPSHOT",snapshot})
+}
