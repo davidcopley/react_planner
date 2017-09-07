@@ -27,4 +27,5 @@ export const appendSnapshot = snapshotName => (dispatch,getState) => {
     const {teachingPeriods} = planTeachingPeriodReducer
     const snapshot = {courseCode,credit,snapshotName,teachingPeriods}
     dispatch({type:"APPEND_SNAPSHOT",snapshot})
+    dispatch(setSnapshotName(snapshotName))
 }
