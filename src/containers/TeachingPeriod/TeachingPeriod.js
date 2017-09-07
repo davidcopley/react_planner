@@ -62,7 +62,7 @@ class TeachingPeriod extends React.Component {
 
 const mapStateToProps = state => ({
     teachingPeriods: state.planTeachingPeriodReducer.teachingPeriods,
-    units: state.planUnitsReducer.units
+    units: state.unitDatabaseReducer.units
 })
 
 export default connect(mapStateToProps)(TeachingPeriod)

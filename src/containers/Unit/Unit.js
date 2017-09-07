@@ -79,7 +79,7 @@ class Unit extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return {units: state.planUnitsReducer.units,dragSource:state.dragAndDropReducer.dragSource}
+    return {units: state.unitDatabaseReducer.units,dragSource:state.dragAndDropReducer.dragSource}
 }
 
 export default compose(connect(mapStateToProps,{setDragSource,moveUnit,removeUnit}),DragSource("Unit",UnitSourceDrag,collectDrag), DropTarget("Unit",UnitTargetDrop,collectDrop))(Unit)
