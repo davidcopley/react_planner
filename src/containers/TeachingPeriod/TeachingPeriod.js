@@ -47,14 +47,14 @@ class TeachingPeriod extends React.Component {
 
     render() {
         //extract my teaching period from redux by teaching period code
-        const {teachingPeriods, teachingPeriodCode, units} = this.props
+        const {teachingPeriods, teachingPeriodCode, units,isFirst,isLast} = this.props
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
         let unitsCodes = myTeachingPeriod["units"]
         let isDeferred = myTeachingPeriod["isDeferred"]
         let totalCredits = this.calculateTotalCredits(unitsCodes)
         return (
             <div id={teachingPeriodCode} style={{display: "flex"}}>
-                <TeachingPeriodHeader isDeferred={isDeferred} totalCredits={totalCredits} teachingPeriodCode={teachingPeriodCode}/>
+                <TeachingPeriodHeader isFirst={isFirst} isLast={isLast} isDeferred={isDeferred} totalCredits={totalCredits} teachingPeriodCode={teachingPeriodCode}/>
                 {this.renderUnits()}
             </div>
         )

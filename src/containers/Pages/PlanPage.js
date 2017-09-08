@@ -52,9 +52,13 @@ class PlanPage extends React.Component {
                             {snapshotName ? <button onClick={() => saveSnapshot()}>Save Snapshot</button> : <div>
                                 <button onClick={() => appendSnapshotBySnapshotName(this.snapshotName.value)}>New Snapshot</button>
                                 <input ref={snapshotName => this.snapshotName = snapshotName} type="text" placeholder="Enter Snapshot Name"/></div>}
-                            {teachingPeriodCodes.map(teachingPeriodCode =>
-                                <TeachingPeriod key={`teachingPeriod${teachingPeriodCode}`}
-                                                teachingPeriodCode={teachingPeriodCode}/>)
+                            {teachingPeriodCodes.map((teachingPeriodCode,i) =>
+                                <TeachingPeriod
+                                    key={`teachingPeriod${teachingPeriodCode}`}
+                                    teachingPeriodCode={teachingPeriodCode}
+                                    isFirst={i===0}
+                                    isLast={i===teachingPeriodCodes.length-1}
+                                />)
                             }
                             <button onClick={() => addTeachingPeriod(nextTeachingPeriodKey)}>
                                 Add Teaching Period
