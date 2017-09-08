@@ -1,4 +1,8 @@
 export const getNextTeachingPeriodKey = currentTeachingPeriodKey => {
+    if(!currentTeachingPeriodKey){
+        const date = new Date()
+        return `${date.getYear()+1900}-${date.getMonth()<7?"S1":"S2"}-01`
+    }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
     const year = teachingPeriodSplitted[0]
     const semester = teachingPeriodSplitted[1]
