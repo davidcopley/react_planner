@@ -12,12 +12,9 @@ import Menu from "../Menu/Menu"
 class PlanPage extends React.Component {
     render() {
         const {teachingPeriods, addTeachingPeriod, isMenuOpen, setMenuOpen} = this.props
-
         const {courseCode, courseCredit, snapshotName, saveSnapshot,appendSnapshotBySnapshotName} = this.props
-        console.log(courseCode, courseCredit)
         const teachingPeriodCodes = Object.keys(teachingPeriods)
         const nextTeachingPeriodKey = getNextTeachingPeriodKey(teachingPeriodCodes[teachingPeriodCodes.length - 1])
-        console.log(nextTeachingPeriodKey)
         return (
             <div style={{minHeight: "100vh", height: "100%"}}>
                 <div style={{
