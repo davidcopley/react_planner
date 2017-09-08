@@ -50,10 +50,11 @@ class TeachingPeriod extends React.Component {
         const {teachingPeriods, teachingPeriodCode, units} = this.props
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
         let unitsCodes = myTeachingPeriod["units"]
+        let isDeferred = myTeachingPeriod["isDeferred"]
         let totalCredits = this.calculateTotalCredits(unitsCodes)
         return (
             <div id={teachingPeriodCode} style={{display: "flex"}}>
-                <TeachingPeriodHeader totalCredits={totalCredits} teachingPeriodCode={teachingPeriodCode}/>
+                <TeachingPeriodHeader isDeferred={isDeferred} totalCredits={totalCredits} teachingPeriodCode={teachingPeriodCode}/>
                 {this.renderUnits()}
             </div>
         )

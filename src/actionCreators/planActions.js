@@ -8,12 +8,17 @@ export const moveUnit = (unitFromIndex,unitFromTeachingPeriod,unitToIndex,unitTo
 export const removeUnit = (unitRemoveIndex, unitRemoveTeachingPeriod) => {return {type:"REMOVE_UNIT",unitRemoveIndex,unitRemoveTeachingPeriod}}
 export const addTeachingPeriod = teachingPeriod => {return {type:"ADD_TEACHING_PERIOD",teachingPeriod}}
 export const removeTeachingPeriodByTeachingPeriodCode = teachingPeriodCode => (dispatch,getState) => {
-    console.log(getState())
     const {planTeachingPeriodReducer, planCourseReducer} = getState()
     const teachingPeriods = planTeachingPeriodReducer.teachingPeriods
     const teachingPeriodsSet = planCourseReducer.teachingPeriods
     delete teachingPeriods[teachingPeriodCode]
     delete teachingPeriodsSet[teachingPeriodCode]
     dispatch(setTeachingPeriodsSet(teachingPeriodsSet))
+    dispatch(setTeachingPeriods(teachingPeriods))
+}
+export const setIsDeferTeachingPeriodByTeachingPeriodCode = (teachingPeriodCode,isDeferred) => (dispatch,getState) => {
+    const {planTeachingPeriodReducer} = getState()
+    const teachingPeriods = planTeachingPeriodReducer.teachingPeriods
+    teachingPeriods[teachingPeriodCode]["isDeferred"] = isDeferred
     dispatch(setTeachingPeriods(teachingPeriods))
 }
