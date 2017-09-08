@@ -24,18 +24,20 @@ class TeachingPeriod extends React.Component {
             return unitWidth
         }
 
-        const {teachingPeriods, teachingPeriodCode, units} = this.props
+        const {teachingPeriods, teachingPeriodCode, units, isFirst, isLast} = this.props
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
         let unitsCodes = myTeachingPeriod["units"]
+        let isDeferred = myTeachingPeriod["isDeferred"]
+        isDeferred = isDeferred && !isFirst && !isLast
         let totalCredits = this.calculateTotalCredits(unitsCodes)
         let unitWidth = calculateTeachingPeriodUnitWidth(unitsCodes, units, totalCredits)
         let unitsArray = unitsCodes.map((unitCode, i) => <Unit className="unit" key={`unit${unitCode}${teachingPeriodCode}${i}`} index={i}
-                                                               teachingPeriodCode={teachingPeriodCode}
+                                                               teachingPeriodCode={teachingPeriodCode}  isDeferred={isDeferred}
                                                                unitCode={unitCode} unitWidth={unitWidth} teachingPeriodTotalCredits={totalCredits}/>)
         const emptyUnits = (24 - totalCredits) / 6;
         if (emptyUnits > 0) {
             for (let i = 0; i < emptyUnits; i++) {
-                unitsArray.push(<EmptyUnit index={i} teachingPeriodCode={teachingPeriodCode}  key={`emptyUnit${i}`} unitWidth={unitWidth}/>)
+                unitsArray.push(<EmptyUnit isDeferred={isDeferred} index={i} teachingPeriodCode={teachingPeriodCode}  key={`emptyUnit${i}`} unitWidth={unitWidth}/>)
             }
         }
         return (
@@ -51,9 +53,10 @@ class TeachingPeriod extends React.Component {
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
         let unitsCodes = myTeachingPeriod["units"]
         let isDeferred = myTeachingPeriod["isDeferred"]
+        isDeferred = isDeferred && !isFirst && !isLast
         let totalCredits = this.calculateTotalCredits(unitsCodes)
         return (
-            <div id={teachingPeriodCode} style={{display: "flex"}}>
+            <div id={teachingPeriodCode} style={{display: "flex",background:isDeferred?"#cfb4aa":"white",width:"100%",minWidth:"1050"}}>
                 <TeachingPeriodHeader isFirst={isFirst} isLast={isLast} isDeferred={isDeferred} totalCredits={totalCredits} teachingPeriodCode={teachingPeriodCode}/>
                 {this.renderUnits()}
             </div>

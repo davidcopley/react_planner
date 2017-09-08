@@ -10,6 +10,10 @@ const EmptyUnitTargetDrop = {
     },
     hover(props, monitor, component){
 
+    },
+    canDrop(props,monitor){
+        const {isDeferred} = props
+        return !isDeferred
     }
 }
 

@@ -28,9 +28,9 @@ const UnitTargetDrop = {
     },
     canDrop(props,monitor){
         const item = monitor.getItem()
-        const {teachingPeriodTotalCredits} = props
+        const {teachingPeriodTotalCredits,isDeferred} = props
         const {myUnitCredit} = item
-        return (myUnitCredit+teachingPeriodTotalCredits)<=36
+        return (myUnitCredit+teachingPeriodTotalCredits)<=36&&!isDeferred
     }
 }
 
@@ -63,7 +63,7 @@ class Unit extends React.Component {
                 maxWidth: myUnitWidth,
                 border: "1px solid black",
                 borderLeft:isHovering?"5px solid red":"1px solid black",
-                background:canDrop?"#adff6d":"white",
+                background:canDrop?"#d9ffcd":"white",
                 flexGrow: 1,
                 alignItems: "center"
             }}>
