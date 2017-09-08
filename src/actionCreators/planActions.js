@@ -22,3 +22,11 @@ export const setIsDeferTeachingPeriodByTeachingPeriodCode = (teachingPeriodCode,
     teachingPeriods[teachingPeriodCode]["isDeferred"] = isDeferred
     dispatch(setTeachingPeriods(teachingPeriods))
 }
+export const resetPlanCourse = () => dispatch => {
+    dispatch(setCourseCode(""))
+    dispatch(setCredit(0))
+    dispatch(setSnapshotName(null))
+    dispatch(setSnapshotIndex(null))
+    dispatch(setTeachingPeriodsSet({}))
+    dispatch(setTeachingPeriods({}))
+}

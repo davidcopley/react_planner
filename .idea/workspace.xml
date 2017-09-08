@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="44cf1631-c5ed-43f0-a464-267482a19f7c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/TeachingPeriod/TeachingPeriodHeader.js" afterPath="$PROJECT_DIR$/src/containers/TeachingPeriod/TeachingPeriodHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/teachingPeriodKeys.js" afterPath="$PROJECT_DIR$/src/tools/teachingPeriodKeys.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actionCreators/planActions.js" afterPath="$PROJECT_DIR$/src/actionCreators/planActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Menu/Menu.js" afterPath="$PROJECT_DIR$/src/containers/Menu/Menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Pages/PlanPage.js" afterPath="$PROJECT_DIR$/src/containers/Pages/PlanPage.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,11 +20,53 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="menuActions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/actionCreators/menuActions.js">
+      <file leaf-file-name="Menu.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/containers/Menu/Menu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coursesActions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/actionCreators/coursesActions.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="68" lean-forward="false" selection-start-line="0" selection-start-column="68" selection-end-line="0" selection-end-column="68" />
+              <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dragAndDropActions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/actionCreators/dragAndDropActions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="72" lean-forward="false" selection-start-line="0" selection-start-column="57" selection-end-line="0" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="planActions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/actionCreators/planActions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="planCourseReducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/reducers/planCourseReducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="26" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="11" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -49,21 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmptyUnit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/Unit/EmptyUnit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PlanPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/Pages/PlanPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+            <state relative-caret-position="292">
+              <caret line="24" column="35" lean-forward="true" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -81,44 +114,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="planCourseReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducers/planCourseReducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="planActions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/actionCreators/planActions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="69" lean-forward="true" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TeachingPeriodHeader.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TeachingPeriodHeader.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/TeachingPeriod/TeachingPeriodHeader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+            <state relative-caret-position="150">
+              <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Unit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/containers/Unit/Unit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="32" column="73" lean-forward="false" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -163,19 +166,19 @@
         <option value="$PROJECT_DIR$/src/reducers/planTeachingPeriodReducer.js" />
         <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/src/reducers/menuReducer.js" />
-        <option value="$PROJECT_DIR$/src/reducers/planCourseReducer.js" />
         <option value="$PROJECT_DIR$/src/reducers/snapshotsDatabaseReducer.js" />
-        <option value="$PROJECT_DIR$/src/containers/Menu/Menu.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/actionCreators/snapshotsActions.js" />
-        <option value="$PROJECT_DIR$/src/actionCreators/planActions.js" />
-        <option value="$PROJECT_DIR$/src/containers/Pages/PlanPage.js" />
         <option value="$PROJECT_DIR$/src/tools/unitValidator.js" />
         <option value="$PROJECT_DIR$/src/containers/Unit/Unit.js" />
         <option value="$PROJECT_DIR$/src/containers/Unit/EmptyUnit.js" />
         <option value="$PROJECT_DIR$/src/containers/TeachingPeriod/TeachingPeriod.js" />
         <option value="$PROJECT_DIR$/src/tools/teachingPeriodKeys.js" />
         <option value="$PROJECT_DIR$/src/containers/TeachingPeriod/TeachingPeriodHeader.js" />
+        <option value="$PROJECT_DIR$/src/containers/Pages/PlanPage.js" />
+        <option value="$PROJECT_DIR$/src/reducers/planCourseReducer.js" />
+        <option value="$PROJECT_DIR$/src/actionCreators/planActions.js" />
+        <option value="$PROJECT_DIR$/src/containers/Menu/Menu.js" />
       </list>
     </option>
   </component>
@@ -270,6 +273,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="reducers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newMonplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newMonplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="containers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -327,7 +348,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="teachingperiodhead&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriodHeader.js&#10;getteach&#9;null&#9;null&#10;teac&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;empty&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Unit/EmptyUnit.js&#10;teachingp&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;planpa&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Pages/PlanPage.js&#10;teachingperiod&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;tea&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriodHeader.js&#10;teachingP&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;plan&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Pages/PlanPage.js&#10;planac&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/actionCreators/planActions.js&#10;menu&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Menu/Menu.js&#10;plancour&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/planCourseReducer.js&#10;snapshot&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/snapshotsDatabaseReducer.js&#10;planre&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/planCourseReducer.js&#10;snapshotre&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/snapshotsDatabaseReducer.js&#10;action&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/actionCreators/snapshotsActions.js&#10;planp&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Pages/PlanPage.js&#10;store&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/store.js&#10;stor&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/store.js&#10;actions&#9;FILE&#9;file://C:/Users/life/WebstormProjects/newMonplan/src/actionCreators/planActions.js&#10;unit&#9;FILE&#9;file://C:/Users/life/WebstormProjects/newMonplan/src/containers/Unit/Unit.js&#10;draganddropred&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/dragAndDropReducer.js&#10;teachingperiodhea&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriodHeader.js&#10;per&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;emptyu&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Unit/EmptyUnit.js&#10;index&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/index.js&#10;inde&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/node_modules/sortable/index.js&#10;unitred&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/planUnitsReducer.js&#10;empt&#9;null&#9;null&#10;unitredu&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/planUnitsReducer.js" />
+    <property name="SearchEverywhereHistoryKey" value="menu&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Menu/Menu.js&#10;planpa&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Pages/PlanPage.js&#10;teachingperiodhead&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriodHeader.js&#10;getteach&#9;null&#9;null&#10;teac&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;empty&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Unit/EmptyUnit.js&#10;teachingp&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;teachingperiod&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;tea&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriodHeader.js&#10;teachingP&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;plan&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Pages/PlanPage.js&#10;planac&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/actionCreators/planActions.js&#10;plancour&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/planCourseReducer.js&#10;snapshot&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/snapshotsDatabaseReducer.js&#10;planre&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/planCourseReducer.js&#10;snapshotre&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/snapshotsDatabaseReducer.js&#10;action&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/actionCreators/snapshotsActions.js&#10;planp&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Pages/PlanPage.js&#10;store&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/store.js&#10;stor&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/store.js&#10;actions&#9;FILE&#9;file://C:/Users/life/WebstormProjects/newMonplan/src/actionCreators/planActions.js&#10;unit&#9;FILE&#9;file://C:/Users/life/WebstormProjects/newMonplan/src/containers/Unit/Unit.js&#10;draganddropred&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/dragAndDropReducer.js&#10;teachingperiodhea&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriodHeader.js&#10;per&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/TeachingPeriod/TeachingPeriod.js&#10;emptyu&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/containers/Unit/EmptyUnit.js&#10;index&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/index.js&#10;inde&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/node_modules/sortable/index.js&#10;unitred&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/planUnitsReducer.js&#10;empt&#9;null&#9;null&#10;unitredu&#9;FILE&#9;file:///Users/1Place/WebstormProjects/newMonplan/src/reducers/planUnitsReducer.js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -434,12 +455,12 @@
       <workItem from="1504245551220" duration="3253000" />
       <workItem from="1504565729482" duration="5715000" />
       <workItem from="1504749944451" duration="5317000" />
-      <workItem from="1504847467892" duration="3422000" />
+      <workItem from="1504847467892" duration="4100000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36983000" />
+    <option name="totallyTimeSpent" value="37661000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1000" extended-state="6" />
@@ -638,13 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actionCreators/coursesActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js" />
     <entry file="file://$PROJECT_DIR$/src/reducers/unitsReducer.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/sortable/index.js" />
@@ -657,13 +671,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/Pages/TestPage.js" />
     <entry file="file://$PROJECT_DIR$/src/containers/Unit/EmptyUnit.css" />
-    <entry file="file://$PROJECT_DIR$/src/actionCreators/dragAndDropActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="72" lean-forward="false" selection-start-line="0" selection-start-column="57" selection-end-line="0" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -721,16 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Menu/Menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -746,22 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/actionCreators/planActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="69" lean-forward="true" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/planCourseReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -806,16 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Pages/PlanPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/planTeachingPeriodReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
@@ -834,8 +805,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/TeachingPeriod/TeachingPeriodHeader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        <state relative-caret-position="150">
+          <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Pages/PlanPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="24" column="35" lean-forward="true" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/planCourseReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="26" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="11" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actionCreators/coursesActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actionCreators/dragAndDropActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="72" lean-forward="false" selection-start-line="0" selection-start-column="57" selection-end-line="0" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actionCreators/planActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Menu/Menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>

@@ -19,12 +19,16 @@ class PlanPage extends React.Component {
             <div style={{minHeight: "100vh", height: "100%"}}>
                 <div style={{
                     height: 50,
+                }}>
+                <div style={{
+                    height: 50,
                     width: "100vw",
                     border: "1px solid black",
                     display: "flex",
-                    justifyContent: "center"
-                }}>
-                    <div style={{display: "flex", width: 1000, maxWidth: 1000, alignItems: "center"}}>
+                    justifyContent: "center",
+                    position:"fixed"
+                }}/>
+                    <div style={{display: "flex", width: 1000, maxWidth: 1000, alignItems: "center",position:"fixed"}}>
                         <button onClick={() => setMenuOpen(!isMenuOpen)}>Menu</button>
                         MonPlan
                     </div>
