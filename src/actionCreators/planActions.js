@@ -4,16 +4,13 @@ export const setSnapshotName = snapshotName => {return {type:"SET_SNAPSHOT_NAME"
 export const setSnapshotIndex = snapshotIndex => {return {type:"SET_SNAPSHOT_INDEX",snapshotIndex}}
 export const setTeachingPeriodsSet = teachingPeriods => {return {type:"SET_TEACHING_PERIODS_SET",teachingPeriods}}
 export const setTeachingPeriods = teachingPeriods => {return {type:"SET_TEACHING_PERIODS",teachingPeriods}}
-export const moveUnit = (unitFromIndex,unitFromTeachingPeriod,unitToIndex,unitToTeachingPeriod) => {return {type:"MOVE_UNIT",unitFromIndex,unitFromTeachingPeriod,unitToIndex,unitToTeachingPeriod}}
 export const removeUnit = (unitRemoveIndex, unitRemoveTeachingPeriod) => {return {type:"REMOVE_UNIT",unitRemoveIndex,unitRemoveTeachingPeriod}}
+export const insertUnit = ( unitInsert, unitInsertIndex, unitInsertTeachingPeriod) => {return {type:"INSERT_UNIT",unitInsert,unitInsertIndex,unitInsertTeachingPeriod}}
 export const addTeachingPeriod = teachingPeriod => {return {type:"ADD_TEACHING_PERIOD",teachingPeriod}}
 export const removeTeachingPeriodByTeachingPeriodCode = teachingPeriodCode => (dispatch,getState) => {
-    const {planTeachingPeriodReducer, planCourseReducer} = getState()
+    const {planTeachingPeriodReducer} = getState()
     const teachingPeriods = planTeachingPeriodReducer.teachingPeriods
-    const teachingPeriodsSet = planCourseReducer.teachingPeriods
     delete teachingPeriods[teachingPeriodCode]
-    delete teachingPeriodsSet[teachingPeriodCode]
-    dispatch(setTeachingPeriodsSet(teachingPeriodsSet))
     dispatch(setTeachingPeriods(teachingPeriods))
 }
 export const setIsDeferTeachingPeriodByTeachingPeriodCode = (teachingPeriodCode,isDeferred) => (dispatch,getState) => {
@@ -29,4 +26,10 @@ export const resetPlanCourse = () => dispatch => {
     dispatch(setSnapshotIndex(null))
     dispatch(setTeachingPeriodsSet({}))
     dispatch(setTeachingPeriods({}))
+}
+export const moveUnit = (unitFromIndex,unitFromTeachingPeriod,unitToIndex,unitToTeachingPeriod) => (dispatch,getState) => {
+    const {planTeachingPeriodReducer} = getState()
+    const unit = planTeachingPeriodReducer["teachingPeriods"][unitFromTeachingPeriod]["units"][unitFromIndex]
+    dispatch(removeUnit(unitFromIndex,unitFromTeachingPeriod))
+    dispatch(insertUnit(unit,unitToIndex,unitToTeachingPeriod))
 }

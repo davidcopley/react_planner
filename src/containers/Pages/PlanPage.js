@@ -8,7 +8,7 @@ import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {getNextTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import {setMenuOpen} from "../../actionCreators/menuActions"
 import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
-import Menu from "../Menu/Menu"
+import SnapshotMenu from "../Menu/SnapshotMenu"
 class PlanPage extends React.Component {
     render() {
         const {teachingPeriods, addTeachingPeriod, isMenuOpen, setMenuOpen} = this.props
@@ -34,7 +34,7 @@ class PlanPage extends React.Component {
                     </div>
                 </div>
                 <div style={{display: "flex", width: "100%", minHeight: "100vh", height: "100%"}}>
-                    {isMenuOpen && <Menu/>}
+                    {isMenuOpen && <SnapshotMenu/>}
                     <div style={{
                         display: "flex",
                         width: "100%",
@@ -76,7 +76,7 @@ class PlanPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    teachingPeriods: state.planCourseReducer.teachingPeriods,
+    teachingPeriods: state.planTeachingPeriodReducer.teachingPeriods,
     courseCode: state.planCourseReducer.courseCode,
     snapshotName: state.planCourseReducer.snapshotName,
     courseCredit: state.planCourseReducer.credit,

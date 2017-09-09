@@ -29,7 +29,7 @@ class EmptyUnit extends React.Component{
     render(){
         const {unitWidth,connectDropTarget,isHovering,canDrop} = this.props
         return(compose(connectDropTarget)(
-            <div className={"empty-unit"} style={{minHeight:100,minWidth:unitWidth,border:isHovering?"2px solid red":"1px solid black",flexGrow:1,userSelect:"none",background:canDrop?"#adff6d":"white",}}>
+            <div className={"empty-unit"} style={{minHeight:100,maxWidth:unitWidth,minWidth:unitWidth,border:isHovering?"2px solid red":"1px solid black",flexGrow:1,userSelect:"none",background:canDrop?"#adff6d":"white",}}>
                 EMPTY UNIT
             </div>
         ))

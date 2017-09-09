@@ -57,39 +57,6 @@ export default (state = defaultState, action) => {
             return {...state, teachingPeriods: {...action.teachingPeriods}}
         case("ADD_TEACHING_PERIOD"):
             return {...state,teachingPeriods:{...state.teachingPeriods,[action.teachingPeriod]:{units:[]}}}
-        case("MOVE_UNIT"):
-            const {unitFromIndex, unitFromTeachingPeriod, unitToIndex, unitToTeachingPeriod} = action
-            //get unit
-            const unit = state.teachingPeriods[unitFromTeachingPeriod]["units"][unitFromIndex]
-            //remove from old teaching period
-            state =
-                {
-                    ...state,
-                    teachingPeriods: {
-                        ...state.teachingPeriods,
-                        [unitFromTeachingPeriod]: {
-                            ...state.teachingPeriods[unitFromTeachingPeriod],
-                            units: [...state.teachingPeriods[unitFromTeachingPeriod]["units"].slice(0, unitFromIndex), ...state.teachingPeriods[unitFromTeachingPeriod]["units"].slice(unitFromIndex + 1)]
-                        }
-                    }
-                }
-            //adding to new teaching period
-            state =
-                {
-                    ...state,
-                    teachingPeriods: {
-                        ...state.teachingPeriods,
-                        [unitToTeachingPeriod]: {
-                            ...state.teachingPeriods[unitToTeachingPeriod],
-                            units: [
-                                ...state.teachingPeriods[unitToTeachingPeriod]["units"].slice(0, unitToIndex),
-                                unit,
-                                ...state.teachingPeriods[unitToTeachingPeriod]["units"].slice(unitToIndex)
-                            ]
-                        }
-                    }
-                }
-            return state
         case("REMOVE_UNIT"):
             const {unitRemoveIndex, unitRemoveTeachingPeriod} = action
             //remove from old teaching period

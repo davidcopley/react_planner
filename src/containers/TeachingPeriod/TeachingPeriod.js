@@ -17,9 +17,9 @@ class TeachingPeriod extends React.Component {
         const calculateTeachingPeriodUnitWidth = (unitsCodes, units, totalCredits) => {
             let unitWidth = 0
             if (totalCredits < 24) {
-                unitWidth = 850 / (24 / 6)
+                unitWidth = 800 / (24 / 6)
             } else {
-                unitWidth = 850 / (totalCredits / 6)
+                unitWidth = 800 / (totalCredits / 6)
             }
             return unitWidth
         }
@@ -41,7 +41,7 @@ class TeachingPeriod extends React.Component {
             }
         }
         return (
-            <div ref={this.sortableGroupDecorator} style={{display: "flex", minWidth: 850, maxWidth: 850, padding: 10}}>
+            <div className="unit_container" style={{maxWidth: 800, padding: 10}}>
                 {unitsArray}
             </div>
         )

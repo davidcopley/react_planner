@@ -1,0 +1,12 @@
+@media screen and (min-width: 1200px) {
+    .unit_container{
+        display: flex;
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .unit_container{
+        /*display: block;*/
+    }
+}

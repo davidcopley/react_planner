@@ -4,7 +4,7 @@ import {compose} from "redux"
 import {DragSource, DropTarget} from "react-dnd"
 import {setDragSource} from "../../actionCreators/dragAndDropActions"
 import {moveUnit,removeUnit} from "../../actionCreators/planActions"
-
+import "./Unit.css"
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
         const {teachingPeriodCode, index,setDragSource, units, unitCode,} = props
@@ -21,6 +21,7 @@ const UnitSourceDrag = {
 const UnitTargetDrop = {
     drop(props, monitor, component){
         const {teachingPeriodCode, index,dragSource,moveUnit} = props
+        //on drop, move unit from index of teaching period to index of other teaching period
         moveUnit(dragSource.index,dragSource.teachingPeriodCode,index,teachingPeriodCode)
     },
     hover(props, monitor, component){
@@ -30,6 +31,7 @@ const UnitTargetDrop = {
         const item = monitor.getItem()
         const {teachingPeriodTotalCredits,isDeferred} = props
         const {myUnitCredit} = item
+        //if teaching periods can contain extra credits, and teaching period is not deferred
         return (myUnitCredit+teachingPeriodTotalCredits)<=36&&!isDeferred
     }
 }
