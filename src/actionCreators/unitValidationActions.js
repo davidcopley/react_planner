@@ -1,9 +1,4 @@
-import store from "../store"
-
-store.subscribe(()=>{console.log(store.getState())})
-
 export const setDuplicateUnits = duplicateUnits => {return {type:"SET_DUPLICATE_UNITS",duplicateUnits}}
-
 export const validateDuplicateUnits = () => (dispatch,getState) => {
     const {planTeachingPeriodReducer} = getState()
     const {teachingPeriods} = planTeachingPeriodReducer
