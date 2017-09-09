@@ -4,7 +4,6 @@ import {compose} from "redux"
 import {DragSource, DropTarget} from "react-dnd"
 import {setDragSource} from "../../actionCreators/dragAndDropActions"
 import {moveUnit,removeUnit} from "../../actionCreators/planActions"
-import "./Unit.css"
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
         const {teachingPeriodCode, index,setDragSource, units, unitCode,} = props

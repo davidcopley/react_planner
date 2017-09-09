@@ -9,6 +9,7 @@ import {getNextTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import {setMenuOpen} from "../../actionCreators/menuActions"
 import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
 import SnapshotMenu from "../Menu/SnapshotMenu"
+import "./PlanPage.css"
 class PlanPage extends React.Component {
     render() {
         const {teachingPeriods, addTeachingPeriod, isMenuOpen, setMenuOpen} = this.props
@@ -40,12 +41,11 @@ class PlanPage extends React.Component {
                         width: "100%",
                         justifyContent: "center",
                         minHeight: "100vh",
-                        height: "100%"
+                        height: "100%",
                     }}>
                         <div style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: 1000,
                             maxWidth: 1000,
                             minHeight: "100vh",
                             height: "100%"

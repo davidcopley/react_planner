@@ -8,8 +8,7 @@ class TeachingPeriod extends React.Component {
 
     calculateTotalCredits = unitsCodes => {
         const {units} = this.props
-        const totalCredits = unitsCodes.reduce((totalCredits, unitCode) => units[unitCode]["credit"] + totalCredits, 0)
-        return totalCredits
+        return unitsCodes.reduce((totalCredits, unitCode) => units[unitCode]["credit"] + totalCredits, 0)
     }
     renderUnits = () => {
 
@@ -37,11 +36,11 @@ class TeachingPeriod extends React.Component {
         const emptyUnits = (24 - totalCredits) / 6;
         if (emptyUnits > 0) {
             for (let i = 0; i < emptyUnits; i++) {
-                unitsArray.push(<EmptyUnit isDeferred={isDeferred} index={i} teachingPeriodCode={teachingPeriodCode}  key={`emptyUnit${i}`} unitWidth={unitWidth}/>)
+                unitsArray.push(<EmptyUnit className="unit" isDeferred={isDeferred} index={i} teachingPeriodCode={teachingPeriodCode}  key={`emptyUnit${i}`} unitWidth={unitWidth}/>)
             }
         }
         return (
-            <div className="unit_container" style={{maxWidth: 800, padding: 10}}>
+            <div className="unit-container" style={{padding: 10}}>
                 {unitsArray}
             </div>
         )
@@ -56,7 +55,7 @@ class TeachingPeriod extends React.Component {
         isDeferred = isDeferred && !isFirst && !isLast
         let totalCredits = this.calculateTotalCredits(unitsCodes)
         return (
-            <div id={teachingPeriodCode} style={{display: "flex",background:isDeferred?"#cfb4aa":"white",width:"100%",minWidth:"1050"}}>
+            <div id={teachingPeriodCode} style={{display: "flex",background:isDeferred?"#cfb4aa":"white",width:"100%"}}>
                 <TeachingPeriodHeader isFirst={isFirst} isLast={isLast} isDeferred={isDeferred} totalCredits={totalCredits} teachingPeriodCode={teachingPeriodCode}/>
                 {this.renderUnits()}
             </div>
