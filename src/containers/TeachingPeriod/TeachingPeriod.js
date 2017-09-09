@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import TeachingPeriodHeader from "./TeachingPeriodHeader"
 import Unit from "../Unit/Unit"
 import EmptyUnit from "../Unit/EmptyUnit"
-import unsubscribe from  "../../subscribers/planTeachingPeriodSubscribers"
+import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
 
 class TeachingPeriod extends React.Component {
 

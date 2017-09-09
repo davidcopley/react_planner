@@ -10,7 +10,7 @@ class PlanTeachingPeriodSubscriber{
         const {planTeachingPeriodReducer} = store.getState()
         const {teachingPeriods} = planTeachingPeriodReducer
         this.currentPlanTeachingPeriod = teachingPeriods
-        if(previousPlanTeachingPeriod !== this.currentPlanTeachingPeriod){
+        if(this.currentPlanTeachingPeriod !== previousPlanTeachingPeriod){
             store.dispatch(validateDuplicateUnits())
         }
     }
