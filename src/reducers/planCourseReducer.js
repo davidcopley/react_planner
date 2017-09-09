@@ -15,8 +15,6 @@ export default (state=defaultState,action)=>{
             return {...state,snapshotName:action.snapshotName}
         case("SET_SNAPSHOT_INDEX"):
             return {...state,snapshotIndex:action.snapshotIndex}
-        case("ADD_TEACHING_PERIOD"):
-            return {...state,teachingPeriods:{...state.teachingPeriods,[action.teachingPeriod]:true}}
         default:
             return state
     }

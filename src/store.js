@@ -8,6 +8,7 @@ import planTeachingPeriodReducer from "./reducers/planTeachingPeriodReducer"
 import unitDatabaseReducer from "./reducers/unitDatabaseReducer"
 import dragAndDropReducer from "./reducers/dragAndDropReducer"
 import menuReducer from "./reducers/menuReducer"
+import unitValidationReducer from "./reducers/unitValidationReducer"
 
 const appReducer = combineReducers({
     planCourseReducer,
@@ -17,7 +18,8 @@ const appReducer = combineReducers({
     coursesDatabaseReducer,
     snapshotsDatabaseReducer,
     dragAndDropReducer,
-    menuReducer
+    menuReducer,
+    unitValidationReducer
 });
 
 export default createStore(appReducer,applyMiddleware(thunk));

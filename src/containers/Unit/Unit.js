@@ -51,11 +51,11 @@ const collectDrop = (connect, monitor) => {
 
 class Unit extends React.Component {
     render() {
-        const {units, unitCode, unitWidth} = this.props
+        const {units, unitCode, unitWidth,duplicateUnits} = this.props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
         const myUnitWidth = unitWidth * (myUnitCredit / 6)
-
+        const myUnitIsDuplicate = duplicateUnits[unitCode]
         const {connectDragSource, connectDropTarget, isHovering, canDrop,removeUnit,teachingPeriodCode, index } = this.props;
         return compose(connectDragSource,connectDropTarget)(
             <div style={{
@@ -64,7 +64,7 @@ class Unit extends React.Component {
                 maxWidth: myUnitWidth,
                 border: "1px solid black",
                 borderLeft:isHovering?"5px solid red":"1px solid black",
-                background:canDrop?"#d9ffcd":"white",
+                background:canDrop?"#d9ffcd":myUnitIsDuplicate?"red":"white",
                 flexGrow: 1,
                 alignItems: "center"
             }}>
@@ -80,7 +80,7 @@ class Unit extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return {units: state.unitDatabaseReducer.units,dragSource:state.dragAndDropReducer.dragSource}
+    return {units: state.unitDatabaseReducer.units,dragSource:state.dragAndDropReducer.dragSource, duplicateUnits:state.unitValidationReducer.duplicateUnits}
 }
 
 export default compose(connect(mapStateToProps,{setDragSource,moveUnit,removeUnit}),DragSource("Unit",UnitSourceDrag,collectDrag), DropTarget("Unit",UnitTargetDrop,collectDrop))(Unit)

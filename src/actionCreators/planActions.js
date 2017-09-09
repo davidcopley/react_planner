@@ -1,3 +1,4 @@
+import {validateDuplicateUnits} from "./unitValidationActions"
 export const setCourseCode = courseCode => {return {type:"SET_COURSE_CODE",courseCode}}
 export const setCredit = credit => {return {type:"SET_CREDIT",credit}}
 export const setSnapshotName = snapshotName => {return {type:"SET_SNAPSHOT_NAME",snapshotName}}
@@ -18,6 +19,7 @@ export const setIsDeferTeachingPeriodByTeachingPeriodCode = (teachingPeriodCode,
     const teachingPeriods = planTeachingPeriodReducer.teachingPeriods
     teachingPeriods[teachingPeriodCode]["isDeferred"] = isDeferred
     dispatch(setTeachingPeriods(teachingPeriods))
+    dispatch(validateDuplicateUnits())
 }
 export const resetPlanCourse = () => dispatch => {
     dispatch(setCourseCode(""))
@@ -32,4 +34,5 @@ export const moveUnit = (unitFromIndex,unitFromTeachingPeriod,unitToIndex,unitTo
     const unit = planTeachingPeriodReducer["teachingPeriods"][unitFromTeachingPeriod]["units"][unitFromIndex]
     dispatch(removeUnit(unitFromIndex,unitFromTeachingPeriod))
     dispatch(insertUnit(unit,unitToIndex,unitToTeachingPeriod))
+    dispatch(validateDuplicateUnits())
 }

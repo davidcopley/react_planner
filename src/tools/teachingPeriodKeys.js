@@ -8,7 +8,6 @@ export const getNextTeachingPeriodKey = currentTeachingPeriodKey => {
     const semester = teachingPeriodSplitted[1]
     const semesterNumber = parseInt(semester.replace("S",""))
     let nextYear,nextSemesterNumber;
-    console.log(semesterNumber)
     if(semesterNumber===1){
         nextSemesterNumber = 2
         nextYear=year
