@@ -19,6 +19,7 @@ export const setIsDeferTeachingPeriodByTeachingPeriodCode = (teachingPeriodCode,
     teachingPeriods[teachingPeriodCode]["isDeferred"] = isDeferred
     dispatch(setTeachingPeriods(teachingPeriods))
 }
+//reset by setting an empty state
 export const resetPlanCourse = () => dispatch => {
     dispatch(setCourseCode(""))
     dispatch(setCredit(0))
@@ -27,6 +28,7 @@ export const resetPlanCourse = () => dispatch => {
     dispatch(setTeachingPeriodsSet({}))
     dispatch(setTeachingPeriods({}))
 }
+//a move involves removing unit from old teaching period, and inserting to new teaching period
 export const moveUnit = (unitFromIndex,unitFromTeachingPeriod,unitToIndex,unitToTeachingPeriod) => (dispatch,getState) => {
     const {planTeachingPeriodReducer} = getState()
     const unit = planTeachingPeriodReducer["teachingPeriods"][unitFromTeachingPeriod]["units"][unitFromIndex]
