@@ -21,18 +21,23 @@ class TeachingPeriod extends React.Component {
         let {units, isDeferred} = myTeachingPeriod
         isDeferred = isDeferred && !isFirst && !isLast
         let unitWidth = this.calculateTeachingPeriodUnitWidth(totalCredits)
-        let unitsArray = units.map((unitCode, i) =>
-            <Unit
-                className="unit"
-                key={`unit${unitCode}${teachingPeriodCode}${i}`}
-                index={i}
-                teachingPeriodCode={teachingPeriodCode}
-                isDeferred={isDeferred}
-                unitCode={unitCode}
-                unitWidth={unitWidth}
-                teachingPeriodTotalCredits={totalCredits}
-            />
-        )
+        let unitsArray
+        if(isDeferred){
+            unitsArray = []
+        }else {
+            unitsArray = units.map((unitCode, i) =>
+                <Unit
+                    className="unit"
+                    key={`unit${unitCode}${teachingPeriodCode}${i}`}
+                    index={i}
+                    teachingPeriodCode={teachingPeriodCode}
+                    isDeferred={isDeferred}
+                    unitCode={unitCode}
+                    unitWidth={unitWidth}
+                    teachingPeriodTotalCredits={totalCredits}
+                />
+            )
+        }
         const emptyUnits = (24 - totalCredits) / 6;
         if (emptyUnits > 0) {
             for (let i = 0; i < emptyUnits; i++) {
