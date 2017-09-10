@@ -11,6 +11,5 @@ export const calculateTeachingPeriodCredits = () => (dispatch,getState) => {
         const teachingPeriodTotalCredits =  teachingPeriodUnits.reduce((totalCredits, unitCode) => units[unitCode]["credit"] + totalCredits, 0)
         teachingPeriodsCredits[teachingPeriodKey] = teachingPeriodTotalCredits
     })
-    console.log(teachingPeriodsCredits)
     dispatch(setTeachingPeriodsCredits(teachingPeriodsCredits))
 }
