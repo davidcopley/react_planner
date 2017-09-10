@@ -1,5 +1,5 @@
 export const setCourseCode = courseCode => {return {type:"SET_COURSE_CODE",courseCode}}
-export const setCredit = credit => {return {type:"SET_CREDIT",credit}}
+export const setCourseCredit = courseCredit => {return {type:"SET_COURSE_CREDIT",courseCredit}}
 export const setSnapshotName = snapshotName => {return {type:"SET_SNAPSHOT_NAME",snapshotName}}
 export const setSnapshotIndex = snapshotIndex => {return {type:"SET_SNAPSHOT_INDEX",snapshotIndex}}
 export const setTeachingPeriodsSet = teachingPeriods => {return {type:"SET_TEACHING_PERIODS_SET",teachingPeriods}}
@@ -22,7 +22,7 @@ export const setIsDeferTeachingPeriodByTeachingPeriodCode = (teachingPeriodCode,
 //reset by setting an empty state
 export const resetPlanCourse = () => dispatch => {
     dispatch(setCourseCode(""))
-    dispatch(setCredit(0))
+    dispatch(setCourseCredit(0))
     dispatch(setSnapshotName(null))
     dispatch(setSnapshotIndex(null))
     dispatch(setTeachingPeriodsSet({}))

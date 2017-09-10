@@ -1,7 +1,6 @@
 import store from "../store"
 import {validateDuplicateUnits} from "../actionCreators/unitValidationActions"
 import {calculateTeachingPeriodCredits} from "../actionCreators/planTeachingPeriodActions"
-
 class PlanTeachingPeriodSubscriber{
     constructor(){
         this.currentPlanTeachingPeriod = null

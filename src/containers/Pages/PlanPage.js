@@ -79,7 +79,7 @@ const mapStateToProps = state => ({
     teachingPeriods: state.planTeachingPeriodReducer.teachingPeriods,
     courseCode: state.planCourseReducer.courseCode,
     snapshotName: state.planCourseReducer.snapshotName,
-    courseCredit: state.planCourseReducer.credit,
+    courseCredit: state.planCourseReducer.courseCredit,
     isMenuOpen: state.menuReducer.isOpen
 })
 

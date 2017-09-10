@@ -1,4 +1,4 @@
-import {setCourseCode,setCredit,setTeachingPeriodsSet, setSnapshotName, setTeachingPeriods,setSnapshotIndex} from "../actionCreators/planActions"
+import {setCourseCode,setCourseCredit,setTeachingPeriodsSet, setSnapshotName, setTeachingPeriods,setSnapshotIndex} from "../actionCreators/planActions"
 export const setSnapshots = snapshots =>{return {type:"SET_SNAPSHOTS",snapshots}}
 export const appendSnapshot = snapshot =>{return {type:"APPEND_SNAPSHOT",snapshot}}
 export const setSnapshot = (snapshot,snapshotIndex) => {return {type:"SET_SNAPSHOT",snapshot,snapshotIndex}}
@@ -9,7 +9,7 @@ export const loadSnapshotByIndex = snapshotIndex => (dispatch, getState) => {
     const {courseCode,credit,teachingPeriods,snapshotName} = snapshot
     //dispatch to planCourseReducer
     dispatch(setCourseCode(courseCode))
-    dispatch(setCredit(credit))
+    dispatch(setCourseCredit(credit))
     dispatch(setSnapshotName(snapshotName))
     dispatch(setSnapshotIndex(snapshotIndex))
     ////the teaching period set expects {[teaching period id]:True} but still works if passed in teachingPeriodsData, even though redundant
