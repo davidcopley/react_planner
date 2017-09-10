@@ -3,7 +3,6 @@ const defaultState = {
         {
             snapshotName:"Snapshot1",
             courseCode:"B2000",
-            credit:192,
             teachingPeriods: {
                 "2017-S1-01": {
                     units: [
@@ -25,7 +24,6 @@ const defaultState = {
         {
             snapshotName:"Snapshot2",
             courseCode:"C2000",
-            credit:144,
             teachingPeriods: {
                 "2018-S2-01": {
                     units: [
@@ -48,7 +46,6 @@ const defaultState = {
         {
             snapshotName:"Some Random Snapshot name",
             courseCode:"A2000",
-            credit:144,
             teachingPeriods: {
                 "2017-S1-01": {
                     units: [
