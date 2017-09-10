@@ -4,6 +4,7 @@ import {validateDuplicateUnits} from "../actionCreators/unitValidationActions"
 class PlanTeachingPeriodSubscriber{
     constructor(){
         this.currentPlanTeachingPeriod = null
+        store.dispatch(validateDuplicateUnits())
     }
     handlePlanTeachingPeriodChange = () => {
         const previousPlanTeachingPeriod = this.currentPlanTeachingPeriod
