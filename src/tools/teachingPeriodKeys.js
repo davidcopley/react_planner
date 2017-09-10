@@ -75,3 +75,17 @@ export const getPrevSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
     }
     return `${year}-${prevTeachingPeriodCode}-01`
 }
+
+export const getTeachingPeriodString = teachingPeriodKey => {
+    let string,year,semester
+    const teachingPeriodSplitted = teachingPeriodKey.split("-")
+    year = teachingPeriodSplitted[0]
+    semester = teachingPeriodSplitted[1]
+    if(semester[0]==="S"){
+        semester = "Semester "+semester[1]+", "
+    }else if(semester==="WINTER"){
+        semester = "Winter, "
+    }else semester = "Summer, "
+    string = semester+year
+    return string
+}

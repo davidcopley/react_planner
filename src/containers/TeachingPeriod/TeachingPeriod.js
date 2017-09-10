@@ -81,7 +81,7 @@ class TeachingPeriod extends React.Component {
             <span>
                 {!isSpecial&&isFirst&&shouldShowAddPrevSpecialTeachingPeriod&& <button onClick={()=>addTeachingPeriod(prevSpecialTeachingPeriodKey)}>Add {prevSpecialTeachingPeriodKey}</button>}
             <div id={teachingPeriodCode}
-                 style={{display: "flex", background: isDeferred ? "#cfb4aa" : "white", width: "100%"}}>
+                 style={{display: "flex", background: isDeferred ? "#7100ff" : "white", width: "100%"}}>
                 <TeachingPeriodHeader
                     isFirst={isFirst}
                     isLast={isLast}

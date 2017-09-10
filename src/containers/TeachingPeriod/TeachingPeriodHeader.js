@@ -4,6 +4,7 @@ import {
     removeTeachingPeriodByTeachingPeriodCode,
     setIsDeferTeachingPeriodByTeachingPeriodCode
 } from "../../actionCreators/planActions"
+import {getTeachingPeriodString} from "../../tools/teachingPeriodKeys"
 
 class TeachingPeriodHeader extends React.Component {
     render() {
@@ -13,7 +14,7 @@ class TeachingPeriodHeader extends React.Component {
         const isSpecialTeachingPeriod = isSummer || isWinter
         return (
             <div style={{
-                minWidth: 200,
+                minWidth: 100,
                 minHeight: 100,
                 boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
                 flexGrow: 0,
@@ -22,7 +23,7 @@ class TeachingPeriodHeader extends React.Component {
                 background: isSummer ? "#ff9a53" : isWinter ? "#c2ecff" : "#ffffff",
                 padding: 20
             }}>
-                {teachingPeriodCode}<br/>
+                {getTeachingPeriodString(teachingPeriodCode)}<br/>
                 Total Credits: {totalCredits}<br/>
                 {(isFirst || isLast || isSpecialTeachingPeriod) &&
                 <button onClick={() => removeTeachingPeriodByTeachingPeriodCode(teachingPeriodCode)}>
@@ -30,7 +31,6 @@ class TeachingPeriodHeader extends React.Component {
                 {!isFirst && !isLast &&
                 <button onClick={() => setIsDeferTeachingPeriodByTeachingPeriodCode(teachingPeriodCode, !isDeferred)}>
                     Defer</button>}<br/>
-                Deferred:{isDeferred ? "TRUE" : "FALSE"}
             </div>
         )
     }

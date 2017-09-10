@@ -79,7 +79,7 @@ class Unit extends React.Component {
                     {unitCode}<br/>
                     {myUnit.name}<br/>
                     Credits: {myUnitCredit}<br/>
-                    <button onClick={() => removeUnit(index, teachingPeriodCode)}>Remove</button>
+                    <button  onClick={() => removeUnit(index, teachingPeriodCode)}>Remove</button>
                 </div>
             </div>
         )
