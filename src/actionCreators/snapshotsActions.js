@@ -19,9 +19,9 @@ export const loadSnapshotByIndex = snapshotIndex => (dispatch, getState) => {
 }
 export const saveSnapshot = () => (dispatch,getState) => {
     const {planCourseReducer,planTeachingPeriodReducer} = getState()
-    const {courseCode,credit,snapshotName,snapshotIndex} = planCourseReducer
+    const {courseCode,snapshotName,snapshotIndex} = planCourseReducer
     const {teachingPeriods} = planTeachingPeriodReducer
-    const snapshot = {courseCode,credit,snapshotName,teachingPeriods}
+    const snapshot = {courseCode,snapshotName,teachingPeriods}
     dispatch(setSnapshot(snapshot,snapshotIndex))
 }
 export const appendSnapshotBySnapshotName = snapshotName => (dispatch, getState) => {
