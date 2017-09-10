@@ -29,7 +29,7 @@ class PlanPage extends React.Component {
                 }}/>
                     <div style={{display: "flex", width: 1000, maxWidth: 1000, alignItems: "center",position:"fixed"}}>
                         <button style={{margin:20}} onClick={() => setMenuOpen(!isMenuOpen)}>Menu</button>
-                        <h1 style={{color:"white"}}>MonPlan</h1>
+                        <h1 style={{color:"white"}}>Unit Planner</h1>
                     </div>
                 </div>
                 <div style={{display: "flex", width: "100%", minHeight: "100vh", height: "100%"}}>
