@@ -11,6 +11,7 @@ import "./PlanPage.css"
 import MenuIcon from "material-ui/svg-icons/navigation/menu"
 import AddIcon from "material-ui/svg-icons/content/add"
 import {IconButton,FloatingActionButton} from "material-ui"
+import CourseModal from "../Modals/LoadCourseModal"
 import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
 class PlanPage extends React.Component {
     componentWillUnmount(){
@@ -53,6 +54,7 @@ class PlanPage extends React.Component {
                 <FloatingActionButton iconStyle={{width:45,height:45,transform:isUnitsMenuOpen?"rotate(112.5deg":undefined}} style={{position:"fixed",bottom:50,right:50,zIndex:10000}} backgroundColor={"#a10300"} onClick={()=> setIsUnitsMenuOpen(!isUnitsMenuOpen)}>
                     <AddIcon/>
                 </FloatingActionButton>
+                <CourseModal/>
             </div>
         )
     }

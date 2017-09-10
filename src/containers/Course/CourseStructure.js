@@ -4,9 +4,10 @@ import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
 import TeachingPeriod from "../TeachingPeriod/TeachingPeriod"
 import {getNextGeneralTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
+import {getCourses} from "../../actionCreators/courseDatabaseActions"
 class CourseStructure extends React.Component {
     render() {
-        const {snapshotName, courseCode, courseCredit, saveSnapshot, addTeachingPeriod, appendSnapshotBySnapshotName, teachingPeriodsOrder} = this.props
+        const {snapshotName, courseCode, courseCredit, saveSnapshot, addTeachingPeriod, appendSnapshotBySnapshotName, teachingPeriodsOrder, getCourses} = this.props
         const nextTeachingPeriodKey = getNextGeneralTeachingPeriodKey(teachingPeriodsOrder[teachingPeriodsOrder.length - 1])
         return (
             <div style={{
@@ -25,6 +26,7 @@ class CourseStructure extends React.Component {
                 <h2>Snapshot name: {snapshotName}</h2>
                 <h2>Course Code: {courseCode}</h2>
                 <h2>Course Credit: {courseCredit}</h2>
+                <button onClick={()=>getCourses()}>Get Courses</button>
                 {snapshotName ? <button onClick={() => saveSnapshot()}>Save Snapshot</button> : <div>
                     <button onClick={() => appendSnapshotBySnapshotName(this.snapshotName.value)}>New Snapshot</button>
                     <input ref={snapshotName => this.snapshotName = snapshotName} type="text"
@@ -57,5 +59,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
     addTeachingPeriod,
     saveSnapshot,
-    appendSnapshotBySnapshotName
+    appendSnapshotBySnapshotName,
+    getCourses
 })(CourseStructure)
