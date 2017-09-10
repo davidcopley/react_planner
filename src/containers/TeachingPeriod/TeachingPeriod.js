@@ -6,38 +6,46 @@ import EmptyUnit from "../Unit/EmptyUnit"
 import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
 
 class TeachingPeriod extends React.Component {
-
-    calculateTotalCredits = unitsCodes => {
-        const {units} = this.props
-        return unitsCodes.reduce((totalCredits, unitCode) => units[unitCode]["credit"] + totalCredits, 0)
-    }
-    renderUnits = () => {
-
-
-        const calculateTeachingPeriodUnitWidth = (unitsCodes, units, totalCredits) => {
-            let unitWidth = 0
-            if (totalCredits < 24) {
-                unitWidth = 800 / (24 / 6)
-            } else {
-                unitWidth = 800 / (totalCredits / 6)
-            }
-            return unitWidth
+    calculateTeachingPeriodUnitWidth = totalCredits => {
+        let unitWidth = 0
+        if (totalCredits < 24) {
+            unitWidth = 800 / (24 / 6)
+        } else {
+            unitWidth = 800 / (totalCredits / 6)
         }
-
-        const {teachingPeriods, teachingPeriodCode, units, isFirst, isLast} = this.props
+        return unitWidth
+    }
+    renderUnits = totalCredits => {
+        const {teachingPeriods, teachingPeriodCode, isFirst, isLast} = this.props
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
-        let unitsCodes = myTeachingPeriod["units"]
-        let isDeferred = myTeachingPeriod["isDeferred"]
+        let {units, isDeferred} = myTeachingPeriod
         isDeferred = isDeferred && !isFirst && !isLast
-        let totalCredits = this.calculateTotalCredits(unitsCodes)
-        let unitWidth = calculateTeachingPeriodUnitWidth(unitsCodes, units, totalCredits)
-        let unitsArray = unitsCodes.map((unitCode, i) => <Unit className="unit" key={`unit${unitCode}${teachingPeriodCode}${i}`} index={i}
-                                                               teachingPeriodCode={teachingPeriodCode}  isDeferred={isDeferred}
-                                                               unitCode={unitCode} unitWidth={unitWidth} teachingPeriodTotalCredits={totalCredits}/>)
+        let unitWidth = this.calculateTeachingPeriodUnitWidth(totalCredits)
+        let unitsArray = units.map((unitCode, i) =>
+            <Unit
+                className="unit"
+                key={`unit${unitCode}${teachingPeriodCode}${i}`}
+                index={i}
+                teachingPeriodCode={teachingPeriodCode}
+                isDeferred={isDeferred}
+                unitCode={unitCode}
+                unitWidth={unitWidth}
+                teachingPeriodTotalCredits={totalCredits}
+            />
+        )
         const emptyUnits = (24 - totalCredits) / 6;
         if (emptyUnits > 0) {
             for (let i = 0; i < emptyUnits; i++) {
-                unitsArray.push(<EmptyUnit className="unit" isDeferred={isDeferred} index={i} teachingPeriodCode={teachingPeriodCode}  key={`emptyUnit${i}`} unitWidth={unitWidth}/>)
+                unitsArray.push(
+                    <EmptyUnit
+                        className="unit"
+                        isDeferred={isDeferred}
+                        index={i}
+                        teachingPeriodCode={teachingPeriodCode}
+                        key={`emptyUnit${i}`}
+                        unitWidth={unitWidth}
+                    />
+                )
             }
         }
         return (
@@ -49,16 +57,23 @@ class TeachingPeriod extends React.Component {
 
     render() {
         //extract my teaching period from redux by teaching period code
-        const {teachingPeriods, teachingPeriodCode,isFirst,isLast} = this.props
+        const {teachingPeriods, teachingPeriodsCredits, teachingPeriodCode, isFirst, isLast} = this.props
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
-        let unitsCodes = myTeachingPeriod["units"]
+        const myTeachingPeriodsCredits = teachingPeriodsCredits[teachingPeriodCode]
+        const totalCredits = myTeachingPeriodsCredits
         let isDeferred = myTeachingPeriod["isDeferred"]
         isDeferred = isDeferred && !isFirst && !isLast
-        let totalCredits = this.calculateTotalCredits(unitsCodes)
         return (
-            <div id={teachingPeriodCode} style={{display: "flex",background:isDeferred?"#cfb4aa":"white",width:"100%"}}>
-                <TeachingPeriodHeader isFirst={isFirst} isLast={isLast} isDeferred={isDeferred} totalCredits={totalCredits} teachingPeriodCode={teachingPeriodCode}/>
-                {this.renderUnits()}
+            <div id={teachingPeriodCode}
+                 style={{display: "flex", background: isDeferred ? "#cfb4aa" : "white", width: "100%"}}>
+                <TeachingPeriodHeader
+                    isFirst={isFirst}
+                    isLast={isLast}
+                    isDeferred={isDeferred}
+                    totalCredits={totalCredits}
+                    teachingPeriodCode={teachingPeriodCode}
+                />
+                {this.renderUnits(totalCredits)}
             </div>
         )
     }
@@ -66,6 +81,7 @@ class TeachingPeriod extends React.Component {
 
 const mapStateToProps = state => ({
     teachingPeriods: state.planTeachingPeriodReducer.teachingPeriods,
+    teachingPeriodsCredits: state.planTeachingPeriodReducer.teachingPeriodsCredits,
     units: state.unitDatabaseReducer.units
 })
 
