@@ -4,7 +4,7 @@ export const getNextGeneralTeachingPeriodKey = currentTeachingPeriodKey => {
         return `${date.getYear()+1900}-${date.getMonth()<7?"S1":"S2"}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
-    const year = teachingPeriodSplitted[0]
+    const year = parseInt(teachingPeriodSplitted[0])
     const semester = teachingPeriodSplitted[1]
     let nextYear, nextSemesterNumber;
     if(semester !== "WINTER" && semester !== "SUMMER") {
@@ -37,7 +37,7 @@ export const getNextSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
         return `${date.getYear()+1900}-${nextSeason}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
-    const year = teachingPeriodSplitted[0]
+    const year = parseInt(teachingPeriodSplitted[0])
     const semester = teachingPeriodSplitted[1]
     if(semester === "WINTER" || semester === "SUMMER"){
         return null
@@ -50,4 +50,28 @@ export const getNextSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
         nextTeachingPeriodCode = "SUMMER"
     }
     return `${year}-${nextTeachingPeriodCode}-01`
+}
+
+export const getPrevSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
+    if(!currentTeachingPeriodKey){
+        const date = new Date()
+        const prevSeason = date.getMonth()<7?"SUMMER":"WINTER"
+        const prevYear = prevSeason==="SUMMER"?date.getYear()-1:date.getYear()
+        return `${prevYear+1900}-${prevSeason}-01`
+    }
+    const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
+    let year = parseInt(teachingPeriodSplitted[0])
+    const semester = teachingPeriodSplitted[1]
+    if(semester === "WINTER" || semester === "SUMMER"){
+        return null
+    }
+    const semesterNumber = parseInt(semester.replace("S", ""))
+    let prevTeachingPeriodCode;
+    if (semesterNumber === 1) {
+        prevTeachingPeriodCode = "SUMMER"
+        year-=1
+    } else {
+        prevTeachingPeriodCode = "WINTER"
+    }
+    return `${year}-${prevTeachingPeriodCode}-01`
 }

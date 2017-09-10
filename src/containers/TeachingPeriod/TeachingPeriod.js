@@ -4,7 +4,7 @@ import TeachingPeriodHeader from "./TeachingPeriodHeader"
 import Unit from "../Unit/Unit"
 import EmptyUnit from "../Unit/EmptyUnit"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
-import {getNextSpecialTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
+import {getNextSpecialTeachingPeriodKey,getPrevSpecialTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
 
 class TeachingPeriod extends React.Component {
@@ -70,10 +70,18 @@ class TeachingPeriod extends React.Component {
         const totalCredits = myTeachingPeriodsCredits
         let isDeferred = myTeachingPeriod["isDeferred"]
         isDeferred = isDeferred && !isFirst && !isLast
+        const isSpecial = teachingPeriodCode.match(/SUMMER/)||teachingPeriodCode.match(/WINTER/)
         const nextSpecialTeachingPeriodKey = getNextSpecialTeachingPeriodKey(teachingPeriodCode)
+        let prevSpecialTeachingPeriodKey
+        let shouldShowAddPrevSpecialTeachingPeriod = false
+        if(isFirst){
+            prevSpecialTeachingPeriodKey = getPrevSpecialTeachingPeriodKey(teachingPeriodCode)
+            shouldShowAddPrevSpecialTeachingPeriod = !(prevSpecialTeachingPeriodKey in teachingPeriods)
+        }
         const shouldShowAddSpecialTeachingPeriod = !(nextSpecialTeachingPeriodKey in teachingPeriods)
         return (
             <span>
+                {!isSpecial&&isFirst&&shouldShowAddPrevSpecialTeachingPeriod&& <button onClick={()=>addTeachingPeriod(prevSpecialTeachingPeriodKey)}>Add {prevSpecialTeachingPeriodKey}</button>}
             <div id={teachingPeriodCode}
                  style={{display: "flex", background: isDeferred ? "#cfb4aa" : "white", width: "100%"}}>
                 <TeachingPeriodHeader
