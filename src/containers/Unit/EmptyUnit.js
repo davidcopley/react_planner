@@ -2,11 +2,19 @@ import React from "react"
 import {compose} from "redux"
 import {connect} from "react-redux"
 import {DropTarget} from "react-dnd"
-import {moveUnit} from "../../actionCreators/planActions"
+import {moveUnit,insertUnit} from "../../actionCreators/planActions"
 const EmptyUnitTargetDrop = {
     drop(props, monitor, component){
-        const {teachingPeriodCode, index,dragSource,moveUnit} = props
-        moveUnit(dragSource.index,dragSource.teachingPeriodCode,index,teachingPeriodCode)
+        const {teachingPeriodCode, index,dragSource,moveUnit,insertUnit} = props
+        console.log(dragSource)
+        if(dragSource.isUnitsMenuUnit){
+            console.log("DRAGGED FROM UNIT MENU")
+            console.log(dragSource)
+            insertUnit(dragSource.unitCode,index,teachingPeriodCode)
+        }else {
+            //on drop, move unit from index of teaching period to index of other teaching period
+            moveUnit(dragSource.index, dragSource.teachingPeriodCode, index, teachingPeriodCode)
+        }
     },
     hover(props, monitor, component){
 
@@ -40,4 +48,4 @@ const mapStateToProps = state => {
     return {dragSource:state.dragAndDropReducer.dragSource}
 }
 
-export default compose(connect(mapStateToProps,{moveUnit}),DropTarget("Unit",EmptyUnitTargetDrop,collectDrop))(EmptyUnit)
+export default compose(connect(mapStateToProps,{moveUnit,insertUnit}),DropTarget("Unit",EmptyUnitTargetDrop,collectDrop))(EmptyUnit)

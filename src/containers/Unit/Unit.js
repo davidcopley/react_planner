@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import {compose} from "redux"
 import {DragSource, DropTarget} from "react-dnd"
 import {setDragSource} from "../../actionCreators/dragAndDropActions"
-import {moveUnit,removeUnit} from "../../actionCreators/planActions"
+import {moveUnit,removeUnit, insertUnit} from "../../actionCreators/planActions"
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
         const {teachingPeriodCode, index,setDragSource, units, unitCode,} = props
@@ -19,9 +19,16 @@ const UnitSourceDrag = {
 }
 const UnitTargetDrop = {
     drop(props, monitor, component){
-        const {teachingPeriodCode, index,dragSource,moveUnit} = props
-        //on drop, move unit from index of teaching period to index of other teaching period
-        moveUnit(dragSource.index,dragSource.teachingPeriodCode,index,teachingPeriodCode)
+        const {teachingPeriodCode, index,dragSource,moveUnit,insertUnit} = props
+        console.log(dragSource)
+        if(dragSource.isUnitsMenuUnit){
+            console.log("DRAGGED FROM UNIT MENU")
+            console.log(dragSource)
+            insertUnit(dragSource.unitCode,index,teachingPeriodCode)
+        }else {
+            //on drop, move unit from index of teaching period to index of other teaching period
+            moveUnit(dragSource.index, dragSource.teachingPeriodCode, index, teachingPeriodCode)
+        }
     },
     hover(props, monitor, component){
 
@@ -83,4 +90,4 @@ const mapStateToProps = state => {
     return {units: state.unitDatabaseReducer.units,dragSource:state.dragAndDropReducer.dragSource, duplicateUnits:state.unitValidationReducer.duplicateUnits}
 }
 
-export default compose(connect(mapStateToProps,{setDragSource,moveUnit,removeUnit}),DragSource("Unit",UnitSourceDrag,collectDrag), DropTarget("Unit",UnitTargetDrop,collectDrop))(Unit)
+export default compose(connect(mapStateToProps,{setDragSource,moveUnit,removeUnit,insertUnit}),DragSource("Unit",UnitSourceDrag,collectDrag), DropTarget("Unit",UnitTargetDrop,collectDrop))(Unit)

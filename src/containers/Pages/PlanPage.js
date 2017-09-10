@@ -9,6 +9,7 @@ import {getNextTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import {setMenuOpen} from "../../actionCreators/menuActions"
 import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
 import SnapshotMenu from "../Menu/SnapshotMenu"
+import UnitMenu from "../Menu/UnitsMenu"
 import "./PlanPage.css"
 class PlanPage extends React.Component {
     render() {
@@ -69,6 +70,7 @@ class PlanPage extends React.Component {
                             </button>
                         </div>
                     </div>
+                    <UnitMenu/>
                 </div>
             </div>
         )
