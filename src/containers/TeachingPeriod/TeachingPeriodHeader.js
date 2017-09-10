@@ -14,7 +14,7 @@ class TeachingPeriodHeader extends React.Component {
         const isSpecialTeachingPeriod = isSummer || isWinter
         return (
             <div style={{
-                minWidth: 100,
+                minWidth: 150,
                 minHeight: 100,
                 boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
                 flexGrow: 0,

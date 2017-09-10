@@ -1,13 +1,13 @@
 export const getNextGeneralTeachingPeriodKey = currentTeachingPeriodKey => {
-    if(!currentTeachingPeriodKey){
+    if (!currentTeachingPeriodKey) {
         const date = new Date()
-        return `${date.getYear()+1900}-${date.getMonth()<7?"S1":"S2"}-01`
+        return `${date.getYear() + 1900}-${date.getMonth() < 7 ? "S1" : "S2"}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
     const year = parseInt(teachingPeriodSplitted[0])
     const semester = teachingPeriodSplitted[1]
     let nextYear, nextSemesterNumber;
-    if(semester !== "WINTER" && semester !== "SUMMER") {
+    if (semester !== "WINTER" && semester !== "SUMMER") {
         const semesterNumber = parseInt(semester.replace("S", ""))
         if (semesterNumber === 1) {
             nextSemesterNumber = 2
@@ -16,14 +16,14 @@ export const getNextGeneralTeachingPeriodKey = currentTeachingPeriodKey => {
             nextSemesterNumber = 1
             nextYear = parseInt(year) + 1
         }
-    }else{
+    } else {
         //WINTER
-        if(semester === "WINTER"){
+        if (semester === "WINTER") {
             nextYear = year
             nextSemesterNumber = 2
             //SUMMER
-        }else{
-            nextYear = year+1
+        } else {
+            nextYear = year + 1
             nextSemesterNumber = 1
         }
     }
@@ -31,15 +31,15 @@ export const getNextGeneralTeachingPeriodKey = currentTeachingPeriodKey => {
 }
 
 export const getNextSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
-    if(!currentTeachingPeriodKey){
+    if (!currentTeachingPeriodKey) {
         const date = new Date()
-        const nextSeason = date.getMonth()<7?"WINTER":"SUMMER"
-        return `${date.getYear()+1900}-${nextSeason}-01`
+        const nextSeason = date.getMonth() < 7 ? "WINTER" : "SUMMER"
+        return `${date.getYear() + 1900}-${nextSeason}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
     const year = parseInt(teachingPeriodSplitted[0])
     const semester = teachingPeriodSplitted[1]
-    if(semester === "WINTER" || semester === "SUMMER"){
+    if (semester === "WINTER" || semester === "SUMMER") {
         return null
     }
     const semesterNumber = parseInt(semester.replace("S", ""))
@@ -53,23 +53,23 @@ export const getNextSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
 }
 
 export const getPrevSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
-    if(!currentTeachingPeriodKey){
+    if (!currentTeachingPeriodKey) {
         const date = new Date()
-        const prevSeason = date.getMonth()<7?"SUMMER":"WINTER"
-        const prevYear = prevSeason==="SUMMER"?date.getYear()-1:date.getYear()
-        return `${prevYear+1900}-${prevSeason}-01`
+        const prevSeason = date.getMonth() < 7 ? "SUMMER" : "WINTER"
+        const prevYear = prevSeason === "SUMMER" ? date.getYear() - 1 : date.getYear()
+        return `${prevYear + 1900}-${prevSeason}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
     let year = parseInt(teachingPeriodSplitted[0])
     const semester = teachingPeriodSplitted[1]
-    if(semester === "WINTER" || semester === "SUMMER"){
+    if (semester === "WINTER" || semester === "SUMMER") {
         return null
     }
     const semesterNumber = parseInt(semester.replace("S", ""))
     let prevTeachingPeriodCode;
     if (semesterNumber === 1) {
         prevTeachingPeriodCode = "SUMMER"
-        year-=1
+        year -= 1
     } else {
         prevTeachingPeriodCode = "WINTER"
     }
@@ -77,15 +77,18 @@ export const getPrevSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
 }
 
 export const getTeachingPeriodString = teachingPeriodKey => {
-    let string,year,semester
+    let string, year, semester
     const teachingPeriodSplitted = teachingPeriodKey.split("-")
     year = teachingPeriodSplitted[0]
     semester = teachingPeriodSplitted[1]
-    if(semester[0]==="S"){
-        semester = "Semester "+semester[1]+", "
-    }else if(semester==="WINTER"){
+    if (semester === "WINTER") {
         semester = "Winter, "
-    }else semester = "Summer, "
-    string = semester+year
+    } else if (semester === "SUMMER") {
+        semester = "Summer, "
+    }
+    else {
+        semester = "Semester " + semester[1] + ", "
+    }
+    string = semester + year
     return string
 }
