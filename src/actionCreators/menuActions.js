@@ -1,1 +1,2 @@
-export const setMenuOpen = isOpen => {return {type:"SET_MENU_OPEN",isOpen}}
+export const setIsSnapshotsMenuOpen = isSnapshotMenuOpen => {return {type:"SET_SNAPSHOTS_MENU_OPEN",isSnapshotMenuOpen}}
+export const setIsUnitsMenuOpen = isUnitsMenuOpen => {return {type:"SET_UNITS_MENU_OPEN",isUnitsMenuOpen}}

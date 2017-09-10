@@ -8,7 +8,7 @@ const Menu = props => {
     return(
         <span>
             <div style={{width:200, minWidth:200}}/>
-            <div style={{width: 200, height: "100%", minHeight:"100vh", border: "1px solid black",position:"fixed"}}>
+            <div style={{width: 200, height: "100%", minHeight:"100vh", border: "1px solid black",position:"fixed",background:"#ffffff"}}>
                 <h2>Snapshots</h2><br/>
                 <button onClick={()=>resetPlanCourse()}>New Course Plan</button>
                 {snapshotNames.map((snapshotName,snapshotIndex)=><div><button onClick={()=>loadSnapshotByIndex(snapshotIndex)}>{snapshotName}</button></div>)}

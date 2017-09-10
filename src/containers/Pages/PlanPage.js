@@ -4,7 +4,7 @@ import {DragDropContext} from 'react-dnd';
 import HTML5Backend from "react-dnd-html5-backend"
 import {compose} from "redux"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
-import {setMenuOpen} from "../../actionCreators/menuActions"
+import {setIsSnapshotsMenuOpen,setIsUnitsMenuOpen} from "../../actionCreators/menuActions"
 import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
 import SnapshotMenu from "../Menu/SnapshotMenu"
 import UnitMenu from "../Menu/UnitsMenu"
@@ -12,7 +12,7 @@ import CourseStructure from "../Course/CourseStructure"
 import "./PlanPage.css"
 class PlanPage extends React.Component {
     render() {
-        const {isMenuOpen, setMenuOpen} = this.props
+        const {isSnapshotMenuOpen,isUnitsMenuOpen, setIsSnapshotsMenuOpen,setIsUnitsMenuOpen} = this.props
         return (
             <div style={{minHeight: "100vh", height: "100%"}}>
                 <div style={{
@@ -25,15 +25,16 @@ class PlanPage extends React.Component {
                     display: "flex",
                     justifyContent: "center",
                     position:"fixed",
-                    backgroundColor:"#337dff"
+                    backgroundColor:"rgb(0, 108, 171)"
                 }}/>
-                    <div style={{display: "flex", width: 1000, maxWidth: 1000, alignItems: "center",position:"fixed"}}>
-                        <button style={{margin:20}} onClick={() => setMenuOpen(!isMenuOpen)}>Menu</button>
-                        <h1 style={{color:"white"}}>Unit Planner</h1>
+                    <div style={{display: "flex", width:"100%", alignItems: "center",position:"fixed"}}>
+                        <button style={{margin:20}} onClick={() => setIsSnapshotsMenuOpen(!isSnapshotMenuOpen)}>Menu</button>
+                        <h1 style={{color:"white",width:"100%"}}>Unit Planner</h1>
+                        <button style={{margin:20}} onClick={()=> setIsUnitsMenuOpen(!isUnitsMenuOpen)}>Units</button>
                     </div>
                 </div>
                 <div style={{display: "flex", width: "100%", minHeight: "100vh", height: "100%"}}>
-                    {isMenuOpen && <SnapshotMenu/>}
+                    {isSnapshotMenuOpen && <SnapshotMenu/>}
                     <div style={{
                         display: "flex",
                         width: "100%",
@@ -43,7 +44,7 @@ class PlanPage extends React.Component {
                     }}>
                         <CourseStructure/>
                     </div>
-                    <UnitMenu/>
+                    {isUnitsMenuOpen && <UnitMenu/>}
                 </div>
             </div>
         )
@@ -55,12 +56,14 @@ const mapStateToProps = state => ({
     courseCode: state.planCourseReducer.courseCode,
     snapshotName: state.planCourseReducer.snapshotName,
     courseCredit: state.planCourseReducer.courseCredit,
-    isMenuOpen: state.menuReducer.isOpen
+    isSnapshotMenuOpen: state.menuReducer.isSnapshotMenuOpen,
+    isUnitsMenuOpen: state.menuReducer.isUnitsMenuOpen
 })
 
 export default compose(connect(mapStateToProps, {
     addTeachingPeriod,
-    setMenuOpen,
+    setIsSnapshotsMenuOpen,
+    setIsUnitsMenuOpen,
     saveSnapshot,
     appendSnapshotBySnapshotName
 }), DragDropContext(HTML5Backend))(PlanPage)
