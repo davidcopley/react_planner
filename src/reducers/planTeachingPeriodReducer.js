@@ -57,6 +57,8 @@ export default (state = defaultState, action) => {
             return {...state, teachingPeriods: {...action.teachingPeriods}}
         case("SET_TEACHING_PERIODS_CREDITS"):
             return {...state, teachingPeriodsCredits: {...action.teachingPeriodsCredits}}
+        case("SET_TEACHING_PERIODS_ORDER"):
+            return {...state, teachingPeriodsOrder: action.teachingPeriodsOrder}
         case("ADD_TEACHING_PERIOD"):
             return {...state,teachingPeriods:{...state.teachingPeriods,[action.teachingPeriod]:{units:[]}}}
         case("REMOVE_UNIT"):

@@ -1,12 +1,13 @@
 import store from "../store"
 import {validateDuplicateUnits} from "../actionCreators/unitValidationActions"
-import {calculateTeachingPeriodCredits} from "../actionCreators/planTeachingPeriodActions"
+import {calculateTeachingPeriodCredits,sortTeachingPeriodOrder} from "../actionCreators/planTeachingPeriodActions"
 class PlanTeachingPeriodSubscriber{
     constructor(){
         this.currentPlanTeachingPeriod = null
         //call actions on initialization, otherwise need to wait for teaching periods to update
         store.dispatch(validateDuplicateUnits())
         store.dispatch(calculateTeachingPeriodCredits())
+        store.dispatch(sortTeachingPeriodOrder())
     }
     handlePlanTeachingPeriodChange = () => {
         const previousPlanTeachingPeriod = this.currentPlanTeachingPeriod
@@ -17,6 +18,7 @@ class PlanTeachingPeriodSubscriber{
         if(this.currentPlanTeachingPeriod !== previousPlanTeachingPeriod){
             store.dispatch(validateDuplicateUnits())
             store.dispatch(calculateTeachingPeriodCredits())
+            store.dispatch(sortTeachingPeriodOrder())
         }
     }
 }

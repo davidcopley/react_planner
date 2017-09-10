@@ -3,6 +3,8 @@ import {connect} from "react-redux"
 import TeachingPeriodHeader from "./TeachingPeriodHeader"
 import Unit from "../Unit/Unit"
 import EmptyUnit from "../Unit/EmptyUnit"
+import {addTeachingPeriod} from "../../actionCreators/planActions"
+import {getNextSpecialTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
 
 class TeachingPeriod extends React.Component {
@@ -22,9 +24,9 @@ class TeachingPeriod extends React.Component {
         isDeferred = isDeferred && !isFirst && !isLast
         let unitWidth = this.calculateTeachingPeriodUnitWidth(totalCredits)
         let unitsArray
-        if(isDeferred){
+        if (isDeferred) {
             unitsArray = []
-        }else {
+        } else {
             unitsArray = units.map((unitCode, i) =>
                 <Unit
                     className="unit"
@@ -62,13 +64,16 @@ class TeachingPeriod extends React.Component {
 
     render() {
         //extract my teaching period from redux by teaching period code
-        const {teachingPeriods, teachingPeriodsCredits, teachingPeriodCode, isFirst, isLast} = this.props
+        const {teachingPeriods, teachingPeriodsCredits, teachingPeriodCode, isFirst, isLast, addTeachingPeriod} = this.props
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
         const myTeachingPeriodsCredits = teachingPeriodsCredits[teachingPeriodCode]
         const totalCredits = myTeachingPeriodsCredits
         let isDeferred = myTeachingPeriod["isDeferred"]
         isDeferred = isDeferred && !isFirst && !isLast
+        const nextSpecialTeachingPeriodKey = getNextSpecialTeachingPeriodKey(teachingPeriodCode)
+        const shouldShowAddSpecialTeachingPeriod = !(nextSpecialTeachingPeriodKey in teachingPeriods)
         return (
+            <span>
             <div id={teachingPeriodCode}
                  style={{display: "flex", background: isDeferred ? "#cfb4aa" : "white", width: "100%"}}>
                 <TeachingPeriodHeader
@@ -80,6 +85,8 @@ class TeachingPeriod extends React.Component {
                 />
                 {this.renderUnits(totalCredits)}
             </div>
+                {shouldShowAddSpecialTeachingPeriod&&nextSpecialTeachingPeriodKey&&<button onClick={()=>addTeachingPeriod(nextSpecialTeachingPeriodKey)}>Add {nextSpecialTeachingPeriodKey}</button>}
+            </span>
         )
     }
 }
@@ -90,4 +97,4 @@ const mapStateToProps = state => ({
     units: state.unitDatabaseReducer.units
 })
 
-export default connect(mapStateToProps)(TeachingPeriod)
+export default connect(mapStateToProps,{addTeachingPeriod})(TeachingPeriod)
