@@ -29,7 +29,6 @@ class TeachingPeriod extends React.Component {
         } else {
             unitsArray = units.map((unitCode, i) =>
                 <Unit
-                    className="unit"
                     key={`unit${unitCode}${teachingPeriodCode}${i}`}
                     index={i}
                     teachingPeriodCode={teachingPeriodCode}
@@ -45,7 +44,6 @@ class TeachingPeriod extends React.Component {
             for (let i = 0; i < emptyUnits; i++) {
                 unitsArray.push(
                     <EmptyUnit
-                        className="unit"
                         isDeferred={isDeferred}
                         index={i}
                         teachingPeriodCode={teachingPeriodCode}

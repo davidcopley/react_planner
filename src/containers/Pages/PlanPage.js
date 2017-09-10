@@ -21,7 +21,7 @@ class PlanPage extends React.Component {
                 <div style={{
                     height: 80,
                     width: "100vw",
-                    border: "1px solid black",
+                    boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
                     display: "flex",
                     justifyContent: "center",
                     position:"fixed",
@@ -46,6 +46,7 @@ class PlanPage extends React.Component {
                     </div>
                     {isUnitsMenuOpen && <UnitMenu/>}
                 </div>
+                <div style={{position:"fixed",top:0,height:300,width:"100%",background:"rgb(0, 108, 171)",zIndex:-1}}/>
             </div>
         )
     }

@@ -3,6 +3,8 @@ import {compose} from "redux"
 import {connect} from "react-redux"
 import {DropTarget} from "react-dnd"
 import {moveUnit,insertUnit} from "../../actionCreators/planActions"
+import {setIsUnitsMenuOpen} from "../../actionCreators/menuActions"
+import "./EmptyUnit.css"
 const EmptyUnitTargetDrop = {
     drop(props, monitor, component){
         const {teachingPeriodCode, index,dragSource,moveUnit,insertUnit} = props
@@ -32,9 +34,9 @@ const collectDrop = (connect, monitor) => {
 
 class EmptyUnit extends React.Component{
     render(){
-        const {unitWidth,connectDropTarget,isHovering,canDrop} = this.props
+        const {unitWidth,connectDropTarget,isHovering,canDrop,setIsUnitsMenuOpen} = this.props
         return(compose(connectDropTarget)(
-            <div className={"empty-unit"} style={{minHeight:100,maxWidth:unitWidth,minWidth:unitWidth,border:isHovering?"2px solid red":"1px solid black",flexGrow:1,userSelect:"none",background:canDrop?"#adff6d":"white",}}>
+            <div onClick={()=>setIsUnitsMenuOpen(true)}  className={"empty-unit"} style={{minHeight:100,maxWidth:unitWidth,minWidth:unitWidth,border:isHovering?"2px solid red":undefined,flexGrow:1,userSelect:"none",background:canDrop?"#adff6d":"white",boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"}}>
                 EMPTY UNIT
             </div>
         ))
@@ -45,4 +47,4 @@ const mapStateToProps = state => {
     return {dragSource:state.dragAndDropReducer.dragSource}
 }
 
-export default compose(connect(mapStateToProps,{moveUnit,insertUnit}),DropTarget("Unit",EmptyUnitTargetDrop,collectDrop))(EmptyUnit)
+export default compose(connect(mapStateToProps,{moveUnit,insertUnit,setIsUnitsMenuOpen}),DropTarget("Unit",EmptyUnitTargetDrop,collectDrop))(EmptyUnit)

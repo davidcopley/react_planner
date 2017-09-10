@@ -1,33 +1,40 @@
 import React from "react"
 import {connect} from "react-redux"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
-import {saveSnapshot,appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
+import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
 import TeachingPeriod from "../TeachingPeriod/TeachingPeriod"
 import {getNextGeneralTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
-class CourseStructure extends React.Component{
-    render(){
-        const {snapshotName,courseCode,courseCredit,saveSnapshot,addTeachingPeriod,appendSnapshotBySnapshotName,teachingPeriodsOrder} = this.props
+class CourseStructure extends React.Component {
+    render() {
+        const {snapshotName, courseCode, courseCredit, saveSnapshot, addTeachingPeriod, appendSnapshotBySnapshotName, teachingPeriodsOrder} = this.props
         const nextTeachingPeriodKey = getNextGeneralTeachingPeriodKey(teachingPeriodsOrder[teachingPeriodsOrder.length - 1])
-        return(
+        return (
             <div style={{
                 display: "flex",
                 flexDirection: "column",
                 maxWidth: 1000,
+                minWidth: 1000,
+                padding: 100,
+                paddingTop: 0,
+                paddingBottom: 0,
                 minHeight: "100vh",
-                height: "100%"
+                height: "100%",
+                boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
+                background: "#ffffff"
             }}>
                 <h2>Snapshot name: {snapshotName}</h2>
                 <h2>Course Code: {courseCode}</h2>
                 <h2>Course Credit: {courseCredit}</h2>
                 {snapshotName ? <button onClick={() => saveSnapshot()}>Save Snapshot</button> : <div>
                     <button onClick={() => appendSnapshotBySnapshotName(this.snapshotName.value)}>New Snapshot</button>
-                    <input ref={snapshotName => this.snapshotName = snapshotName} type="text" placeholder="Enter Snapshot Name"/></div>}
-                {teachingPeriodsOrder.map((teachingPeriodCode,i) =>
+                    <input ref={snapshotName => this.snapshotName = snapshotName} type="text"
+                           placeholder="Enter Snapshot Name"/></div>}
+                {teachingPeriodsOrder.map((teachingPeriodCode, i) =>
                     <TeachingPeriod
                         key={`teachingPeriod${teachingPeriodCode}`}
                         teachingPeriodCode={teachingPeriodCode}
-                        isFirst={i===0}
-                        isLast={i===teachingPeriodsOrder.length-1}
+                        isFirst={i === 0}
+                        isLast={i === teachingPeriodsOrder.length - 1}
                     />)
                 }
                 <button onClick={() => addTeachingPeriod(nextTeachingPeriodKey)}>
@@ -47,4 +54,8 @@ const mapStateToProps = state => ({
     isMenuOpen: state.menuReducer.isOpen
 })
 
-export default connect(mapStateToProps,{addTeachingPeriod,saveSnapshot,appendSnapshotBySnapshotName})(CourseStructure)
+export default connect(mapStateToProps, {
+    addTeachingPeriod,
+    saveSnapshot,
+    appendSnapshotBySnapshotName
+})(CourseStructure)
