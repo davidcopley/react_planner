@@ -4,6 +4,7 @@ import {calculateTeachingPeriodCredits} from "../actionCreators/planTeachingPeri
 class PlanTeachingPeriodSubscriber{
     constructor(){
         this.currentPlanTeachingPeriod = null
+        //call actions on initialization, otherwise need to wait for teaching periods to update
         store.dispatch(validateDuplicateUnits())
         store.dispatch(calculateTeachingPeriodCredits())
     }
@@ -12,6 +13,7 @@ class PlanTeachingPeriodSubscriber{
         const {planTeachingPeriodReducer} = store.getState()
         const {teachingPeriods} = planTeachingPeriodReducer
         this.currentPlanTeachingPeriod = teachingPeriods
+        //MAKE SURE ALL ACTIONS IN THE FOLLOWING IF BLOCK DOES NOT CHANGE planTeachingPeriodReducer.teachingPeriods
         if(this.currentPlanTeachingPeriod !== previousPlanTeachingPeriod){
             store.dispatch(validateDuplicateUnits())
             store.dispatch(calculateTeachingPeriodCredits())
