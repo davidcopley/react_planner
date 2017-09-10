@@ -5,7 +5,7 @@ import Unit from "../Unit/Unit"
 import EmptyUnit from "../Unit/EmptyUnit"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {getNextSpecialTeachingPeriodKey,getPrevSpecialTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
-import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
+
 
 class TeachingPeriod extends React.Component {
     calculateTeachingPeriodUnitWidth = totalCredits => {

@@ -21,6 +21,7 @@ const Menu = props => {
                 <ListItem onClick={() => resetPlanCourse()} style={{width: "100%"}}>New Course Plan</ListItem>
                 {snapshotNames.map((snapshotName, snapshotIndex) =>
                     <ListItem
+                        key={`snapshotMenu${snapshotName}${snapshotIndex}`}
                         style={{width: "100%"}}
                         onClick={() => loadSnapshotByIndex(snapshotIndex)}
                     >

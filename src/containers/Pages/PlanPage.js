@@ -11,7 +11,11 @@ import "./PlanPage.css"
 import MenuIcon from "material-ui/svg-icons/navigation/menu"
 import AddIcon from "material-ui/svg-icons/content/add"
 import {IconButton,FloatingActionButton} from "material-ui"
+import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
 class PlanPage extends React.Component {
+    componentWillUnmount(){
+        unsubscribe()
+    }
     render() {
         const {isSnapshotMenuOpen,isUnitsMenuOpen, setIsSnapshotsMenuOpen,setIsUnitsMenuOpen} = this.props
         return (
@@ -22,7 +26,6 @@ class PlanPage extends React.Component {
                 <div style={{
                     height: 80,
                     width: "100vw",
-                    boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
                     display: "flex",
                     justifyContent: "center",
                     position:"fixed",

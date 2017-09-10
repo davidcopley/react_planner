@@ -4,17 +4,17 @@ export const getNextGeneralTeachingPeriodKey = currentTeachingPeriodKey => {
         return `${date.getYear() + 1900}-${date.getMonth() < 7 ? "S1" : "S2"}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
-    const year = parseInt(teachingPeriodSplitted[0])
+    const year = parseInt(teachingPeriodSplitted[0],10)
     const semester = teachingPeriodSplitted[1]
     let nextYear, nextSemesterNumber;
     if (semester !== "WINTER" && semester !== "SUMMER") {
-        const semesterNumber = parseInt(semester.replace("S", ""))
+        const semesterNumber = parseInt(semester.replace("S", ""),10)
         if (semesterNumber === 1) {
             nextSemesterNumber = 2
             nextYear = year
         } else {
             nextSemesterNumber = 1
-            nextYear = parseInt(year) + 1
+            nextYear = parseInt(year,10) + 1
         }
     } else {
         //WINTER
@@ -37,12 +37,12 @@ export const getNextSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
         return `${date.getYear() + 1900}-${nextSeason}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
-    const year = parseInt(teachingPeriodSplitted[0])
+    const year = parseInt(teachingPeriodSplitted[0],10)
     const semester = teachingPeriodSplitted[1]
     if (semester === "WINTER" || semester === "SUMMER") {
         return null
     }
-    const semesterNumber = parseInt(semester.replace("S", ""))
+    const semesterNumber = parseInt(semester.replace("S", ""),10)
     let nextTeachingPeriodCode;
     if (semesterNumber === 1) {
         nextTeachingPeriodCode = "WINTER"
@@ -60,12 +60,12 @@ export const getPrevSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
         return `${prevYear + 1900}-${prevSeason}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
-    let year = parseInt(teachingPeriodSplitted[0])
+    let year = parseInt(teachingPeriodSplitted[0],10)
     const semester = teachingPeriodSplitted[1]
     if (semester === "WINTER" || semester === "SUMMER") {
         return null
     }
-    const semesterNumber = parseInt(semester.replace("S", ""))
+    const semesterNumber = parseInt(semester.replace("S", ""),10)
     let prevTeachingPeriodCode;
     if (semesterNumber === 1) {
         prevTeachingPeriodCode = "SUMMER"
