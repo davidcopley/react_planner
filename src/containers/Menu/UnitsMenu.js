@@ -6,7 +6,7 @@ class UnitsMenu extends React.Component {
         const {units} = this.props
         return (
             <div style={{maxHeight:"100vh",overflowY:"scroll"}}>
-                {Object.keys(units).map(unitCode=>{return <UnitsMenuUnit unitCode={unitCode}/>})}
+                {Object.keys(units).map((unitCode,i)=>{return <UnitsMenuUnit key={`Menu${unitCode}${i}`} unitCode={unitCode}/>})}
             </div>
         )
     }

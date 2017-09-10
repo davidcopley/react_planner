@@ -26,20 +26,15 @@ const collectDrag = (connect, monitor) => {
 
 class UnitsMenuUnit extends React.Component {
     render() {
-        const {units, unitCode, unitWidth,duplicateUnits} = this.props
+        const {units, unitCode} = this.props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
-        const myUnitWidth = unitWidth * (myUnitCredit / 6)
-        const myUnitIsDuplicate = duplicateUnits[unitCode]
-        const {connectDragSource, isHovering, canDrop,removeUnit,teachingPeriodCode, index } = this.props;
+        const {connectDragSource} = this.props;
         return connectDragSource(
             <div style={{
                 minHeight: 100,
-                minWidth: myUnitWidth,
-                maxWidth: myUnitWidth,
                 border: "1px solid black",
-                borderLeft:isHovering?"5px solid red":"1px solid black",
-                background:canDrop?"#d9ffcd":myUnitIsDuplicate?"red":"white",
+                background:"white",
                 flexGrow: 1,
                 alignItems: "center"
             }}>
