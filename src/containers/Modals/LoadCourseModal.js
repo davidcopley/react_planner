@@ -35,11 +35,9 @@ class LoadCourseModal extends React.Component{
     }
 
     handleChooseAos = (aosName,index) => {
-        console.log(aosName, index)
         const {selectedCourseCode} = this.state
         const {coursesAos,getCourseMapByAosCode} = this.props
         const aos = coursesAos[selectedCourseCode][index]
-        console.log(aos)
         getCourseMapByAosCode(aos.aosCode)
     }
 

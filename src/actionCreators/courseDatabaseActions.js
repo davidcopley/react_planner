@@ -1,5 +1,5 @@
 import axios from "axios"
-import {appendSnapshot,loadSnapshotByIndex} from "../actionCreators/snapshotsActions"
+import {appendSnapshotPromise,loadSnapshotByIndex} from "../actionCreators/snapshotsActions"
 import {addUnit} from "./unitsActions"
 import {parseCoursesData,parseAos,parsePropertyMapToSnapshot} from "../tools/courseDatabaseTools"
 const api = "https://monplan-api-dev.appspot.com";
@@ -55,7 +55,8 @@ export const getCourseMapByAosCode = aosCode => (dispatch,getState) => {
                 const snapshot = parsePropertyMapToSnapshot(data[0]["propertyMap"])
                 snapshot.snapshotName=courseName
                 snapshot.courseCode=courseCode
-                dispatch(appendSnapshot(snapshot))
+                dispatch(appendSnapshotPromise(snapshot))
+                    .then(()=>dispatch(loadSnapshotByIndex(snapshotsDatabaseReducer.snapshots.length)))
             })
             .catch(err=>{
                 console.log(err)
@@ -67,7 +68,6 @@ export const getUnitsByTeachingPeriods = teachingPeriods => (dispatch,getState) 
     teachingPeriods.forEach(teachingPeriod=>{
         teachingPeriod.units.forEach(unit=>{
             if(unit.unitCode.match(/^\w{3}\d{4}$/)) {
-                console.log(unit)
                 dispatch(addUnit(unit))
             }
         })

@@ -53,6 +53,5 @@ export const propertyMapToSnapshot = teachingPeriods => {
 
         })
     })
-    console.log(snapshot)
     return snapshot
 }
