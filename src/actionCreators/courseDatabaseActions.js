@@ -53,7 +53,7 @@ export const getCourseMapByAosCode = aosCode => (dispatch,getState) => {
                 const teachingPeriods = JSON.parse(data[0]["propertyMap"]["teachingPeriods"].value)
                 dispatch(getUnitsByTeachingPeriods(teachingPeriods))
                 const snapshot = parsePropertyMapToSnapshot(data[0]["propertyMap"])
-                snapshot.snapshotName=courseName
+                snapshot.snapshotName=`${courseName} - ${courseCode}`
                 snapshot.courseCode=courseCode
                 dispatch(appendSnapshotPromise(snapshot))
                     .then(()=>dispatch(loadSnapshotByIndex(snapshotsDatabaseReducer.snapshots.length)))

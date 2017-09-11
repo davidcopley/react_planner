@@ -23,9 +23,9 @@ class TeachingPeriod extends React.Component {
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
         let {units,unitsPlaceholders, isDeferred} = myTeachingPeriod
         isDeferred = isDeferred && !isFirst && !isLast
-        let unitWidth = this.calculateTeachingPeriodUnitWidth(totalCredits)
-        let unitsArray
         let numPlaceholderUnits = unitsPlaceholders?unitsPlaceholders.length:0
+        let unitWidth = this.calculateTeachingPeriodUnitWidth(totalCredits+numPlaceholderUnits*6)
+        let unitsArray
         if (isDeferred) {
             unitsArray = []
         } else {
