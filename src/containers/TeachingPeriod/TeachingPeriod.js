@@ -3,6 +3,7 @@ import {connect} from "react-redux"
 import TeachingPeriodHeader from "./TeachingPeriodHeader"
 import Unit from "../Unit/Unit"
 import EmptyUnit from "../Unit/EmptyUnit"
+import PlaceholderUnit from "../Unit/PlaceholderUnit"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {getNextSpecialTeachingPeriodKey,getPrevSpecialTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 
@@ -20,10 +21,11 @@ class TeachingPeriod extends React.Component {
     renderUnits = totalCredits => {
         const {teachingPeriods, teachingPeriodCode, isFirst, isLast} = this.props
         const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
-        let {units, isDeferred} = myTeachingPeriod
+        let {units,unitsPlaceholders, isDeferred} = myTeachingPeriod
         isDeferred = isDeferred && !isFirst && !isLast
         let unitWidth = this.calculateTeachingPeriodUnitWidth(totalCredits)
         let unitsArray
+        let numPlaceholderUnits = unitsPlaceholders?unitsPlaceholders.length:0
         if (isDeferred) {
             unitsArray = []
         } else {
@@ -38,8 +40,21 @@ class TeachingPeriod extends React.Component {
                     teachingPeriodTotalCredits={totalCredits}
                 />
             )
+            let placeholderUnitsArray = []
+            if(numPlaceholderUnits) {
+                placeholderUnitsArray = unitsPlaceholders.map((placeholderUnitText, i) =>
+                    <PlaceholderUnit
+                        key={`unitiPlaceHolder${placeholderUnitText}${i}`}
+                        teachingPeriodCode={teachingPeriodCode}
+                        index={i}
+                        unitWidth={unitWidth}
+                        placeholderUnitText={placeholderUnitText}
+                    />
+                )
+            }
+            unitsArray = unitsArray.concat(placeholderUnitsArray)
         }
-        const emptyUnits = (24 - totalCredits) / 6;
+        const emptyUnits = (24 - totalCredits - (numPlaceholderUnits*6)) / 6;
         if (emptyUnits > 0) {
             for (let i = 0; i < emptyUnits; i++) {
                 unitsArray.push(

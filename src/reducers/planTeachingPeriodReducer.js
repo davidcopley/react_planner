@@ -94,6 +94,21 @@ export default (state = defaultState, action) => {
                     }
                 }
             return state
+        case("REMOVE_UNIT_PLACEHOLDER"):
+            const {unitPlaceholderRemoveIndex, unitPlaceholderRemoveTeachingPeriod} = action
+            //remove from old teaching period
+            state =
+                {
+                    ...state,
+                    teachingPeriods: {
+                        ...state.teachingPeriods,
+                        [unitPlaceholderRemoveTeachingPeriod]: {
+                            ...state.teachingPeriods[unitPlaceholderRemoveTeachingPeriod],
+                            unitsPlaceholders: [...state.teachingPeriods[unitPlaceholderRemoveTeachingPeriod]["unitsPlaceholders"].slice(0, unitPlaceholderRemoveIndex), ...state.teachingPeriods[unitPlaceholderRemoveTeachingPeriod]["unitsPlaceholders"].slice(unitPlaceholderRemoveIndex + 1)]
+                        }
+                    }
+                }
+            return state
         default:
             return state
     }

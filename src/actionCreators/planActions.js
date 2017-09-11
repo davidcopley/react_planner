@@ -5,6 +5,7 @@ export const setSnapshotIndex = snapshotIndex => {return {type:"SET_SNAPSHOT_IND
 export const setTeachingPeriodsSet = teachingPeriods => {return {type:"SET_TEACHING_PERIODS_SET",teachingPeriods}}
 export const setTeachingPeriods = teachingPeriods => {return {type:"SET_TEACHING_PERIODS",teachingPeriods}}
 export const removeUnit = (unitRemoveIndex, unitRemoveTeachingPeriod) => {return {type:"REMOVE_UNIT",unitRemoveIndex,unitRemoveTeachingPeriod}}
+export const removeUnitPlaceholder = (unitPlaceholderRemoveIndex, unitPlaceholderRemoveTeachingPeriod) => {return {type:"REMOVE_UNIT_PLACEHOLDER",unitPlaceholderRemoveIndex,unitPlaceholderRemoveTeachingPeriod}}
 export const insertUnit = ( unitInsert, unitInsertIndex, unitInsertTeachingPeriod) => {return {type:"INSERT_UNIT",unitInsert,unitInsertIndex,unitInsertTeachingPeriod}}
 export const addTeachingPeriod = teachingPeriod => {return {type:"ADD_TEACHING_PERIOD",teachingPeriod}}
 export const removeTeachingPeriodByTeachingPeriodCode = teachingPeriodCode => (dispatch,getState) => {

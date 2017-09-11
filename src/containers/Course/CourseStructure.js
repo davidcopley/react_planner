@@ -10,7 +10,6 @@ class CourseStructure extends React.Component {
     render() {
         const {snapshotName, courseCode, courseCredit, saveSnapshot, addTeachingPeriod, appendSnapshotBySnapshotName, teachingPeriodsOrder, isLoadCourseModalOpen ,setIsLoadCourseModalOpen} = this.props
         const nextTeachingPeriodKey = getNextGeneralTeachingPeriodKey(teachingPeriodsOrder[teachingPeriodsOrder.length - 1])
-        console.log(isLoadCourseModalOpen)
         return (
             <div style={{
                 display: "flex",

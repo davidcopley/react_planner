@@ -1,5 +1,5 @@
 import axios from "axios"
-import {appendSnapshot} from "../actionCreators/snapshotsActions"
+import {appendSnapshot,loadSnapshotByIndex} from "../actionCreators/snapshotsActions"
 import {addUnit} from "./unitsActions"
 import {parseCoursesData,parseAos,parsePropertyMapToSnapshot} from "../tools/courseDatabaseTools"
 const api = "https://monplan-api-dev.appspot.com";
@@ -41,16 +41,20 @@ export const getCourseByCourseCode = courseCode => (dispatch,getState) => {
 }
 
 export const getCourseMapByAosCode = aosCode => (dispatch,getState) => {
-    const {coursesDatabaseReducer} = getState()
+    const {coursesDatabaseReducer,snapshotsDatabaseReducer} = getState()
     const {apiCalled} = coursesDatabaseReducer
     if(!apiCalled[`/courseMaps/${aosCode}`]) {
         axios
             .get(`${api}/courseMaps/${aosCode}`)
             .then(res=>{
                 const {data} = res
+                console.log(data)
+                const {courseName,courseCode} = data[0]["propertyMap"]
                 const teachingPeriods = JSON.parse(data[0]["propertyMap"]["teachingPeriods"].value)
                 dispatch(getUnitsByTeachingPeriods(teachingPeriods))
                 const snapshot = parsePropertyMapToSnapshot(data[0]["propertyMap"])
+                snapshot.snapshotName=courseName
+                snapshot.courseCode=courseCode
                 dispatch(appendSnapshot(snapshot))
             })
             .catch(err=>{
@@ -60,12 +64,12 @@ export const getCourseMapByAosCode = aosCode => (dispatch,getState) => {
 }
 
 export const getUnitsByTeachingPeriods = teachingPeriods => (dispatch,getState) => {
-    console.log(teachingPeriods)
     teachingPeriods.forEach(teachingPeriod=>{
         teachingPeriod.units.forEach(unit=>{
-            const {unitCode,unitName,creditPoints} = unit
-            console.log(unit)
-            dispatch(addUnit(unit))
+            if(unit.unitCode.match(/^\w{3}\d{4}$/)) {
+                console.log(unit)
+                dispatch(addUnit(unit))
+            }
         })
     })
 }
