@@ -6,7 +6,7 @@ philosophy:
     3. all actions should a sequence of rudimentary operations
     React
     1. all props must not be react components
-    2. all props must not be functions, if a prop is a function, it should an action
+    2. all props must not be functions, if a prop is a function, it should be an action
     3. all components should be able to exist independently
 
 reducer naming conventions:
