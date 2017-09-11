@@ -20,7 +20,7 @@ export const calculateTeachingPeriodCredits = () => (dispatch, getState) => {
             teachingPeriodsCredits[teachingPeriodKey] = 0
         } else {
             const teachingPeriodUnits = teachingPeriod["units"]
-            const teachingPeriodTotalCredits = teachingPeriodUnits.reduce((totalCredits, unitCode) => units[unitCode]["credit"] + totalCredits, 0)
+            const teachingPeriodTotalCredits = teachingPeriodUnits.reduce((totalCredits, unitCode) => {let unitCredit = units[unitCode]["credit"];unitCredit = unitCredit===0?6:unitCredit;return unitCredit + totalCredits}, 0)
             planCourseCredit += teachingPeriodTotalCredits
             teachingPeriodsCredits[teachingPeriodKey] = teachingPeriodTotalCredits
         }

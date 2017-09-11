@@ -1,4 +1,6 @@
 import { combineReducers,createStore,applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 import thunk from "redux-thunk"
 
 import coursesDatabaseReducer from "./reducers/coursesDatabaseReducer"
@@ -24,4 +26,4 @@ const appReducer = combineReducers({
     loadCourseModalReducer
 });
 
-export default createStore(appReducer,applyMiddleware(thunk));
+export default createStore(appReducer,composeWithDevTools(applyMiddleware(thunk)));

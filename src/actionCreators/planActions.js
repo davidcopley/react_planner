@@ -26,7 +26,6 @@ export const resetPlanCourse = () => dispatch => {
     dispatch(setCourseCredit(0))
     dispatch(setSnapshotName(null))
     dispatch(setSnapshotIndex(null))
-    dispatch(setTeachingPeriodsSet({}))
     dispatch(setTeachingPeriods({}))
 }
 //a move involves removing unit from old teaching period, and inserting to new teaching period

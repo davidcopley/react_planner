@@ -59,7 +59,13 @@ class Unit extends React.Component {
         const {units, unitCode, unitWidth, duplicateUnits} = this.props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
-        const myUnitWidth = unitWidth * (myUnitCredit / 6)
+        let widthUnit;
+        if(myUnitCredit===0){
+            widthUnit = 1
+        }else{
+            widthUnit = (myUnitCredit / 6)
+        }
+        const myUnitWidth = unitWidth * widthUnit
         const myUnitIsDuplicate = duplicateUnits[unitCode]
         const {connectDragSource, connectDropTarget, isHovering, canDrop, removeUnit, teachingPeriodCode, index} = this.props;
         return compose(connectDragSource, connectDropTarget)(

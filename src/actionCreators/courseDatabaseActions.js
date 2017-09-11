@@ -1,6 +1,6 @@
 import axios from "axios"
 import {appendSnapshotPromise,loadSnapshotByIndex} from "../actionCreators/snapshotsActions"
-import {addUnit} from "./unitsActions"
+import {addUnit} from "./unitsDatabaseActions"
 import {parseCoursesData,parseAos,parsePropertyMapToSnapshot} from "../tools/courseDatabaseTools"
 const api = "https://monplan-api-dev.appspot.com";
 export const addApiCalled = apiCalled => {return {type:"ADD_API_CALLED",apiCalled}}
