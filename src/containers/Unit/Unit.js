@@ -73,7 +73,7 @@ class Unit extends React.Component {
                     borderLeft: isHovering ? "5px solid red" : undefined,
                     background: canDrop ? "#d9ffcd" : myUnitIsDuplicate ? "#ff5648" : "white",
                     flexGrow: 1,
-                    alignItems: "center"
+                    alignItems: "center",
                 }}>
                 <div style={{padding: 10, userSelect: "none", overflow: "hidden"}}>
                     {unitCode}<br/>

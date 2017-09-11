@@ -102,7 +102,10 @@ const defaultState = {
 export default (state=defaultState,action)=>{
     switch(action.type){
         case("SET_UNITS"):
-            return {...state,unit:{...state.units,...action.units}}
+            return {...state,units:{...action.units}}
+        case("ADD_UNIT"):
+            return {...state,units:{...state.units,[action.unit.unitCode]:{credit:action.unit.creditPoints,name:action.unit.unitName}}}
+
         default:
             return state
     }

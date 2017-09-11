@@ -2,13 +2,15 @@ import React from "react"
 import {connect} from "react-redux"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
+import {setIsLoadCourseModalOpen} from "../../actionCreators/loadCourseModalActions"
 import TeachingPeriod from "../TeachingPeriod/TeachingPeriod"
 import {getNextGeneralTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import {getCourses} from "../../actionCreators/courseDatabaseActions"
 class CourseStructure extends React.Component {
     render() {
-        const {snapshotName, courseCode, courseCredit, saveSnapshot, addTeachingPeriod, appendSnapshotBySnapshotName, teachingPeriodsOrder, getCourses} = this.props
+        const {snapshotName, courseCode, courseCredit, saveSnapshot, addTeachingPeriod, appendSnapshotBySnapshotName, teachingPeriodsOrder, isLoadCourseModalOpen ,setIsLoadCourseModalOpen} = this.props
         const nextTeachingPeriodKey = getNextGeneralTeachingPeriodKey(teachingPeriodsOrder[teachingPeriodsOrder.length - 1])
+        console.log(isLoadCourseModalOpen)
         return (
             <div style={{
                 display: "flex",
@@ -26,7 +28,7 @@ class CourseStructure extends React.Component {
                 <h2>Snapshot name: {snapshotName}</h2>
                 <h2>Course Code: {courseCode}</h2>
                 <h2>Course Credit: {courseCredit}</h2>
-                <button onClick={()=>getCourses()}>Get Courses</button>
+                <button onClick={()=>setIsLoadCourseModalOpen(!isLoadCourseModalOpen)}>Load Course</button>
                 {snapshotName ? <button onClick={() => saveSnapshot()}>Save Snapshot</button> : <div>
                     <button onClick={() => appendSnapshotBySnapshotName(this.snapshotName.value)}>New Snapshot</button>
                     <input ref={snapshotName => this.snapshotName = snapshotName} type="text"
@@ -53,12 +55,14 @@ const mapStateToProps = state => ({
     courseCode: state.planCourseReducer.courseCode,
     snapshotName: state.planCourseReducer.snapshotName,
     courseCredit: state.planCourseReducer.courseCredit,
-    isMenuOpen: state.menuReducer.isOpen
+    isMenuOpen: state.menuReducer.isOpen,
+    isLoadCourseModalOpen: state.loadCourseModalReducer.isLoadCourseModalOpen
 })
 
 export default connect(mapStateToProps, {
     addTeachingPeriod,
     saveSnapshot,
     appendSnapshotBySnapshotName,
-    getCourses
+    getCourses,
+    setIsLoadCourseModalOpen
 })(CourseStructure)
