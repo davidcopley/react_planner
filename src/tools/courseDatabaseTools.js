@@ -42,10 +42,15 @@ export const propertyMapToSnapshot = teachingPeriods => {
         const date = new Date()
         let teachingPeriodYear = date.getYear()+1900+parseInt(year)
         const teachingPeriodCode = `${teachingPeriodYear}-${code}`
-        snapshot.teachingPeriods[teachingPeriodCode] = {units:[]}
+        snapshot.teachingPeriods[teachingPeriodCode] = {units:[],unitsPlaceholders:[]}
         units.forEach(unit=>{
             const unitCode = unit.unitCode
-            snapshot.teachingPeriods[teachingPeriodCode]["units"].push(unitCode)
+            if(unitCode.match(/^\w{3}\d{4}$/)){
+                snapshot.teachingPeriods[teachingPeriodCode]["units"].push(unitCode)
+            }else{
+                snapshot.teachingPeriods[teachingPeriodCode]["unitsPlaceholders"].push(unitCode)
+            }
+
         })
     })
     console.log(snapshot)
