@@ -4,6 +4,7 @@ import {compose} from "redux"
 import {DragSource, DropTarget} from "react-dnd"
 import {setDragSource} from "../../actionCreators/dragAndDropActions"
 import {moveUnit, removeUnit, insertUnit} from "../../actionCreators/planActions"
+import {facultyColors,facultyFontColorMap} from "../../constants/colors"
 import "./Unit.css"
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
@@ -59,6 +60,7 @@ class Unit extends React.Component {
         const {units, unitCode, unitWidth, duplicateUnits} = this.props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
+        const {faculty} = myUnit
         let widthUnit;
         if(myUnitCredit===0){
             widthUnit = 1
@@ -77,9 +79,10 @@ class Unit extends React.Component {
                     maxWidth: myUnitWidth,
                     boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
                     borderLeft: isHovering ? "5px solid red" : undefined,
-                    background: canDrop ? "#d9ffcd" : myUnitIsDuplicate ? "#ff5648" : "white",
+                    background: canDrop ? "#d9ffcd" : myUnitIsDuplicate ? "#ff5648" : facultyColors[faculty],
                     flexGrow: 1,
                     alignItems: "center",
+                    color:facultyFontColorMap[faculty]
                 }}>
                 <div style={{padding: 10, userSelect: "none", overflow: "hidden"}}>
                     {unitCode}<br/>

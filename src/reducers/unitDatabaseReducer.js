@@ -104,7 +104,7 @@ export default (state=defaultState,action)=>{
         case("SET_UNITS"):
             return {...state,units:{...action.units}}
         case("ADD_UNIT"):
-            return {...state,units:{...state.units,[action.unit.unitCode]:{credit:action.unit.creditPoints,name:action.unit.unitName}}}
+            return {...state,units:{...state.units,[action.unit.unitCode]:{credit:action.unit.creditPoints,name:action.unit.unitName,faculty:action.unit.faculty}}}
 
         default:
             return state
