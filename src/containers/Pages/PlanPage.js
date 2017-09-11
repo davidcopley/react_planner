@@ -51,7 +51,7 @@ class PlanPage extends React.Component {
                     <UnitMenu/>
                 </div>
                 <div style={{position:"fixed",top:0,height:300,width:"100%",background:"rgb(0, 108, 171)",zIndex:-1}}/>
-                <FloatingActionButton iconStyle={{width:45,height:45,transform:isUnitsMenuOpen?"rotate(112.5deg":undefined}} style={{position:"fixed",bottom:50,right:50,zIndex:10000}} backgroundColor={"#a10300"} onClick={()=> setIsUnitsMenuOpen(!isUnitsMenuOpen)}>
+                <FloatingActionButton iconStyle={{width:45,height:45,transform:isUnitsMenuOpen?"rotate(-112.5deg":undefined}} style={{position:"fixed",bottom:50,right:50,zIndex:10000}} backgroundColor={"#a10300"} onClick={()=> setIsUnitsMenuOpen(!isUnitsMenuOpen)}>
                     <AddIcon/>
                 </FloatingActionButton>
                 <CourseModal/>
