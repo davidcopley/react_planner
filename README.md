@@ -3,13 +3,13 @@ philosophy:
     Redux
     1. all reducers should only have rudimentary operations: SET,APPEND,INSERT,ADD,REMOVE
     2. each rudimentary reducer operation should have an equivalent action
-    3. all actions should be a sequence of rudimentary operations
+    3. all actions should be a sequence of rudimentary actions, e.g. move = remove -> insert; swap = move -> move 
     4. all reducer states should not have a depth > 2
     React
     1. all props must not be react components
     2. all components should be able to exist independent of its parent
 
-reducer naming conventions:
+reducer action types naming conventions:
  
     SET : overwrites entire element, list and object
     APPEND: appends to end of list, list only
