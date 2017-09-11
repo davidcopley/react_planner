@@ -1,9 +1,9 @@
 philosophy:
 
     Redux
-    1. all reducers should have rudimentary operations: SET,APPEND,INSERT,ADD,REMOVE
+    1. all reducers should only have rudimentary operations: SET,APPEND,INSERT,ADD,REMOVE
     2. each rudimentary reducer operation should have an equivalent action
-    3. all actions should a sequence of rudimentary operations
+    3. all actions should be a sequence of rudimentary operations
     4. all reducer states should not have a depth > 2
     React
     1. all props must not be react components
