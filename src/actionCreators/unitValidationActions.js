@@ -24,7 +24,7 @@ export const validateInvalidTimeslotUnits = () => (dispatch,getState) => {
     const {teachingPeriods} = planTeachingPeriodReducer
     const {units} = unitDatabaseReducer
     const teachingPeriodKeys = Object.keys(teachingPeriods)
-    let invalidTimeslotUnits = []
+    let invalidTimeslotUnits = {}
     teachingPeriodKeys.forEach(teachingPeriodKey=>{
         const teachingPeriodSemester = teachingPeriodKey.split("-")[1]
         const teachingPeriod = teachingPeriods[teachingPeriodKey]
@@ -35,11 +35,13 @@ export const validateInvalidTimeslotUnits = () => (dispatch,getState) => {
             if(locationAndTime&&locationAndTime.timesSet){
                 const {timesSet} = locationAndTime
                 if(!timesSet[teachingPeriodSemester]){
-                    invalidTimeslotUnits.push({[teachingPeriodKey]:unitKey,issue:`Not available in ${teachingPeriodSemester}`})
+                    if(!invalidTimeslotUnits[teachingPeriodKey]){
+                        invalidTimeslotUnits[teachingPeriodKey]={}
+                    }
+                    invalidTimeslotUnits[teachingPeriodKey][unitKey]={issue:`Not available in ${teachingPeriodSemester}`}
                 }
             }
         })
     })
-    console.log(invalidTimeslotUnits)
     dispatch(setInvalidTimeslotUnits(invalidTimeslotUnits))
 }

@@ -57,7 +57,7 @@ const collectDrop = (connect, monitor) => {
 
 class Unit extends React.Component {
     render() {
-        const {units, unitCode, unitWidth, duplicateUnits} = this.props
+        const {units, unitCode, unitWidth, teachingPeriodCode, duplicateUnits, invalidTimeslotUnits} = this.props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
         const {faculty} = myUnit
@@ -69,7 +69,11 @@ class Unit extends React.Component {
         }
         const myUnitWidth = unitWidth * widthUnit
         const myUnitIsDuplicate = duplicateUnits[unitCode]
-        const {connectDragSource, connectDropTarget, isHovering, canDrop, removeUnit, teachingPeriodCode, index} = this.props;
+        const myUnitIsInvalidTimeslot = invalidTimeslotUnits[teachingPeriodCode]&&invalidTimeslotUnits[teachingPeriodCode][unitCode]
+        if(myUnitIsInvalidTimeslot){
+            console.log(myUnitIsInvalidTimeslot)
+        }
+        const {connectDragSource, connectDropTarget, isHovering, canDrop, removeUnit, index} = this.props;
         return compose(connectDragSource, connectDropTarget)(
             <div
                 className="unit"
@@ -79,7 +83,7 @@ class Unit extends React.Component {
                     maxWidth: myUnitWidth,
                     boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
                     borderLeft: isHovering ? "5px solid red" : undefined,
-                    background: canDrop ? "#d9ffcd" : myUnitIsDuplicate ? "#ff5648" : facultyColors[faculty],
+                    background: canDrop ? "#d9ffcd" : myUnitIsDuplicate ? "#ff5648" :myUnitIsInvalidTimeslot? "#f606ff": facultyColors[faculty],
                     flexGrow: 1,
                     alignItems: "center",
                     color:facultyFontColorMap[faculty]
@@ -99,7 +103,8 @@ const mapStateToProps = state => {
     return {
         units: state.unitDatabaseReducer.units,
         dragSource: state.dragAndDropReducer.dragSource,
-        duplicateUnits: state.unitValidationReducer.duplicateUnits
+        duplicateUnits: state.unitValidationReducer.duplicateUnits,
+        invalidTimeslotUnits: state.unitValidationReducer.invalidTimeslotUnits
     }
 }
 
