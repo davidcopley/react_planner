@@ -70,9 +70,6 @@ class Unit extends React.Component {
         const myUnitWidth = unitWidth * widthUnit
         const myUnitIsDuplicate = duplicateUnits[unitCode]
         const myUnitIsInvalidTimeslot = invalidTimeslotUnits[teachingPeriodCode]&&invalidTimeslotUnits[teachingPeriodCode][unitCode]
-        if(myUnitIsInvalidTimeslot){
-            console.log(myUnitIsInvalidTimeslot)
-        }
         const {connectDragSource, connectDropTarget, isHovering, canDrop, removeUnit, index} = this.props;
         return compose(connectDragSource, connectDropTarget)(
             <div
