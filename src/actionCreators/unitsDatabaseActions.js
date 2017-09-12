@@ -1,6 +1,5 @@
-import {parseLocationAndTime} from "../tools/locationAndTime"
+import {parseLocationAndTime} from "../tools/unitLocationAndTime"
 export const setUnits = units => {return {type:"SET_UNITS",units}}
-export const adddUnit = unit => {return {type:"ADD_UNIT",unit}}
 export const addUnit = unit => {
     let locationAndTime = unit.locationAndTime
     if(locationAndTime){

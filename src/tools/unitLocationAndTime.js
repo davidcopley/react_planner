@@ -4,13 +4,17 @@ export const parseLocationAndTime = locationAndTime => {
     }
     let {time} = locationAndTime
     let times = time
-    times = times.map(time=>{
+    let timesSet = {}
+    times.forEach(time=>{
         if(time.match(/First semester/g)){
-            return "S1-01"
+            timesSet["S1"] = true
         }
         else if(time.match(/Second semester/g)){
-            return "S2-01"
+            timesSet["S2"] = true
+        }
+        else if(time.match(/Full year/g)){
+            timesSet["FY"] = true
         }
     })
-    return {location:locationAndTime.location,times}
+    return {location:locationAndTime.location,timesSet}
 }
