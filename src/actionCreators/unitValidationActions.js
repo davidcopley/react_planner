@@ -35,7 +35,7 @@ export const validateInvalidTimeslotUnits = () => (dispatch,getState) => {
             if(locationAndTime&&locationAndTime.timesSet){
                 const {timesSet} = locationAndTime
                 if(!timesSet[teachingPeriodSemester]){
-                    invalidTimeslotUnits.push({[teachingPeriodKey]:unitKey})
+                    invalidTimeslotUnits.push({[teachingPeriodKey]:unitKey,issue:`Not available in ${teachingPeriodSemester}`})
                 }
             }
         })
