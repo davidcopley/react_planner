@@ -94,17 +94,16 @@ export default (state = defaultState, action) => {
                     }
                 }
             return state
-        case("REMOVE_UNIT_PLACEHOLDER"):
-            const {unitPlaceholderRemoveIndex, unitPlaceholderRemoveTeachingPeriod} = action
-            //remove from old teaching period
+        case("SET_UNIT_PLACEHOLDERS_BY_TEACHING_PERIOD"):
+            const {unitPlaceholdersTeachingPeriod, unitsPlaceholders} = action
             state =
                 {
                     ...state,
                     teachingPeriods: {
                         ...state.teachingPeriods,
-                        [unitPlaceholderRemoveTeachingPeriod]: {
-                            ...state.teachingPeriods[unitPlaceholderRemoveTeachingPeriod],
-                            unitsPlaceholders: [...state.teachingPeriods[unitPlaceholderRemoveTeachingPeriod]["unitsPlaceholders"].slice(0, unitPlaceholderRemoveIndex), ...state.teachingPeriods[unitPlaceholderRemoveTeachingPeriod]["unitsPlaceholders"].slice(unitPlaceholderRemoveIndex + 1)]
+                        [unitPlaceholdersTeachingPeriod]: {
+                            ...state.teachingPeriods[unitPlaceholdersTeachingPeriod],
+                            unitsPlaceholders
                         }
                     }
                 }

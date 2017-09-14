@@ -1,4 +1,4 @@
-import {setCourseCredit} from "../actionCreators/planActions"
+import {setCourseCredit,setUnitPlaceholdersByTeachingPeriod} from "../actionCreators/planActions"
 
 export const setTeachingPeriodsCredits = teachingPeriodsCredits => {
     return {type: "SET_TEACHING_PERIODS_CREDITS", teachingPeriodsCredits}
@@ -49,4 +49,18 @@ export const sortTeachingPeriodOrder = () => (dispatch, getState) => {
     )
     const teachingPeriodsOrder = teachingPeriodKeys
     dispatch(setTeachingPeriodsOrder(teachingPeriodsOrder))
+}
+
+export const addUnitCodeToPlaceholder = (unitCode,placeholderIndex,teachingPeriodKey) => (dispatch,getState) => {
+    const {planTeachingPeriodReducer} = getState()
+    const {teachingPeriods} = planTeachingPeriodReducer
+    const teachingPeriod = teachingPeriods[teachingPeriodKey]
+    let {unitsPlaceholders} = teachingPeriod
+    unitsPlaceholders[placeholderIndex]["unitCode"] = unitCode
+    console.log(unitsPlaceholders)
+    dispatch(setUnitPlaceholdersByTeachingPeriod(teachingPeriodKey,unitsPlaceholders))
+}
+
+export const removeUnitFromPlaceholder = (placeholderIndex,teachingPeriodKey) => (dispatch) => {
+    dispatch(addUnitCodeToPlaceholder(null,placeholderIndex,teachingPeriodKey))
 }

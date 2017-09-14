@@ -42,13 +42,13 @@ class TeachingPeriod extends React.Component {
             )
             let placeholderUnitsArray = []
             if(numPlaceholderUnits) {
-                placeholderUnitsArray = unitsPlaceholders.map((placeholderUnitText, i) =>
+                placeholderUnitsArray = unitsPlaceholders.map((placeholder, i) =>
                     <PlaceholderUnit
-                        key={`unitiPlaceHolder${placeholderUnitText}${i}`}
+                        key={`unitiPlaceHolder${placeholder["placeholderText"]}${i}`}
                         teachingPeriodCode={teachingPeriodCode}
                         index={i}
                         unitWidth={unitWidth}
-                        placeholderUnitText={placeholderUnitText}
+                        placeholder={placeholder}
                     />
                 )
             }

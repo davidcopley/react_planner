@@ -11,7 +11,7 @@ const UnitSourceDrag = {
         const {teachingPeriodCode, index, setDragSource, units, unitCode,} = props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
-        setDragSource({teachingPeriodCode, index})
+        setDragSource({teachingPeriodCode, index,unitCode})
         return {
             teachingPeriodCode,
             index,

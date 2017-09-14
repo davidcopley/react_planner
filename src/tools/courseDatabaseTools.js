@@ -31,7 +31,8 @@ export const propertyMapToSnapshot = teachingPeriods => {
             if(unitCode.match(/^\w{3}\d{4}$/)){
                 snapshot.teachingPeriods[teachingPeriodCode]["units"].push(unitCode)
             }else{
-                snapshot.teachingPeriods[teachingPeriodCode]["unitsPlaceholders"].push(unitCode)
+                const placeholderText = unitCode
+                snapshot.teachingPeriods[teachingPeriodCode]["unitsPlaceholders"].push({placeholderText,unitCode:null})
             }
 
         })

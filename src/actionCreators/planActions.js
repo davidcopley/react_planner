@@ -8,6 +8,7 @@ export const removeUnit = (unitRemoveIndex, unitRemoveTeachingPeriod) => {return
 export const removeUnitPlaceholder = (unitPlaceholderRemoveIndex, unitPlaceholderRemoveTeachingPeriod) => {return {type:"REMOVE_UNIT_PLACEHOLDER",unitPlaceholderRemoveIndex,unitPlaceholderRemoveTeachingPeriod}}
 export const insertUnit = ( unitInsert, unitInsertIndex, unitInsertTeachingPeriod) => {return {type:"INSERT_UNIT",unitInsert,unitInsertIndex,unitInsertTeachingPeriod}}
 export const addTeachingPeriod = teachingPeriod => {return {type:"ADD_TEACHING_PERIOD",teachingPeriod}}
+export const setUnitPlaceholdersByTeachingPeriod = (unitPlaceholdersTeachingPeriod,unitsPlaceholders) => {return {type:"SET_UNIT_PLACEHOLDERS_BY_TEACHING_PERIOD",unitPlaceholdersTeachingPeriod,unitsPlaceholders}}
 export const removeTeachingPeriodByTeachingPeriodCode = teachingPeriodCode => (dispatch,getState) => {
     const {planTeachingPeriodReducer} = getState()
     const teachingPeriods = planTeachingPeriodReducer.teachingPeriods
