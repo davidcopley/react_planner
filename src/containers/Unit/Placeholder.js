@@ -2,9 +2,10 @@ import React from "react"
 import {compose} from "redux"
 import {connect} from "react-redux"
 import {DropTarget} from "react-dnd"
-import {removeUnit,insertUnit,removeUnitPlaceholder} from "../../actionCreators/planActions"
-import {addUnitCodeToPlaceholder} from "../../actionCreators/planTeachingPeriodActions"
+import {removeUnit,insertUnit} from "../../actionCreators/planActions"
+import {addUnitCodeToPlaceholder,removeUnitFromPlaceholder} from "../../actionCreators/planTeachingPeriodActions"
 import {setIsUnitsMenuOpen} from "../../actionCreators/menuActions"
+import Unit from "../Unit/Unit"
 import "./EmptyUnit.css"
 const PlaceholderUnitTargetDrop = {
     drop(props, monitor, component){
@@ -43,13 +44,16 @@ const collectDrop = (connect, monitor) => {
 }
 
 class PlaceholderUnit extends React.Component{
+
     render(){
-        const {unitWidth,connectDropTarget,isHovering,canDrop,setIsUnitsMenuOpen,placeholder} = this.props
+        console.log("render")
+        const {unitWidth,connectDropTarget,isHovering,canDrop,removeUnitFromPlaceholder,placeholder,index,teachingPeriodCode} = this.props
         const {placeholderText,unitCode} = placeholder
         return(compose(connectDropTarget)(
-            <div onClick={()=>setIsUnitsMenuOpen(true)}  className={"empty-unit"} style={{minHeight:100,maxWidth:unitWidth,minWidth:unitWidth,border:isHovering?"2px solid red":undefined,flexGrow:1,userSelect:"none",background:canDrop?"#adff6d":"#b2ccff",boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"}}>
+            <div  className={"empty-unit"} style={{minHeight:100,maxWidth:unitWidth,minWidth:unitWidth,border:isHovering?"2px solid red":undefined,flexGrow:1,userSelect:"none",background:canDrop?"#adff6d":"#b2ccff",boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"}}>
                 {placeholderText}<br/>
-                {unitCode}
+                {unitCode}<br/>
+                {unitCode&&<button onClick={()=>removeUnitFromPlaceholder(index, teachingPeriodCode)}>Remove unit</button>}
             </div>
         ))
     }
@@ -59,4 +63,4 @@ const mapStateToProps = state => {
     return {dragSource:state.dragAndDropReducer.dragSource}
 }
 
-export default compose(connect(mapStateToProps,{removeUnit,insertUnit,setIsUnitsMenuOpen,removeUnitPlaceholder,addUnitCodeToPlaceholder}),DropTarget("Unit",PlaceholderUnitTargetDrop,collectDrop))(PlaceholderUnit)
+export default compose(connect(mapStateToProps,{removeUnit,insertUnit,setIsUnitsMenuOpen,removeUnitFromPlaceholder,addUnitCodeToPlaceholder}),DropTarget("Unit",PlaceholderUnitTargetDrop,collectDrop))(PlaceholderUnit)

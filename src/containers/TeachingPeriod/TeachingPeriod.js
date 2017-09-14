@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import TeachingPeriodHeader from "./TeachingPeriodHeader"
 import Unit from "../Unit/Unit"
 import EmptyUnit from "../Unit/EmptyUnit"
-import PlaceholderUnit from "../Unit/PlaceholderUnit"
+import PlaceholderUnit from "../Unit/Placeholder"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {getNextSpecialTeachingPeriodKey,getPrevSpecialTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 

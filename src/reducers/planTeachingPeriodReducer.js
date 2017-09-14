@@ -94,8 +94,8 @@ export default (state = defaultState, action) => {
                     }
                 }
             return state
-        case("SET_UNIT_PLACEHOLDERS_BY_TEACHING_PERIOD"):
-            const {unitPlaceholdersTeachingPeriod, unitsPlaceholders} = action
+        case("SET_UNIT_PLACEHOLDER_UNIT_CODE"):
+            const {unitPlaceholdersTeachingPeriod, unitPlaceholderIndex, unitCode} = action
             state =
                 {
                     ...state,
@@ -103,7 +103,11 @@ export default (state = defaultState, action) => {
                         ...state.teachingPeriods,
                         [unitPlaceholdersTeachingPeriod]: {
                             ...state.teachingPeriods[unitPlaceholdersTeachingPeriod],
-                            unitsPlaceholders
+                            unitsPlaceholders:[
+                                ...state.teachingPeriods[unitPlaceholdersTeachingPeriod].unitsPlaceholders.map((unitPlaceholder,i)=>{
+                                    return i===unitPlaceholderIndex?{...unitPlaceholder,unitCode}:unitPlaceholder
+                                })
+                            ]
                         }
                     }
                 }
