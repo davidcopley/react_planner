@@ -8,7 +8,7 @@ import "./EmptyUnit.css"
 const PlaceholderUnitTargetDrop = {
     drop(props, monitor, component){
         const {teachingPeriodCode, index,dragSource,moveUnit,insertUnit,removeUnitPlaceholder} = props
-        removeUnitPlaceholder(index,teachingPeriodCode)
+        // removeUnitPlaceholder(index,teachingPeriodCode)
         if(dragSource.isUnitsMenuUnit){
             insertUnit(dragSource.unitCode,index,teachingPeriodCode)
         }else {
