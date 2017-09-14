@@ -16,26 +16,9 @@ export const parsePropertyMapToSnapshot = propertyMap => {
 
 export const propertyMapToSnapshot = teachingPeriods => {
     let snapshot = {
-        snapshotName:"New Course",
-        courseCode:"C2000",
-        teachingPeriods: {
-            "2018-S2-01": {
-                units: [
-                    "FIT2005",
-                    "FIT2006",
-                    "FIT2007",
-                    "FIT2008",
-                ]
-            },
-            "2019-S2-01": {
-                units: [
-                    "FIT3006",
-                    "FIT3001",
-                    "FIT3007",
-                    "FIT3008",
-                ]
-            }
-        }
+        snapshotName:null,
+        courseCode:null,
+        teachingPeriods: {}
     }
     teachingPeriods.forEach(teachingPeriod=>{
         const {year,code,units} = teachingPeriod
