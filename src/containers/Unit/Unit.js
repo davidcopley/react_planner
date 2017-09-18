@@ -88,11 +88,17 @@ class Unit extends React.Component {
                     alignItems: "center",
                     color: facultyFontColorMap[faculty],
                 }}>
-                <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13,height:88}}>
+                <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13,height:88,position:"relative"}}>
                     {unitCode}<br/>
                     {myUnit.name}<br/>
                     Credits: {myUnitCredit}<br style={{marginBottom:"auto"}}/>
-                    <button onClick={() => removeUnit(index, teachingPeriodCode)}>remove unit</button>
+                    <IconButton
+                        style={{position:"absolute",top:0,right:0}}
+                        iconStyle={{height:18,width:18,fill:facultyFontColorMap[faculty]}}
+                        onClick={() => removeUnit(index, teachingPeriodCode)}
+                    >
+                        <Close/>
+                    </IconButton>
                 </div>
             </div>
         )
