@@ -1,4 +1,4 @@
-import {setCourseCode,setCourseCredit, setSnapshotName, setTeachingPeriods,setSnapshotIndex} from "../actionCreators/planActions"
+import {setCourseCode,setCourseCredit, setSnapshotName, setTeachingPeriods,setSnapshotIndex,setCourseName,setCourseFaculty} from "../actionCreators/planActions"
 import {setTeachingPeriodsOrder} from "../actionCreators/planTeachingPeriodActions"
 export const setSnapshots = snapshots =>{return {type:"SET_SNAPSHOTS",snapshots}}
 export const appendSnapshot = snapshot => {return {type:"APPEND_SNAPSHOT",snapshot}}
@@ -7,11 +7,13 @@ export const loadSnapshotByIndex = snapshotIndex => (dispatch, getState) => {
     const {snapshotsDatabaseReducer} = getState()
     const {snapshots} = snapshotsDatabaseReducer
     const snapshot = snapshots[snapshotIndex]
-    const {courseCode,credit,teachingPeriods,snapshotName} = snapshot
+    const {courseName,courseCode,credit,teachingPeriods,snapshotName,courseFaculty} = snapshot
     //dispatch to planCourseReducer
     dispatch(setTeachingPeriodsOrder([]))
     dispatch(setCourseCode(courseCode))
     dispatch(setCourseCredit(credit))
+    dispatch(setCourseName(courseName))
+    dispatch(setCourseFaculty(courseFaculty))
     dispatch(setSnapshotName(snapshotName))
     dispatch(setSnapshotIndex(snapshotIndex))
     //dispatch to planTeachingPeriodsReducer

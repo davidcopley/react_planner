@@ -6,9 +6,11 @@ import {setIsLoadCourseModalOpen} from "../../actionCreators/loadCourseModalActi
 import TeachingPeriod from "../TeachingPeriod/TeachingPeriod"
 import {getNextGeneralTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import {getCourses} from "../../actionCreators/courseDatabaseActions"
+import {FlatButton,LinearProgress} from "material-ui"
+import {facultyColors} from "../../constants/colors"
 class CourseStructure extends React.Component {
     render() {
-        const {snapshotName, courseCode, courseCredit, saveSnapshot, addTeachingPeriod, appendSnapshotBySnapshotName, teachingPeriodsOrder, isLoadCourseModalOpen ,setIsLoadCourseModalOpen} = this.props
+        const {snapshotName, courseCode,courseName, courseCredit,courseFaculty, saveSnapshot, addTeachingPeriod, appendSnapshotBySnapshotName, teachingPeriodsOrder, isLoadCourseModalOpen, setIsLoadCourseModalOpen} = this.props
         const nextTeachingPeriodKey = getNextGeneralTeachingPeriodKey(teachingPeriodsOrder[teachingPeriodsOrder.length - 1])
         return (
             <div style={{
@@ -23,10 +25,23 @@ class CourseStructure extends React.Component {
                 boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
                 background: "#ffffff"
             }}>
-                <h2>Snapshot name: {snapshotName}</h2>
-                <h2>Course Code: {courseCode}</h2>
-                <h2>Course Credit: {courseCredit}</h2>
-                <button onClick={()=>setIsLoadCourseModalOpen(!isLoadCourseModalOpen)}>Load Course</button>
+                <div style={{height:64,width:"100%",display:"flex"}}>
+                    <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
+                        <span style={{marginLeft:24}}>{courseName}</span><br/>
+                        <span style={{marginLeft:24}}>{courseFaculty}</span>
+                    </span>
+                    <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
+                        <span style={{marginLeft:24}}>{courseCredit}</span><br/>
+                        <span style={{marginLeft:24}}>Credit Points</span>
+                    </span>
+                    <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
+                        <span style={{marginLeft:24}}>$PRICE</span><br/>
+                        <span style={{marginLeft:24}}>Total Est. Cost</span>
+                    </span>
+                    <FlatButton style={{marginLeft:"auto",marginRight:8,zIndex:0}} label={"COURSE INFO"} labelStyle={{color:facultyColors[courseFaculty]}}/>
+                </div>
+                <LinearProgress color={facultyColors[courseFaculty]||"#000000"} mode={"determinate"} value={courseCredit/144*100} style={{height:3}}/>
+                <button onClick={() => setIsLoadCourseModalOpen(!isLoadCourseModalOpen)}>Load Course</button>
                 {snapshotName ? <button onClick={() => saveSnapshot()}>Save Snapshot</button> : <div>
                     <button onClick={() => appendSnapshotBySnapshotName(this.snapshotName.value)}>New Snapshot</button>
                     <input ref={snapshotName => this.snapshotName = snapshotName} type="text"
@@ -53,6 +68,8 @@ const mapStateToProps = state => ({
     courseCode: state.planCourseReducer.courseCode,
     snapshotName: state.planCourseReducer.snapshotName,
     courseCredit: state.planCourseReducer.courseCredit,
+    courseName: state.planCourseReducer.courseName,
+    courseFaculty: state.planCourseReducer.courseFaculty,
     isMenuOpen: state.menuReducer.isOpen,
     isLoadCourseModalOpen: state.loadCourseModalReducer.isLoadCourseModalOpen
 })

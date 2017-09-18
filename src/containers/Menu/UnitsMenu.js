@@ -6,7 +6,7 @@ class UnitsMenu extends React.Component {
     render() {
         const {units,isUnitsMenuOpen} = this.props
         return (
-            <Drawer open={isUnitsMenuOpen} openSecondary>
+            <Drawer open={isUnitsMenuOpen} openSecondary containerStyle={{zIndex:1000}}>
                 <div style={{
                     height: 80,
                     width: "100%",

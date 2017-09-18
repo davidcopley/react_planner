@@ -17,6 +17,7 @@ export const propertyMapToSnapshot = teachingPeriods => {
     let snapshot = {
         snapshotName:null,
         courseCode:null,
+        courseName:null,
         teachingPeriods: {}
     }
     teachingPeriods.forEach(teachingPeriod=>{

@@ -1,6 +1,8 @@
 const defaultState = {
     courseCode:"A2000",
     courseCredit:144,
+    courseName:"Bachelor of something",
+    courseFaculty:"Some Faculty",
     snapshotName:null,
     snapshotIndex:null,
 }
@@ -15,6 +17,10 @@ export default (state=defaultState,action)=>{
             return {...state,snapshotName:action.snapshotName}
         case("SET_SNAPSHOT_INDEX"):
             return {...state,snapshotIndex:action.snapshotIndex}
+        case("SET_COURSE_NAME"):
+            return {...state,courseName:action.courseName}
+        case("SET_COURSE_FACULTY"):
+            return {...state,courseFaculty:action.courseFaculty}
         default:
             return state
     }
