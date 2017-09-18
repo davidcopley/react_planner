@@ -69,7 +69,7 @@ class TeachingPeriod extends React.Component {
             }
         }
         return (
-            <div className="unit-container" style={{padding: 10}}>
+            <div style={{display:"flex"}}>
                 {unitsArray}
             </div>
         )
@@ -94,9 +94,10 @@ class TeachingPeriod extends React.Component {
         const shouldShowAddSpecialTeachingPeriod = !(nextSpecialTeachingPeriodKey in teachingPeriods)
         return (
             <span>
-                {!isSpecial&&isFirst&&shouldShowAddPrevSpecialTeachingPeriod&& <button onClick={()=>addTeachingPeriod(prevSpecialTeachingPeriodKey)}>Add {prevSpecialTeachingPeriodKey}</button>}
+                {/*{!isSpecial&&isFirst&&shouldShowAddPrevSpecialTeachingPeriod&& <button onClick={()=>addTeachingPeriod(prevSpecialTeachingPeriodKey)}>Add {prevSpecialTeachingPeriodKey}</button>}*/}
             <div id={teachingPeriodCode}
-                 style={{display: "flex", background: isDeferred ? "#7100ff" : "white", width: "100%"}}>
+                 style={{display: "flex", background: isDeferred ? "#7100ff" : "white", width: "100%",justifyContent:"center",borderBottom:"1px solid #dddddd"}}>
+
                 <TeachingPeriodHeader
                     isFirst={isFirst}
                     isLast={isLast}
@@ -106,7 +107,7 @@ class TeachingPeriod extends React.Component {
                 />
                 {this.renderUnits(totalCredits)}
             </div>
-                {shouldShowAddSpecialTeachingPeriod&&nextSpecialTeachingPeriodKey&&<button onClick={()=>addTeachingPeriod(nextSpecialTeachingPeriodKey)}>Add {nextSpecialTeachingPeriodKey}</button>}
+                {/*{shouldShowAddSpecialTeachingPeriod&&nextSpecialTeachingPeriodKey&&<button onClick={()=>addTeachingPeriod(nextSpecialTeachingPeriodKey)}>Add {nextSpecialTeachingPeriodKey}</button>}*/}
             </span>
         )
     }

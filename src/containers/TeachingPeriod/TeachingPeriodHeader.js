@@ -15,22 +15,24 @@ class TeachingPeriodHeader extends React.Component {
         return (
             <div style={{
                 minWidth: 150,
-                minHeight: 100,
-                boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
+                minHeight: 120,
+                maxHeight: 120,
                 flexGrow: 0,
-                marginTop: 10,
-                marginBottom: 10,
                 background: isSummer ? "#ff9a53" : isWinter ? "#c2ecff" : "#ffffff",
-                padding: 20
+                display:"flex",
+                alignItems:"center"
             }}>
-                {getTeachingPeriodString(teachingPeriodCode)}<br/>
-                Total Credits: {totalCredits}<br/>
-                {(isFirst || isLast || isSpecialTeachingPeriod) &&
-                <button onClick={() => removeTeachingPeriodByTeachingPeriodCode(teachingPeriodCode)}>
-                    Remove</button>}<br/>
-                {!isFirst && !isLast &&
-                <button onClick={() => setIsDeferTeachingPeriodByTeachingPeriodCode(teachingPeriodCode, !isDeferred)}>
-                    Defer</button>}<br/>
+                <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13,verticalAlign:"middle"}}>
+                    {getTeachingPeriodString(teachingPeriodCode)}<br/>
+                    Total Credits: {totalCredits}<br/>
+                    {(isFirst || isLast || isSpecialTeachingPeriod) &&
+                    <button onClick={() => removeTeachingPeriodByTeachingPeriodCode(teachingPeriodCode)}>
+                        Remove</button>}<br/>
+                    {!isFirst && !isLast &&
+                    <button
+                        onClick={() => setIsDeferTeachingPeriodByTeachingPeriodCode(teachingPeriodCode, !isDeferred)}>
+                        Defer</button>}<br/>
+                </div>
             </div>
         )
     }

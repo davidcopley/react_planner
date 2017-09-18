@@ -2,15 +2,15 @@ import React from "react"
 import {compose} from "redux"
 import {connect} from "react-redux"
 import {DropTarget} from "react-dnd"
-import {moveUnit,insertUnit} from "../../actionCreators/planActions"
+import {moveUnit, insertUnit} from "../../actionCreators/planActions"
 import {setIsUnitsMenuOpen} from "../../actionCreators/menuActions"
 import "./EmptyUnit.css"
 const EmptyUnitTargetDrop = {
     drop(props, monitor, component){
-        const {teachingPeriodCode, index,dragSource,moveUnit,insertUnit} = props
-        if(dragSource.isUnitsMenuUnit){
-            insertUnit(dragSource.unitCode,index,teachingPeriodCode)
-        }else {
+        const {teachingPeriodCode, index, dragSource, moveUnit, insertUnit} = props
+        if (dragSource.isUnitsMenuUnit) {
+            insertUnit(dragSource.unitCode, index, teachingPeriodCode)
+        } else {
             //on drop, move unit from index of teaching period to index of other teaching period
             moveUnit(dragSource.index, dragSource.teachingPeriodCode, index, teachingPeriodCode)
         }
@@ -18,7 +18,7 @@ const EmptyUnitTargetDrop = {
     hover(props, monitor, component){
 
     },
-    canDrop(props,monitor){
+    canDrop(props, monitor){
         const {isDeferred} = props
         return !isDeferred
     }
@@ -32,19 +32,34 @@ const collectDrop = (connect, monitor) => {
     }
 }
 
-class EmptyUnit extends React.Component{
-    render(){
-        const {unitWidth,connectDropTarget,isHovering,canDrop,setIsUnitsMenuOpen} = this.props
-        return(compose(connectDropTarget)(
-            <div onClick={()=>setIsUnitsMenuOpen(true)}  className={"empty-unit"} style={{minHeight:100,maxWidth:unitWidth,minWidth:unitWidth,border:isHovering?"2px solid red":undefined,flexGrow:1,userSelect:"none",background:canDrop?"#adff6d":"white",boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px"}}>
-                EMPTY UNIT
+class EmptyUnit extends React.Component {
+    render() {
+        const {unitWidth, connectDropTarget, isHovering, canDrop, setIsUnitsMenuOpen} = this.props
+        return (compose(connectDropTarget)(
+            <div onClick={() => setIsUnitsMenuOpen(true)} className={"empty-unit"} style={{
+                minHeight: 120,
+                maxHeight: 120,
+                maxWidth: unitWidth,
+                minWidth: unitWidth,
+                border: isHovering ? "2px solid red" : "1px solid #ffffff",
+                flexGrow: 1,
+                userSelect: "none",
+                background: canDrop ? "#adff6d" : "#f3f3f3",
+            }}>
+                <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13, height: "100%"}}>
+                    Empty
+                </div>
             </div>
         ))
     }
 }
 
 const mapStateToProps = state => {
-    return {dragSource:state.dragAndDropReducer.dragSource}
+    return {dragSource: state.dragAndDropReducer.dragSource}
 }
 
-export default compose(connect(mapStateToProps,{moveUnit,insertUnit,setIsUnitsMenuOpen}),DropTarget("Unit",EmptyUnitTargetDrop,collectDrop))(EmptyUnit)
+export default compose(connect(mapStateToProps, {
+    moveUnit,
+    insertUnit,
+    setIsUnitsMenuOpen
+}), DropTarget("Unit", EmptyUnitTargetDrop, collectDrop))(EmptyUnit)

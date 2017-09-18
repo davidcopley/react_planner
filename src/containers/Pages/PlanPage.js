@@ -7,7 +7,6 @@ import {setIsSnapshotsMenuOpen, setIsUnitsMenuOpen} from "../../actionCreators/m
 import SnapshotMenu from "../Menu/SnapshotMenu"
 import UnitMenu from "../Menu/UnitsMenu"
 import CourseStructure from "../Course/CourseStructure"
-import "./PlanPage.css"
 import MenuIcon from "material-ui/svg-icons/navigation/menu"
 import AddIcon from "material-ui/svg-icons/content/add"
 import {IconButton, FloatingActionButton} from "material-ui"

@@ -25,7 +25,7 @@ class CourseStructure extends React.Component {
                 boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
                 background: "#ffffff"
             }}>
-                <div style={{height:64,width:"100%",display:"flex"}}>
+                <div style={{height:64,marginTop:14,width:"100%",display:"flex"}}>
                     <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
                         <span style={{marginLeft:24}}>{courseName}</span><br/>
                         <span style={{marginLeft:24}}>{courseFaculty}</span>
