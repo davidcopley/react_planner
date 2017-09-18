@@ -36,3 +36,11 @@ export const moveUnit = (unitFromIndex,unitFromTeachingPeriod,unitToIndex,unitTo
     dispatch(removeUnit(unitFromIndex,unitFromTeachingPeriod))
     dispatch(insertUnit(unit,unitToIndex,unitToTeachingPeriod))
 }
+
+export const addUnitCodeToPlaceholder = (unitCode,placeholderIndex,teachingPeriodKey) => (dispatch,getState) => {
+    dispatch(setUnitPlaceholderUnitCode(placeholderIndex,teachingPeriodKey,unitCode))
+}
+
+export const removeUnitFromPlaceholder = (placeholderIndex,teachingPeriodKey) => (dispatch) => {
+    dispatch(addUnitCodeToPlaceholder(null,placeholderIndex,teachingPeriodKey))
+}

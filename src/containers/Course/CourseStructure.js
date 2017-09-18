@@ -16,7 +16,6 @@ class CourseStructure extends React.Component {
                 flexDirection: "column",
                 maxWidth: 1000,
                 minWidth: 1000,
-                padding: 100,
                 paddingTop: 0,
                 paddingBottom: 0,
                 minHeight: "100vh",

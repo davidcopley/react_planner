@@ -10,7 +10,6 @@ export const parseAos = aos => {
 
 export const parsePropertyMapToSnapshot = propertyMap => {
     const teachingPeriods = JSON.parse(propertyMap["teachingPeriods"].value)
-    console.log(teachingPeriods)
     return propertyMapToSnapshot(teachingPeriods)
 }
 

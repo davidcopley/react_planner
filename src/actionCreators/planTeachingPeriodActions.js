@@ -50,11 +50,3 @@ export const sortTeachingPeriodOrder = () => (dispatch, getState) => {
     const teachingPeriodsOrder = teachingPeriodKeys
     dispatch(setTeachingPeriodsOrder(teachingPeriodsOrder))
 }
-
-export const addUnitCodeToPlaceholder = (unitCode,placeholderIndex,teachingPeriodKey) => (dispatch,getState) => {
-    dispatch(setUnitPlaceholderUnitCode(placeholderIndex,teachingPeriodKey,unitCode))
-}
-
-export const removeUnitFromPlaceholder = (placeholderIndex,teachingPeriodKey) => (dispatch) => {
-    dispatch(addUnitCodeToPlaceholder(null,placeholderIndex,teachingPeriodKey))
-}

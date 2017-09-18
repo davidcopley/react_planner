@@ -48,7 +48,6 @@ export const getCourseMapByAosCode = aosCode => (dispatch,getState) => {
             .get(`${api}/courseMaps/${aosCode}`)
             .then(res=>{
                 const {data} = res
-                console.log(data)
                 const {courseName,courseCode} = data[0]["propertyMap"]
                 const teachingPeriods = JSON.parse(data[0]["propertyMap"]["teachingPeriods"].value)
                 dispatch(getUnitsByTeachingPeriods(teachingPeriods))

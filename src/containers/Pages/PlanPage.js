@@ -13,6 +13,8 @@ import AddIcon from "material-ui/svg-icons/content/add"
 import {IconButton, FloatingActionButton} from "material-ui"
 import CourseModal from "../Modals/LoadCourseModal"
 import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
+import monplanLogoWhite from "../../images/monplanLogoWhite.svg"
+import monashLogoWhite from "../../images/monashLogoWhite.svg"
 class PlanPage extends React.Component {
     componentWillUnmount() {
         unsubscribe()
@@ -21,20 +23,27 @@ class PlanPage extends React.Component {
     render() {
         const {isSnapshotMenuOpen, isUnitsMenuOpen, setIsSnapshotsMenuOpen, setIsUnitsMenuOpen} = this.props
         return (
-            <div style={{minHeight: "100vh", height: "100%",width:"100%",minWidth:1000}}>
+            <div style={{minHeight: "100vh", height: "100%", width: "100%", minWidth: 1000}}>
                 <span>
                     <div style={{
-                        height: 80,
-                        width: "100vw",
+                        height: 130,
+                        width: "100%",
                         display: "flex",
                         justifyContent: "center",
                         position: "fixed",
                         backgroundColor: "rgb(0, 108, 171)"
                     }}/>
-                    <div style={{display: "flex", width: "100%", alignItems: "center", position: "fixed"}}>
-                        <IconButton style={{margin: 20}} iconStyle={{fill: "#ffffff"}}
-                                    onClick={() => setIsSnapshotsMenuOpen(!isSnapshotMenuOpen)}><MenuIcon/></IconButton>
-                        <h1 style={{color: "white", width: "100%"}}>MonPlan</h1>
+                    <div style={{display: "flex", width: "100%", alignItems: "center",justifyContent:"center", position: "fixed"}}>
+                        <div style={{width: "100%", maxWidth: 1000,display:"flex",flexDirection:"column"}}>
+                            <span style={{height:34}}/>
+                            <div style={{height:42}}>
+                                <img src={monashLogoWhite} height={42} alt=""/>
+                                <img src={monplanLogoWhite} height={42} style={{float:"right"}} alt=""/>
+                            </div>
+                            <IconButton iconStyle={{fill: "#ffffff"}}
+                                        onClick={() => setIsSnapshotsMenuOpen(!isSnapshotMenuOpen)}><MenuIcon/>
+                            </IconButton>
+                        </div>
                     </div>
                 </span>
                 <SnapshotMenu/>
