@@ -18,7 +18,7 @@ class TeachingPeriod extends React.Component {
         let numPlaceholderUnits = unitsPlaceholders ? unitsPlaceholders.length : 0
         let unitsArray
         if (isDeferred) {
-            unitsArray =  []
+            return [<DeferredUnit/>]
         } else {
             unitsArray = units.map((unitCode, i) =>
                 <Unit
