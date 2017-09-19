@@ -49,10 +49,11 @@ class PlaceholderUnit extends React.Component {
             <div className={"empty-unit"} style={{
                 minHeight: 120,
                 maxHeight: 120,
-                maxWidth: unitWidth,
-                minWidth: unitWidth,
+                // maxWidth: unitWidth,
+                // minWidth: unitWidth,
                 border: isHovering ? "2px solid red" : "2px solid #ffffff",
-                flexGrow: {credit},
+                flexGrow: 1,
+                flex:6,
                 userSelect: "none",
                 background: canDrop ? "#adff6d" : "#eef2ff",
             }}>

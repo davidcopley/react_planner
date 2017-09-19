@@ -39,10 +39,11 @@ class EmptyUnit extends React.Component {
             <div onClick={() => setIsUnitsMenuOpen(true)} className={"empty-unit"} style={{
                 minHeight: 120,
                 maxHeight: 120,
-                maxWidth: unitWidth,
-                minWidth: unitWidth,
+                // maxWidth: unitWidth,
+                // minWidth: unitWidth,
                 border: isHovering ? "2px solid red" : "1px solid #ffffff",
                 flexGrow: 1,
+                flex:6,
                 userSelect: "none",
                 background: canDrop ? "#adff6d" : "#f3f3f3",
             }}>

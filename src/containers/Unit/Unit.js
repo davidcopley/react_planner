@@ -79,13 +79,14 @@ class Unit extends React.Component {
                 style={{
                     minHeight: 120,
                     maxHeight: 120,
-                    minWidth: myUnitWidth,
-                    maxWidth: myUnitWidth,
+                    // minWidth: myUnitWidth,
+                    // maxWidth: myUnitWidth,
                     border: "2px solid #ffffff",
                     borderLeft: isHovering ? "5px solid red" : undefined,
                     background: myUnitIsDuplicate ? "#ff5648" : myUnitIsInvalidTimeslot ? "#f606ff" : facultyColors[faculty] ? facultyColors[faculty] : "#f3f3f3",
                     opacity: canDrop ? 0.5 : 1,
                     flexGrow: 1,
+                    flex:myUnitCredit,
                     alignItems: "center",
                     color: facultyFontColorMap[faculty],
                 }}>

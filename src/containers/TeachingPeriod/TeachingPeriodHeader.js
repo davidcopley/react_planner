@@ -8,6 +8,7 @@ import {getTeachingPeriodString} from "../../tools/teachingPeriodKeys"
 import {IconButton} from "material-ui"
 import Close from "material-ui/svg-icons/navigation/close"
 import Defer from "material-ui/svg-icons/av/fast-forward"
+import Undefer from "material-ui/svg-icons/av/fast-rewind"
 
 class TeachingPeriodHeader extends React.Component {
     render() {
@@ -22,7 +23,6 @@ class TeachingPeriodHeader extends React.Component {
                 minHeight: 120,
                 maxHeight: 120,
                 flexGrow: 0,
-                background: isSummer ? "#ff9a53" : isWinter ? "#c2ecff" : "#ffffff",
                 display:"flex",
                 alignItems:"center"
             }}>
@@ -30,13 +30,13 @@ class TeachingPeriodHeader extends React.Component {
                     <div style={{display:"flex",overflow:"hidden",alignItems:"center"}}>
                         <div style={{overflow:"hidden"}}>{getTeachingPeriodString(teachingPeriodCode)}</div>
                     {(isFirst || isLast || isSpecialTeachingPeriod) &&
-                    <IconButton iconStyle={{height:18,width:18}} style={{padding:0,width:18,height:18}} onClick={() => removeTeachingPeriodByTeachingPeriodCode(teachingPeriodCode)}>
+                    <IconButton iconStyle={{height:18,width:18}} style={{padding:0,marginLeft:10,width:18,height:18,zIndex:0}} onClick={() => removeTeachingPeriodByTeachingPeriodCode(teachingPeriodCode)}>
                         <Close/>
                     </IconButton>}
                     {!isFirst && !isLast &&
-                    <IconButton iconStyle={{height:18,width:18}} style={{padding:0,width:18,height:18}}
+                    <IconButton iconStyle={{height:18,width:18}} style={{padding:0,marginLeft:10,width:18,height:18,zIndex:0}}
                                 onClick={() => setIsDeferTeachingPeriodByTeachingPeriodCode(teachingPeriodCode, !isDeferred)}>
-                        <Defer/></IconButton>}
+                        {isDeferred?<Undefer/>:<Defer/>}</IconButton>}
                     </div>
                     <br/>Total Credits: {totalCredits}
 

@@ -13,9 +13,10 @@ export const calculateTeachingPeriodCredits = () => (dispatch, getState) => {
     const {units} = unitDatabaseReducer
     const teachingPeriodsCredits = {}
     let planCourseCredit = 0
-    Object.keys(teachingPeriods).forEach(teachingPeriodKey => {
+    const teachingPeriodKeys = Object.keys(teachingPeriods)
+    teachingPeriodKeys.forEach((teachingPeriodKey,i) => {
         const teachingPeriod = teachingPeriods[teachingPeriodKey]
-        if (teachingPeriod["isDeferred"]) {
+        if (teachingPeriod["isDeferred"]&&i!==0&&i!==(teachingPeriodKeys.length-1)) {
             planCourseCredit += 0
             teachingPeriodsCredits[teachingPeriodKey] = 0
         } else {
