@@ -88,7 +88,7 @@ class PlanPage extends React.Component {
                 }}/>
                 <FloatingActionButton
                     iconStyle={{transform: isUnitsMenuOpen ? "rotate(-112.5deg)" : undefined}}
-                    style={{position: "fixed", bottom: 45, right: 24, zIndex: 1001, width:56,height:56}} backgroundColor={"#cf0001"}
+                    style={{position: "fixed", bottom: 45, right: 50, zIndex: 1001}} backgroundColor={"#cf0001"}
                     onClick={() => setIsUnitsMenuOpen(!isUnitsMenuOpen)}
                 >
                     <AddIcon/>

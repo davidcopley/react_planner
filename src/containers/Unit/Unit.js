@@ -9,7 +9,7 @@ import {IconButton} from "material-ui"
 import Close from "material-ui/svg-icons/navigation/close"
 import "./Unit.css"
 import {getUnitByUnitCode} from "../../selectors/unitsDatabaseSelectors"
-import {getIsInvalidTimeslotUnitByUnitCode} from "../../selectors/unitValidationSelectors"
+import {getIsInvalidTimeslotUnitByUnitCode,getIsDuplicateUnitByUnitCode} from "../../selectors/unitValidationSelectors"
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
         const {teachingPeriodCode, index, setDragSource, unit, unitCode,} = props
@@ -64,9 +64,8 @@ const collectDrop = (connect, monitor) => {
 
 class Unit extends React.Component {
     render() {
-        const {unit, unitCode, teachingPeriodCode, duplicateUnits, isInvalidTimeslot} = this.props
+        const {unit, unitCode, teachingPeriodCode, isInvalidTimeslot, isDuplicate} = this.props
         const {credit,faculty,name} = unit
-        const isDuplicate = duplicateUnits[unitCode]
         const {connectDragSource, connectDropTarget, isHovering, canDrop, removeUnit, index,isDragging} = this.props;
         return compose(connectDragSource, connectDropTarget)(
             <div
@@ -105,8 +104,7 @@ const mapStateToProps = (state,props) => {
         unit: getUnitByUnitCode(state,props),
         dragSource: state.dragAndDropReducer.dragSource,
         isInvalidTimeslot: getIsInvalidTimeslotUnitByUnitCode(state,props),
-        duplicateUnits: state.unitValidationReducer.duplicateUnits,
-        invalidTimeslotUnits: state.unitValidationReducer.invalidTimeslotUnits
+        isDuplicate: getIsDuplicateUnitByUnitCode(state,props)
     }
 }
 

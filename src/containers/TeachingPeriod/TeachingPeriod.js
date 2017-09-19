@@ -13,7 +13,7 @@ import {
     getTeachingPeriodCreditsByTeachingPeriodCode,
     getTeachingPeriods,
 } from "../../selectors/planTeachingPeriodSelectors"
-
+import {getUnits} from "../../selectors/unitsDatabaseSelectors"
 class TeachingPeriod extends React.Component {
     renderUnits = totalCredits => {
         const {teachingPeriod, teachingPeriodCode, isFirst, isLast} = this.props
@@ -121,7 +121,7 @@ const mapStateToProps = (state,props) => ({
     teachingPeriod: getTeachingPeriodByTeachingPeriodCode(state,props),
     teachingPeriodCredits: getTeachingPeriodCreditsByTeachingPeriodCode(state,props),
     teachingPeriods: getTeachingPeriods(state),
-    units: state.unitDatabaseReducer.units
+    units: getUnits(state)
 })
 
 export default connect(mapStateToProps, {addTeachingPeriod})(TeachingPeriod)
