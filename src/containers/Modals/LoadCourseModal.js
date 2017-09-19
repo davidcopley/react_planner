@@ -20,9 +20,11 @@ class LoadCourseModal extends React.Component{
 
     handleChooseCourse = (courseName,index) => {
         const {courses,getCourseByCourseCode} = this.props
-        const {courseCode} = courses[index]
-        this.setState({selectedCourseCode:courseCode})
-        getCourseByCourseCode(courseCode)
+        if(courses[index]) {
+            const {courseCode} = courses[index]
+            this.setState({selectedCourseCode: courseCode})
+            getCourseByCourseCode(courseCode)
+        }
     }
 u
     onUpdateCourseInput = () => {
@@ -37,7 +39,9 @@ u
         const {selectedCourseCode} = this.state
         const {coursesAos,getCourseMapByAosCode} = this.props
         const aos = coursesAos[selectedCourseCode][index]
-        getCourseMapByAosCode(aos.aosCode)
+        if(aos) {
+            getCourseMapByAosCode(aos.aosCode)
+        }
     }
 
     render(){
@@ -57,6 +61,7 @@ u
                     hintText="Type anything"
                     dataSource={coursesDatasource}
                     maxSearchResults={5}
+
                 />
                 <AutoComplete
                     ref={aos => this.aos = aos}

@@ -89,7 +89,7 @@ class Unit extends React.Component {
                     Credits: {credit}<br style={{marginBottom:"auto"}}/>
                     <IconButton
                         style={{position:"absolute",top:-8,right:-8,zIndex:0}}
-                        iconStyle={{height:18,width:18,fill:facultyFontColorMap[faculty]}}
+                        iconStyle={{height:15,width:15,fill:facultyFontColorMap[faculty]}}
                         onClick={() => removeUnit(index, teachingPeriodCode)}
                     >
                         <Close/>
