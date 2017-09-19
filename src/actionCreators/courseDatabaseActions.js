@@ -2,6 +2,7 @@ import axios from "axios"
 import {appendSnapshotPromise,loadSnapshotByIndex} from "../actionCreators/snapshotsActions"
 import {addUnit} from "./unitsDatabaseActions"
 import {parseCoursesData,parseAos,parsePropertyMapToSnapshotWithCommencementYear} from "../tools/courseDatabaseTools"
+import {showLoading,hideLoading} from "react-redux-loading-bar"
 const api = "https://monplan-api-dev.appspot.com";
 export const addApiCalled = apiCalled => {return {type:"ADD_API_CALLED",apiCalled}}
 export const addCourseAosByCourseCode = (courseCode,courseAos) => {return {type:"ADD_COURSE_AOS",courseCode,courseAos}}
@@ -26,6 +27,7 @@ export const getCourseByCourseCode = courseCode => (dispatch,getState) => {
     const {coursesDatabaseReducer} = getState()
     const {apiCalled} = coursesDatabaseReducer
     if(!apiCalled[`/basic/courses/${courseCode}`]) {
+        dispatch(showLoading())
         axios
             .get(`${api}/basic/courses/${courseCode}`)
             .then(res => {
@@ -33,9 +35,11 @@ export const getCourseByCourseCode = courseCode => (dispatch,getState) => {
                 dispatch(addApiCalled(`/basic/courses/${courseCode}`))
                 const courseAos = data.map(aos=>parseAos(aos.propertyMap))
                 dispatch(addCourseAosByCourseCode(courseCode,courseAos))
+                dispatch(hideLoading())
             })
             .catch(err => {
                 console.log(err)
+                dispatch(hideLoading())
             })
     }
 }

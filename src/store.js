@@ -23,7 +23,7 @@ const appReducer = combineReducers({
     dragAndDropReducer,
     menuReducer,
     unitValidationReducer,
-    loadCourseModalReducer
+    loadCourseModalReducer,
 });
 
 export default createStore(appReducer,composeWithDevTools(applyMiddleware(thunk)));

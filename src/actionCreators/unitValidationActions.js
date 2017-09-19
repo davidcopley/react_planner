@@ -1,3 +1,5 @@
+import {getUnits} from "../selectors/unitsDatabaseSelectors"
+import {getTeachingPeriods} from "../selectors/planTeachingPeriodSelectors"
 export const setDuplicateUnits = duplicateUnits => {return {type:"SET_DUPLICATE_UNITS",duplicateUnits}}
 export const setInvalidTimeslotUnits = invalidTimeslotUnits => {return {type:"SET_INVALID_TIMESLOT_UNITS",invalidTimeslotUnits}}
 export const validateDuplicateUnits = () => (dispatch,getState) => {
@@ -23,9 +25,8 @@ export const validateDuplicateUnits = () => (dispatch,getState) => {
     dispatch(setDuplicateUnits(duplicateUnits))
 }
 export const validateInvalidTimeslotUnits = () => (dispatch,getState) => {
-    const {planTeachingPeriodReducer,unitDatabaseReducer} = getState()
-    const {teachingPeriods} = planTeachingPeriodReducer
-    const {units} = unitDatabaseReducer
+    const teachingPeriods = getTeachingPeriods(getState())
+    const units = getUnits(getState())
     const teachingPeriodKeys = Object.keys(teachingPeriods)
     let invalidTimeslotUnits = {}
     teachingPeriodKeys.forEach(teachingPeriodKey=>{

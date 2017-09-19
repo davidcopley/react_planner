@@ -4,6 +4,7 @@ import {connect} from "react-redux"
 import {DropTarget} from "react-dnd"
 import {removeUnit, addUnitCodeToPlaceholder, removeUnitFromPlaceholder} from "../../actionCreators/planActions"
 import {setIsUnitsMenuOpen} from "../../actionCreators/menuActions"
+import {getUnits} from "../../selectors/unitsDatabaseSelectors"
 import Unit from "../Unit/Unit"
 import "./EmptyUnit.css"
 const PlaceholderUnitTargetDrop = {
@@ -49,8 +50,8 @@ class PlaceholderUnit extends React.Component {
                 userSelect: "none",
                 background: canDrop ? "#adff6d" : "#eef2ff",
             }}>
-                <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13, height: "100%"}}>
-                    {placeholderText}<br/>
+                <div style={{padding: 16, userSelect: "none", overflow: "hidden", height: "100%"}}>
+                    <span style={{fontSize: 13}}>{placeholderText}</span><br/>
                     {unitCode}<br/>
                     {unitCode &&
                     <button onClick={() => removeUnitFromPlaceholder(index, teachingPeriodCode)}>Remove unit</button>}
@@ -63,7 +64,7 @@ class PlaceholderUnit extends React.Component {
 const mapStateToProps = state => {
     return {
         dragSource: state.dragAndDropReducer.dragSource,
-        units: state.unitDatabaseReducer.units
+        units: getUnits(state)
     }
 }
 

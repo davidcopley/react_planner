@@ -39,7 +39,7 @@ class PlanPage extends React.Component {
                     backgroundColor: "rgb(0, 108, 171)",
                     zIndex:1
                 }}/>
-                <div style={{display: "flex", width: "100%", alignItems: "center",justifyContent:"center", position: "fixed",zIndex:1}}>
+                <div style={{display: "flex", width: "100%", alignItems: "center",justifyContent:"center", position: "fixed",zIndex:1,top:10}}>
                     <div style={{width: "100%", maxWidth: 1000,display:"flex",flexDirection:"column"}}>
                         <span style={{height:34}}/>
                         <div style={{height:42}}>
@@ -102,7 +102,8 @@ class PlanPage extends React.Component {
 const mapStateToProps = state => ({
     isSnapshotMenuOpen: state.menuReducer.isSnapshotMenuOpen,
     isUnitsMenuOpen: state.menuReducer.isUnitsMenuOpen,
-    isLoadCourseModalOpen: state.loadCourseModalReducer.isLoadCourseModalOpen
+    isLoadCourseModalOpen: state.loadCourseModalReducer.isLoadCourseModalOpen,
+    loadingBarReducer: state.loadingBarReducer
 })
 
 export default compose(connect(mapStateToProps, {
