@@ -8,16 +8,16 @@ import {facultyColors, facultyFontColorMap} from "../../constants/colors"
 import {IconButton} from "material-ui"
 import Close from "material-ui/svg-icons/navigation/close"
 import "./Unit.css"
+import {getUnitByUnitCode} from "../../selectors/unitsDatabaseSelectors"
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
-        const {teachingPeriodCode, index, setDragSource, units, unitCode,} = props
-        const myUnit = units[unitCode]
-        const myUnitCredit = myUnit["credit"]
+        const {teachingPeriodCode, index, setDragSource, unit, unitCode,} = props
+        const {credit} = unit
         setDragSource({teachingPeriodCode, index, unitCode})
         return {
             teachingPeriodCode,
             index,
-            myUnitCredit
+            credit
         }
     },
     isDragging(props,monitor){
@@ -38,11 +38,11 @@ const UnitTargetDrop = {
 
     },
     canDrop(props, monitor){
-        const item = monitor.getItem()
+        const unit = monitor.getItem()
         const {teachingPeriodTotalCredits, isDeferred} = props
-        const {myUnitCredit} = item
+        const {credit} = unit
         //if teaching periods can contain extra credits, and teaching period is not deferred
-        return (myUnitCredit + teachingPeriodTotalCredits) <= 36 && !isDeferred
+        return (credit + teachingPeriodTotalCredits) <= 36 && !isDeferred
     }
 }
 
@@ -63,12 +63,10 @@ const collectDrop = (connect, monitor) => {
 
 class Unit extends React.Component {
     render() {
-        const {units, unitCode, teachingPeriodCode, duplicateUnits, invalidTimeslotUnits} = this.props
-        const myUnit = units[unitCode]
-        const myUnitCredit = myUnit["credit"]
-        const {faculty} = myUnit
-        const myUnitIsDuplicate = duplicateUnits[unitCode]
-        const myUnitIsInvalidTimeslot = invalidTimeslotUnits[teachingPeriodCode] && invalidTimeslotUnits[teachingPeriodCode][unitCode]
+        const {unit, unitCode, teachingPeriodCode, duplicateUnits, invalidTimeslotUnits} = this.props
+        const {credit,faculty,name} = unit
+        const isDuplicate = duplicateUnits[unitCode]
+        const isInvalidTimeslot = invalidTimeslotUnits[teachingPeriodCode] && invalidTimeslotUnits[teachingPeriodCode][unitCode]
         const {connectDragSource, connectDropTarget, isHovering, canDrop, removeUnit, index,isDragging} = this.props;
         return compose(connectDragSource, connectDropTarget)(
             <div
@@ -78,17 +76,17 @@ class Unit extends React.Component {
                     maxHeight: 120,
                     border: "2px solid #ffffff",
                     borderLeft: isHovering ? "5px solid red" : undefined,
-                    background: myUnitIsDuplicate ? "#ff5648" : myUnitIsInvalidTimeslot ? "#f606ff" : facultyColors[faculty] ? facultyColors[faculty] : "#f3f3f3",
+                    background: isDuplicate ? "#ff5648" : isInvalidTimeslot ? "#f606ff" : facultyColors[faculty] ? facultyColors[faculty] : "#f3f3f3",
                     opacity: isDragging&&canDrop ? 1:isDragging&&!canDrop? 0.1:1 ,
                     flexGrow: 1,
-                    flex:myUnitCredit||6,
+                    flex:credit||6,
                     alignItems: "center",
                     color: facultyFontColorMap[faculty],
                 }}>
                 <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13,height:88,position:"relative"}}>
                     {unitCode}<br/>
-                    {myUnit.name}<br/>
-                    Credits: {myUnitCredit}<br style={{marginBottom:"auto"}}/>
+                    {name}<br/>
+                    Credits: {credit}<br style={{marginBottom:"auto"}}/>
                     <IconButton
                         style={{position:"absolute",top:-8,right:-8,zIndex:0}}
                         iconStyle={{height:18,width:18,fill:facultyFontColorMap[faculty]}}
@@ -102,9 +100,9 @@ class Unit extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state,props) => {
     return {
-        units: state.unitDatabaseReducer.units,
+        unit: getUnitByUnitCode(state,props),
         dragSource: state.dragAndDropReducer.dragSource,
         duplicateUnits: state.unitValidationReducer.duplicateUnits,
         invalidTimeslotUnits: state.unitValidationReducer.invalidTimeslotUnits
