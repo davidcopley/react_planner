@@ -4,7 +4,7 @@ import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {saveSnapshot, appendSnapshotBySnapshotName} from "../../actionCreators/snapshotsActions"
 import {setIsLoadCourseModalOpen} from "../../actionCreators/loadCourseModalActions"
 import TeachingPeriod from "../TeachingPeriod/TeachingPeriod"
-import {getNextGeneralTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
+import {getNextGeneralTeachingPeriodKey,getTeachingPeriodString} from "../../tools/teachingPeriodKeys"
 import {getCourses} from "../../actionCreators/courseDatabaseActions"
 import {FlatButton,LinearProgress} from "material-ui"
 import {facultyColors} from "../../constants/colors"
@@ -54,9 +54,9 @@ class CourseStructure extends React.Component {
                         isLast={i === teachingPeriodsOrder.length - 1}
                     />)
                 }
-                <button onClick={() => addTeachingPeriod(nextTeachingPeriodKey)}>
-                    Add Teaching Period
-                </button>
+                <FlatButton style={{fontSize:13,borderTop: "1px solid #dddddd",}} onClick={() => addTeachingPeriod(nextTeachingPeriodKey)}>
+                    Add {getTeachingPeriodString(nextTeachingPeriodKey)}
+                </FlatButton>
             </div>
         )
     }

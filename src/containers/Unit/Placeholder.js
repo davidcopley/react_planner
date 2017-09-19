@@ -37,20 +37,12 @@ const collectDrop = (connect, monitor) => {
 class PlaceholderUnit extends React.Component {
 
     render() {
-        const {unitWidth, connectDropTarget, isHovering, canDrop, removeUnitFromPlaceholder, placeholder, index, teachingPeriodCode, units} = this.props
+        const {connectDropTarget, isHovering, canDrop, removeUnitFromPlaceholder, placeholder, index, teachingPeriodCode, units} = this.props
         const {placeholderText, unitCode} = placeholder
-        let myUnit
-        let credit = 6
-        if (unitCode) {
-            myUnit = units[unitCode]
-            credit = myUnit.credit
-        }
         return (compose(connectDropTarget)(
             <div className={"empty-unit"} style={{
                 minHeight: 120,
                 maxHeight: 120,
-                // maxWidth: unitWidth,
-                // minWidth: unitWidth,
                 border: isHovering ? "2px solid red" : "2px solid #ffffff",
                 flexGrow: 1,
                 flex:6,

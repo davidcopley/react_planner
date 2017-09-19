@@ -19,6 +19,9 @@ const UnitSourceDrag = {
             index,
             myUnitCredit
         }
+    },
+    isDragging(props,monitor){
+        return true
     }
 }
 const UnitTargetDrop = {
@@ -46,6 +49,7 @@ const UnitTargetDrop = {
 const collectDrag = (connect, monitor) => {
     return {
         connectDragSource: connect.dragSource(),
+        isDragging:monitor.isDragging()
     };
 }
 
@@ -59,34 +63,25 @@ const collectDrop = (connect, monitor) => {
 
 class Unit extends React.Component {
     render() {
-        const {units, unitCode, unitWidth, teachingPeriodCode, duplicateUnits, invalidTimeslotUnits} = this.props
+        const {units, unitCode, teachingPeriodCode, duplicateUnits, invalidTimeslotUnits} = this.props
         const myUnit = units[unitCode]
         const myUnitCredit = myUnit["credit"]
         const {faculty} = myUnit
-        let widthUnit;
-        if (myUnitCredit === 0) {
-            widthUnit = 1
-        } else {
-            widthUnit = (myUnitCredit / 6)
-        }
-        const myUnitWidth = unitWidth * widthUnit
         const myUnitIsDuplicate = duplicateUnits[unitCode]
         const myUnitIsInvalidTimeslot = invalidTimeslotUnits[teachingPeriodCode] && invalidTimeslotUnits[teachingPeriodCode][unitCode]
-        const {connectDragSource, connectDropTarget, isHovering, canDrop, removeUnit, index} = this.props;
+        const {connectDragSource, connectDropTarget, isHovering, canDrop, removeUnit, index,isDragging} = this.props;
         return compose(connectDragSource, connectDropTarget)(
             <div
                 className="unit"
                 style={{
                     minHeight: 120,
                     maxHeight: 120,
-                    // minWidth: myUnitWidth,
-                    // maxWidth: myUnitWidth,
                     border: "2px solid #ffffff",
                     borderLeft: isHovering ? "5px solid red" : undefined,
                     background: myUnitIsDuplicate ? "#ff5648" : myUnitIsInvalidTimeslot ? "#f606ff" : facultyColors[faculty] ? facultyColors[faculty] : "#f3f3f3",
-                    opacity: canDrop ? 0.5 : 1,
+                    opacity: isDragging&&canDrop ? 1:isDragging&&!canDrop? 0.1:1 ,
                     flexGrow: 1,
-                    flex:myUnitCredit,
+                    flex:myUnitCredit||6,
                     alignItems: "center",
                     color: facultyFontColorMap[faculty],
                 }}>

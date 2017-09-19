@@ -1,5 +1,4 @@
 import React from "react"
-import _ from "lodash"
 import {Dialog,AutoComplete} from "material-ui"
 import {connect} from "react-redux"
 import {getCourses,getCourseByCourseCode,getCourseMapByAosCode} from "../../actionCreators/courseDatabaseActions"
@@ -25,7 +24,7 @@ class LoadCourseModal extends React.Component{
         this.setState({selectedCourseCode:courseCode})
         getCourseByCourseCode(courseCode)
     }
-
+u
     onUpdateCourseInput = () => {
         const {selectedCourseCode} = this.state
         if(selectedCourseCode) {

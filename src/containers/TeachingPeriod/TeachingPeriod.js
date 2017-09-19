@@ -85,7 +85,7 @@ class TeachingPeriod extends React.Component {
                 {!isSpecial && isFirst && shouldShowAddPrevSpecialTeachingPeriod &&
                 <FlatButton
                     fullWidth
-                    style={{fontSize:13}}
+                    style={{fontSize:13,zIndex:0}}
                     onClick={() => addTeachingPeriod(prevSpecialTeachingPeriodKey)}>Add {getTeachingPeriodString(prevSpecialTeachingPeriodKey)}</FlatButton>
                 }
                 <div id={teachingPeriodCode}
@@ -103,13 +103,14 @@ class TeachingPeriod extends React.Component {
                     isDeferred={isDeferred}
                     totalCredits={totalCredits}
                     teachingPeriodCode={teachingPeriodCode}
+                    key={teachingPeriodCode}
                 />
                     {this.renderUnits(totalCredits)}
             </div>
                 {shouldShowAddSpecialTeachingPeriod && nextSpecialTeachingPeriodKey &&
                 <FlatButton
                     fullWidth
-                    style={{fontSize:13}}
+                    style={{fontSize:13,zIndex:0}}
                     onClick={() => addTeachingPeriod(nextSpecialTeachingPeriodKey)}>Add {getTeachingPeriodString(nextSpecialTeachingPeriodKey)}</FlatButton>
                 }
             </span>
