@@ -6,6 +6,7 @@ import {compose} from "redux"
 import {setIsSnapshotsMenuOpen, setIsUnitsMenuOpen} from "../../actionCreators/menuActions"
 import {setIsLoadCourseModalOpen} from "../../actionCreators/loadCourseModalActions"
 import {resetPlanCourse} from "../../actionCreators/planActions"
+import {saveSnapshot} from "../../actionCreators/snapshotsActions"
 import SnapshotMenu from "../Menu/SnapshotMenu"
 import UnitMenu from "../Menu/UnitsMenu"
 import CourseStructure from "../Course/CourseStructure"
@@ -27,7 +28,7 @@ class PlanPage extends React.Component {
     }
 
     render() {
-        const {isSnapshotMenuOpen, isUnitsMenuOpen, setIsSnapshotsMenuOpen, setIsUnitsMenuOpen,setIsLoadCourseModalOpen,isLoadCourseModalOpen,resetPlanCourse} = this.props
+        const {isSnapshotMenuOpen, isUnitsMenuOpen, setIsSnapshotsMenuOpen, setIsUnitsMenuOpen,setIsLoadCourseModalOpen,isLoadCourseModalOpen,resetPlanCourse,saveSnapshot} = this.props
         return (
             <div style={{minHeight: "100vh", height: "100%", width: "100%", minWidth: 1000}}>
                 <div style={{
@@ -50,7 +51,7 @@ class PlanPage extends React.Component {
                             <IconButton iconStyle={{fill: "#ffffff"}}
                                         onClick={() => setIsSnapshotsMenuOpen(!isSnapshotMenuOpen)}><MenuIcon/>
                             </IconButton>
-                            <IconButton iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
+                            <IconButton onClick={()=>saveSnapshot()} iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
                                 <Save/>
                             </IconButton>
                             <IconButton onClick={() => setIsLoadCourseModalOpen(!isLoadCourseModalOpen)} iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
@@ -108,5 +109,6 @@ export default compose(connect(mapStateToProps, {
     setIsSnapshotsMenuOpen,
     setIsUnitsMenuOpen,
     setIsLoadCourseModalOpen,
-    resetPlanCourse
+    resetPlanCourse,
+    saveSnapshot
 }), DragDropContext(HTML5Backend))(PlanPage)
