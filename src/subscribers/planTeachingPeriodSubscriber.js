@@ -1,4 +1,5 @@
 import store from "../store"
+import {getTeachingPeriods} from "../selectors/planTeachingPeriodSelectors"
 import {validateDuplicateUnits,validateInvalidTimeslotUnits} from "../actionCreators/unitValidationActions"
 import {calculateTeachingPeriodCredits,sortTeachingPeriodOrder} from "../actionCreators/planTeachingPeriodActions"
 class PlanTeachingPeriodSubscriber{
@@ -12,16 +13,13 @@ class PlanTeachingPeriodSubscriber{
     }
     handlePlanTeachingPeriodChange = () => {
         const previousPlanTeachingPeriod = this.currentPlanTeachingPeriod
-        const {planTeachingPeriodReducer} = store.getState()
-        const {teachingPeriods} = planTeachingPeriodReducer
-        this.currentPlanTeachingPeriod = teachingPeriods
+        this.currentPlanTeachingPeriod = getTeachingPeriods(store.getState())
         //MAKE SURE ALL ACTIONS IN THE FOLLOWING IF BLOCK DOES NOT CHANGE planTeachingPeriodReducer.teachingPeriods
         if(this.currentPlanTeachingPeriod !== previousPlanTeachingPeriod){
             store.dispatch(validateDuplicateUnits())
             store.dispatch(validateInvalidTimeslotUnits())
             store.dispatch(calculateTeachingPeriodCredits())
             store.dispatch(sortTeachingPeriodOrder())
-
         }
     }
 }

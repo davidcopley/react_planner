@@ -8,6 +8,9 @@ export const validateDuplicateUnits = () => (dispatch,getState) => {
     let duplicateUnits = {}
     teachingPeriodKeys.forEach(teachingPeriodKey => {
         const teachingPeriod = teachingPeriods[teachingPeriodKey]
+        if(teachingPeriod["isDeferred"]){
+            return
+        }
         const teachingPeriodUnits = teachingPeriod["units"]
         teachingPeriodUnits.forEach(unitKey => {
             if(unitKey in unitAppearances){

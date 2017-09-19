@@ -50,7 +50,7 @@ u
 
     handleChooseAos = (aosName,index) => {
         const {selectedCourseCode} = this.state
-        const {coursesAos,getCourseMapByAosCode} = this.props
+        const {coursesAos} = this.props
         const aos = coursesAos[selectedCourseCode][index]
         if(aos){
             this.setState({selectedAosCode:aos.aosCode})

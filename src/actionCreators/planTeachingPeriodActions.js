@@ -1,3 +1,5 @@
+import {getTeachingPeriods} from "../selectors/planTeachingPeriodSelectors"
+import {getUnits} from "../selectors/unitsDatabaseSelectors"
 import {setCourseCredit,setUnitPlaceholderUnitCode} from "../actionCreators/planActions"
 
 export const setTeachingPeriodsCredits = teachingPeriodsCredits => {
@@ -8,9 +10,8 @@ export const setTeachingPeriodsOrder = teachingPeriodsOrder => {
 }
 
 export const calculateTeachingPeriodCredits = () => (dispatch, getState) => {
-    const {planTeachingPeriodReducer, unitDatabaseReducer} = getState()
-    const {teachingPeriods} = planTeachingPeriodReducer
-    const {units} = unitDatabaseReducer
+    const teachingPeriods = getTeachingPeriods(getState())
+    const units = getUnits(getState())
     const teachingPeriodsCredits = {}
     let planCourseCredit = 0
     const teachingPeriodKeys = Object.keys(teachingPeriods)
@@ -31,8 +32,7 @@ export const calculateTeachingPeriodCredits = () => (dispatch, getState) => {
 }
 
 export const sortTeachingPeriodOrder = () => (dispatch, getState) => {
-    const {planTeachingPeriodReducer} = getState()
-    const {teachingPeriods} = planTeachingPeriodReducer
+    const teachingPeriods = getTeachingPeriods(getState())
     const teachingPeriodKeys = Object.keys(teachingPeriods)
     teachingPeriodKeys.sort((a, b) => {
             a = a.split("-")

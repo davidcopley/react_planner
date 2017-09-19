@@ -1,3 +1,4 @@
+import {getTeachingPeriods} from "../selectors/planTeachingPeriodSelectors"
 export const setCourseCode = courseCode => {return {type:"SET_COURSE_CODE",courseCode}}
 export const setCourseCredit = courseCredit => {return {type:"SET_COURSE_CREDIT",courseCredit}}
 export const setCourseName = courseName => {return {type:"SET_COURSE_NAME",courseName}}
@@ -18,8 +19,7 @@ export const removeTeachingPeriodByTeachingPeriodCode = teachingPeriodCode => (d
     dispatch(setTeachingPeriods(teachingPeriods))
 }
 export const setIsDeferTeachingPeriodByTeachingPeriodCode = (teachingPeriodCode,isDeferred) => (dispatch,getState) => {
-    const {planTeachingPeriodReducer} = getState()
-    const teachingPeriods = planTeachingPeriodReducer.teachingPeriods
+    const teachingPeriods = getTeachingPeriods(getState())
     teachingPeriods[teachingPeriodCode]["isDeferred"] = isDeferred
     dispatch(setTeachingPeriods(teachingPeriods))
 }
@@ -35,8 +35,7 @@ export const resetPlanCourse = () => dispatch => {
 }
 //a move involves removing unit from old teaching period, and inserting to new teaching period
 export const moveUnit = (unitFromIndex,unitFromTeachingPeriod,unitToIndex,unitToTeachingPeriod) => (dispatch,getState) => {
-    const {planTeachingPeriodReducer} = getState()
-    const unit = planTeachingPeriodReducer["teachingPeriods"][unitFromTeachingPeriod]["units"][unitFromIndex]
+    const unit = getTeachingPeriods(getState())[unitFromTeachingPeriod]["units"][unitFromIndex]
     dispatch(removeUnit(unitFromIndex,unitFromTeachingPeriod))
     dispatch(insertUnit(unit,unitToIndex,unitToTeachingPeriod))
 }

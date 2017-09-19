@@ -31,7 +31,6 @@ export const propertyMapToSnapshot = (teachingPeriods,commencementYear) => {
     }
     teachingPeriods.forEach(teachingPeriod=>{
         const {year,code,units} = teachingPeriod
-
         let teachingPeriodYear = parseInt(commencementYear)+parseInt(year)
         const teachingPeriodCode = `${teachingPeriodYear}-${code}`
         snapshot.teachingPeriods[teachingPeriodCode] = {units:[],unitsPlaceholders:[]}
