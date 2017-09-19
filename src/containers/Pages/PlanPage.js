@@ -17,7 +17,6 @@ import CourseModal from "../Modals/LoadCourseModal"
 import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
 import monplanLogoWhite from "../../images/monplanLogoWhite.svg"
 import monashLogoWhite from "../../images/monashLogoWhite.svg"
-import {} from "material-ui/IconButton"
 import Save from "material-ui/svg-icons/content/save"
 import Done from "material-ui/svg-icons/action/done"
 import Create from "material-ui/svg-icons/content/create"
@@ -88,9 +87,10 @@ class PlanPage extends React.Component {
                     zIndex: -1
                 }}/>
                 <FloatingActionButton
-                    iconStyle={{width: 45, height: 45, transform: isUnitsMenuOpen ? "rotate(-112.5deg" : undefined}}
-                    style={{position: "fixed", bottom: 50, right: 50, zIndex: 1001}} backgroundColor={"#a10300"}
-                    onClick={() => setIsUnitsMenuOpen(!isUnitsMenuOpen)}>
+                    iconStyle={{transform: isUnitsMenuOpen ? "rotate(-112.5deg)" : undefined}}
+                    style={{position: "fixed", bottom: 45, right: 24, zIndex: 1001, width:56,height:56}} backgroundColor={"#cf0001"}
+                    onClick={() => setIsUnitsMenuOpen(!isUnitsMenuOpen)}
+                >
                     <AddIcon/>
                 </FloatingActionButton>
                 <CourseModal/>

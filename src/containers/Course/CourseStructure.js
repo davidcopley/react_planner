@@ -42,7 +42,7 @@ class CourseStructure extends React.Component {
                     <FlatButton style={{marginLeft:"auto",marginRight:8,zIndex:0}} label={"COURSE INFO"} labelStyle={{color:facultyColors[courseFaculty]}}/>
                 </div>
                 <LinearProgress color={facultyColors[courseFaculty]||"#000000"} mode={"determinate"} value={courseCredit/144*100} style={{height:3}}/>
-                {snapshotName ? <button onClick={() => saveSnapshot()}>Save Snapshot</button> : <div>
+                {!snapshotName &&<div>
                     <button onClick={() => appendSnapshotBySnapshotName(this.snapshotName.value)}>New Snapshot</button>
                     <input ref={snapshotName => this.snapshotName = snapshotName} type="text"
                            placeholder="Enter Snapshot Name"/></div>}

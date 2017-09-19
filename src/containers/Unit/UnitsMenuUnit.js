@@ -5,16 +5,16 @@ import {DragSource} from "react-dnd"
 import {setDragSource} from "../../actionCreators/dragAndDropActions"
 import {moveUnit, removeUnit} from "../../actionCreators/planActions"
 import "./UnitsMenuUnit.css"
+import {getUnitByUnitCode} from "../../selectors/unitsDatabaseSelectors"
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
-        const {setDragSource, units, unitCode,} = props
-        const myUnit = units[unitCode]
-        const myUnitCredit = myUnit["credit"]
+        const {setDragSource, unit, unitCode,} = props
+        const {credit} = unit
         setDragSource({isUnitsMenuUnit: true, unitCode})
         return {
             isUnitsMenuUnit: true,
             unitCode,
-            myUnitCredit
+            credit
         }
     }
 }
@@ -27,9 +27,8 @@ const collectDrag = (connect, monitor) => {
 
 class UnitsMenuUnit extends React.Component {
     render() {
-        const {units, unitCode} = this.props
-        const myUnit = units[unitCode]
-        const myUnitCredit = myUnit["credit"]
+        const {unit, unitCode} = this.props
+        const {credit,name} = unit
         const {connectDragSource} = this.props;
         return connectDragSource(
             <div
@@ -43,16 +42,18 @@ class UnitsMenuUnit extends React.Component {
                 }}>
                 <div style={{padding: 10, userSelect: "none", overflow: "hidden"}}>
                     {unitCode}<br/>
-                    {myUnit.name}<br/>
-                    Credits: {myUnitCredit}<br/>
+                    {name}<br/>
+                    Credits: {credit}<br/>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {units: state.unitDatabaseReducer.units, duplicateUnits: state.unitValidationReducer.duplicateUnits}
+const mapStateToProps = (state,props) => {
+    return {
+        unit: getUnitByUnitCode(state,props),
+        duplicateUnits: state.unitValidationReducer.duplicateUnits}
 }
 
 export default compose(connect(mapStateToProps, {
