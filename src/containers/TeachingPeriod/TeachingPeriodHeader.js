@@ -7,8 +7,8 @@ import {
 import {getTeachingPeriodString} from "../../tools/teachingPeriodKeys"
 import {IconButton} from "material-ui"
 import Close from "material-ui/svg-icons/navigation/close"
-import Defer from "material-ui/svg-icons/av/fast-forward"
-import Undefer from "material-ui/svg-icons/av/fast-rewind"
+import Defer from "material-ui/svg-icons/av/pause"
+import Undefer from "material-ui/svg-icons/av/play-arrow"
 
 class TeachingPeriodHeader extends React.Component {
     render() {
@@ -18,8 +18,8 @@ class TeachingPeriodHeader extends React.Component {
         const isSpecialTeachingPeriod = isSummer || isWinter
         return (
             <div style={{
-                minWidth: 180,
-                maxWidth: 180,
+                minWidth: 200,
+                maxWidth: 200,
                 minHeight: 120,
                 maxHeight: 120,
                 flexGrow: 0,

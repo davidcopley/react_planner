@@ -8,12 +8,16 @@ import DeferredUnit from "../Unit/DeferredUnit"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {getNextSpecialTeachingPeriodKey, getPrevSpecialTeachingPeriodKey, getTeachingPeriodString} from "../../tools/teachingPeriodKeys"
 import {FlatButton} from "material-ui"
+import {
+    getTeachingPeriodByTeachingPeriodCode,
+    getTeachingPeriodCreditsByTeachingPeriodCode,
+    getTeachingPeriods,
+} from "../../selectors/planTeachingPeriodSelectors"
 
 class TeachingPeriod extends React.Component {
     renderUnits = totalCredits => {
-        const {teachingPeriods, teachingPeriodCode, isFirst, isLast} = this.props
-        const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
-        let {units, unitsPlaceholders, isDeferred} = myTeachingPeriod
+        const {teachingPeriod, teachingPeriodCode, isFirst, isLast} = this.props
+        let {units, unitsPlaceholders, isDeferred} = teachingPeriod
         isDeferred = isDeferred && !isFirst && !isLast
         let numPlaceholderUnits = unitsPlaceholders ? unitsPlaceholders.length : 0
         let unitsArray
@@ -65,20 +69,13 @@ class TeachingPeriod extends React.Component {
 
     render() {
         //extract my teaching period from redux by teaching period code
-        const {teachingPeriods, teachingPeriodsCredits, teachingPeriodCode, isFirst, isLast, addTeachingPeriod} = this.props
-        const myTeachingPeriod = teachingPeriods[teachingPeriodCode]
-        const myTeachingPeriodsCredits = teachingPeriodsCredits[teachingPeriodCode]
-        const totalCredits = myTeachingPeriodsCredits
-        let isDeferred = myTeachingPeriod["isDeferred"]
+        const {teachingPeriods, teachingPeriod, teachingPeriodCredits, teachingPeriodCode, isFirst, isLast, addTeachingPeriod} = this.props
+        let isDeferred = teachingPeriod["isDeferred"]
         isDeferred = isDeferred && !isFirst && !isLast
         const isSpecial = teachingPeriodCode.match(/SUMMER/) || teachingPeriodCode.match(/WINTER/)
         const nextSpecialTeachingPeriodKey = getNextSpecialTeachingPeriodKey(teachingPeriodCode)
-        let prevSpecialTeachingPeriodKey
-        let shouldShowAddPrevSpecialTeachingPeriod = false
-        if (isFirst) {
-            prevSpecialTeachingPeriodKey = getPrevSpecialTeachingPeriodKey(teachingPeriodCode)
-            shouldShowAddPrevSpecialTeachingPeriod = !(prevSpecialTeachingPeriodKey in teachingPeriods)
-        }
+        const prevSpecialTeachingPeriodKey = getPrevSpecialTeachingPeriodKey(teachingPeriodCode)
+        const shouldShowAddPrevSpecialTeachingPeriod = !(prevSpecialTeachingPeriodKey in teachingPeriods)
         const shouldShowAddSpecialTeachingPeriod = !(nextSpecialTeachingPeriodKey in teachingPeriods)
         return (
             <span>
@@ -95,17 +92,19 @@ class TeachingPeriod extends React.Component {
                          justifyContent: "center",
                          borderBottom: "1px solid #dddddd",
                          borderTop: "1px solid #dddddd",
+                         minHeight:124,
+                         maxHeight:124
                      }}>
 
                 <TeachingPeriodHeader
                     isFirst={isFirst}
                     isLast={isLast}
                     isDeferred={isDeferred}
-                    totalCredits={totalCredits}
+                    totalCredits={teachingPeriodCredits}
                     teachingPeriodCode={teachingPeriodCode}
                     key={teachingPeriodCode}
                 />
-                    {this.renderUnits(totalCredits)}
+                    {this.renderUnits(teachingPeriodCredits)}
             </div>
                 {shouldShowAddSpecialTeachingPeriod && nextSpecialTeachingPeriodKey &&
                 <FlatButton
@@ -118,9 +117,10 @@ class TeachingPeriod extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    teachingPeriods: state.planTeachingPeriodReducer.teachingPeriods,
-    teachingPeriodsCredits: state.planTeachingPeriodReducer.teachingPeriodsCredits,
+const mapStateToProps = (state,props) => ({
+    teachingPeriod: getTeachingPeriodByTeachingPeriodCode(state,props),
+    teachingPeriodCredits: getTeachingPeriodCreditsByTeachingPeriodCode(state,props),
+    teachingPeriods: getTeachingPeriods(state),
     units: state.unitDatabaseReducer.units
 })
 

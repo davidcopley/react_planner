@@ -29,13 +29,13 @@ class CourseStructure extends React.Component {
                 <div style={{height:64,marginTop:14,width:"100%",display:"flex"}}>
                     <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
                         <span style={{marginLeft:24}}>{courseCode} - {courseName}</span><br/>
-                        <span style={{marginLeft:24}}>{courseFaculty}</span>
+                        <span style={{marginLeft:24,color:"#7c7b7c"}}>{courseFaculty}</span>
                     </span>
-                    <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
+                    <span style={{fontSize:14,fontWeight:500,lineHeight:1.71,color:"#7c7b7c"}}>
                         <span style={{marginLeft:24}}>{courseCredit}</span><br/>
                         <span style={{marginLeft:24}}>Credit Points</span>
                     </span>
-                    <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
+                    <span style={{fontSize:14,fontWeight:500,lineHeight:1.71,color:"#7c7b7c"}}>
                         <span style={{marginLeft:24}}>$PRICE</span><br/>
                         <span style={{marginLeft:24}}>Total Est. Cost</span>
                     </span>
