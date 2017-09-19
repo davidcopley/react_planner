@@ -18,7 +18,6 @@ const Menu = props => {
                 <span style={{height:"100%",color: "#ffffff",verticalAlign:"middle"}}>Snapshots</span>
             </div>
             <List>
-                <ListItem onClick={() => resetPlanCourse()} style={{width: "100%"}}>New Course Plan</ListItem>
                 {snapshotNames.map((snapshotName, snapshotIndex) =>
                     <ListItem
                         key={`snapshotMenu${snapshotName}${snapshotIndex}`}

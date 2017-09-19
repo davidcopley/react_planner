@@ -4,6 +4,8 @@ import {DragDropContext} from 'react-dnd';
 import HTML5Backend from "react-dnd-html5-backend"
 import {compose} from "redux"
 import {setIsSnapshotsMenuOpen, setIsUnitsMenuOpen} from "../../actionCreators/menuActions"
+import {setIsLoadCourseModalOpen} from "../../actionCreators/loadCourseModalActions"
+import {resetPlanCourse} from "../../actionCreators/planActions"
 import SnapshotMenu from "../Menu/SnapshotMenu"
 import UnitMenu from "../Menu/UnitsMenu"
 import CourseStructure from "../Course/CourseStructure"
@@ -18,13 +20,14 @@ import {} from "material-ui/IconButton"
 import Save from "material-ui/svg-icons/content/save"
 import Done from "material-ui/svg-icons/action/done"
 import Create from "material-ui/svg-icons/content/create"
+import Load from "material-ui/svg-icons/file/cloud-download"
 class PlanPage extends React.Component {
     componentWillUnmount() {
         unsubscribe()
     }
 
     render() {
-        const {isSnapshotMenuOpen, isUnitsMenuOpen, setIsSnapshotsMenuOpen, setIsUnitsMenuOpen} = this.props
+        const {isSnapshotMenuOpen, isUnitsMenuOpen, setIsSnapshotsMenuOpen, setIsUnitsMenuOpen,setIsLoadCourseModalOpen,isLoadCourseModalOpen,resetPlanCourse} = this.props
         return (
             <div style={{minHeight: "100vh", height: "100%", width: "100%", minWidth: 1000}}>
                 <div style={{
@@ -41,7 +44,7 @@ class PlanPage extends React.Component {
                         <span style={{height:34}}/>
                         <div style={{height:42}}>
                             <img src={monashLogoWhite} height={42} alt=""/>
-                            <img src={monplanLogoWhite} height={42} style={{float:"right"}} alt=""/>
+                            <img src={monplanLogoWhite} height={35} style={{float:"right"}} alt=""/>
                         </div>
                         <div style={{height:42}}>
                             <IconButton iconStyle={{fill: "#ffffff"}}
@@ -50,7 +53,10 @@ class PlanPage extends React.Component {
                             <IconButton iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
                                 <Save/>
                             </IconButton>
-                            <IconButton iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
+                            <IconButton onClick={() => setIsLoadCourseModalOpen(!isLoadCourseModalOpen)} iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
+                                <Load/>
+                            </IconButton>
+                            <IconButton onClick={()=>resetPlanCourse()} iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
                                 <Create/>
                             </IconButton>
                             <IconButton iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
@@ -94,10 +100,13 @@ class PlanPage extends React.Component {
 
 const mapStateToProps = state => ({
     isSnapshotMenuOpen: state.menuReducer.isSnapshotMenuOpen,
-    isUnitsMenuOpen: state.menuReducer.isUnitsMenuOpen
+    isUnitsMenuOpen: state.menuReducer.isUnitsMenuOpen,
+    isLoadCourseModalOpen: state.loadCourseModalReducer.isLoadCourseModalOpen
 })
 
 export default compose(connect(mapStateToProps, {
     setIsSnapshotsMenuOpen,
     setIsUnitsMenuOpen,
+    setIsLoadCourseModalOpen,
+    resetPlanCourse
 }), DragDropContext(HTML5Backend))(PlanPage)

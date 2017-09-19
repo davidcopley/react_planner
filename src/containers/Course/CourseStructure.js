@@ -23,11 +23,12 @@ class CourseStructure extends React.Component {
                 minHeight: "100vh",
                 height: "100%",
                 boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
-                background: "#ffffff"
+                background: "#ffffff",
+                marginBottom:50
             }}>
                 <div style={{height:64,marginTop:14,width:"100%",display:"flex"}}>
                     <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
-                        <span style={{marginLeft:24}}>{courseName}</span><br/>
+                        <span style={{marginLeft:24}}>{courseCode} - {courseName}</span><br/>
                         <span style={{marginLeft:24}}>{courseFaculty}</span>
                     </span>
                     <span style={{fontSize:14,fontWeight:500,lineHeight:1.71}}>
@@ -41,7 +42,6 @@ class CourseStructure extends React.Component {
                     <FlatButton style={{marginLeft:"auto",marginRight:8,zIndex:0}} label={"COURSE INFO"} labelStyle={{color:facultyColors[courseFaculty]}}/>
                 </div>
                 <LinearProgress color={facultyColors[courseFaculty]||"#000000"} mode={"determinate"} value={courseCredit/144*100} style={{height:3}}/>
-                <button onClick={() => setIsLoadCourseModalOpen(!isLoadCourseModalOpen)}>Load Course</button>
                 {snapshotName ? <button onClick={() => saveSnapshot()}>Save Snapshot</button> : <div>
                     <button onClick={() => appendSnapshotBySnapshotName(this.snapshotName.value)}>New Snapshot</button>
                     <input ref={snapshotName => this.snapshotName = snapshotName} type="text"
@@ -54,7 +54,7 @@ class CourseStructure extends React.Component {
                         isLast={i === teachingPeriodsOrder.length - 1}
                     />)
                 }
-                <FlatButton style={{fontSize:13,borderTop: "1px solid #dddddd",}} onClick={() => addTeachingPeriod(nextTeachingPeriodKey)}>
+                <FlatButton style={{fontSize:13,borderTop: "1px solid #dddddd"}} onClick={() => addTeachingPeriod(nextTeachingPeriodKey)}>
                     Add {getTeachingPeriodString(nextTeachingPeriodKey)}
                 </FlatButton>
             </div>
@@ -71,13 +71,11 @@ const mapStateToProps = state => ({
     courseName: state.planCourseReducer.courseName,
     courseFaculty: state.planCourseReducer.courseFaculty,
     isMenuOpen: state.menuReducer.isOpen,
-    isLoadCourseModalOpen: state.loadCourseModalReducer.isLoadCourseModalOpen
 })
 
 export default connect(mapStateToProps, {
     addTeachingPeriod,
     saveSnapshot,
     appendSnapshotBySnapshotName,
-    getCourses,
-    setIsLoadCourseModalOpen
+    getCourses
 })(CourseStructure)
