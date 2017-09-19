@@ -1,7 +1,7 @@
 import axios from "axios"
 import {appendSnapshotPromise,loadSnapshotByIndex} from "../actionCreators/snapshotsActions"
 import {addUnit} from "./unitsDatabaseActions"
-import {parseCoursesData,parseAos,parsePropertyMapToSnapshot} from "../tools/courseDatabaseTools"
+import {parseCoursesData,parseAos,parsePropertyMapToSnapshotWithCommencementYear} from "../tools/courseDatabaseTools"
 const api = "https://monplan-api-dev.appspot.com";
 export const addApiCalled = apiCalled => {return {type:"ADD_API_CALLED",apiCalled}}
 export const addCourseAosByCourseCode = (courseCode,courseAos) => {return {type:"ADD_COURSE_AOS",courseCode,courseAos}}
@@ -40,7 +40,7 @@ export const getCourseByCourseCode = courseCode => (dispatch,getState) => {
     }
 }
 
-export const getCourseMapByAosCode = aosCode => (dispatch,getState) => {
+export const getCourseMapByAosCode = (aosCode,commencementYear=null) => (dispatch,getState) => {
     const {coursesDatabaseReducer,snapshotsDatabaseReducer} = getState()
     const {apiCalled} = coursesDatabaseReducer
     if(!apiCalled[`/courseMaps/${aosCode}`]) {
@@ -52,7 +52,7 @@ export const getCourseMapByAosCode = aosCode => (dispatch,getState) => {
                 const {courseName,courseCode,courseType,faculty} = data[0]["propertyMap"]
                 const teachingPeriods = JSON.parse(data[0]["propertyMap"]["teachingPeriods"].value)
                 dispatch(getUnitsByTeachingPeriods(teachingPeriods))
-                const snapshot = parsePropertyMapToSnapshot(data[0]["propertyMap"])
+                const snapshot = parsePropertyMapToSnapshotWithCommencementYear(data[0]["propertyMap"],commencementYear)
                 console.log(data[0]["propertyMap"])
                 snapshot.snapshotName=`${courseName} - ${courseCode}`
                 snapshot.courseCode=courseCode

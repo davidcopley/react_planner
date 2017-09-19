@@ -1,5 +1,5 @@
 import React from "react"
-import {Dialog,AutoComplete} from "material-ui"
+import {Dialog,AutoComplete,TextField,FlatButton} from "material-ui"
 import {connect} from "react-redux"
 import {getCourses,getCourseByCourseCode,getCourseMapByAosCode} from "../../actionCreators/courseDatabaseActions"
 import {setIsLoadCourseModalOpen} from "../../actionCreators/loadCourseModalActions"
@@ -10,7 +10,9 @@ class LoadCourseModal extends React.Component{
         super(props)
         this.state={
             selectedCourseCode:null,
-            selectedAos:null
+            selectedAosCode:null,
+            isCommencementYearValid:true,
+            commencementYear:null
         }
     }
     componentDidMount(){
@@ -35,18 +37,38 @@ u
         }
     }
 
+    onUpdateAosInput = () => {
+        const {selectedAosCode} = this.state
+        if(selectedAosCode) {
+            this.setState({selectedAosCode: null})
+        }
+    }
+
+    updateYear = year => {
+        this.setState({isCommencementYearValid:!!year.match(/^(20)[1-9][0-9]$/),commencementYear:year})
+    }
+
     handleChooseAos = (aosName,index) => {
         const {selectedCourseCode} = this.state
         const {coursesAos,getCourseMapByAosCode} = this.props
         const aos = coursesAos[selectedCourseCode][index]
-        if(aos) {
-            getCourseMapByAosCode(aos.aosCode)
+        if(aos){
+            this.setState({selectedAosCode:aos.aosCode})
         }
+        // if(aos) {
+        //     getCourseMapByAosCode(aos.aosCode)
+        // }
+    }
+
+    loadCourse = () => {
+        const {getCourseMapByAosCode} = this.props
+        const {selectedAosCode,commencementYear} = this.state
+        getCourseMapByAosCode(selectedAosCode,commencementYear)
     }
 
     render(){
         const {courses,coursesAos,isLoadCourseModalOpen,setIsLoadCourseModalOpen} = this.props
-        const {selectedCourseCode} = this.state
+        const {selectedCourseCode,selectedAosCode,isCommencementYearValid} = this.state
         const coursesDatasource = courses.map(course=>course.courseName)
         const aosDatasource = coursesAos[selectedCourseCode]?coursesAos[selectedCourseCode].map(aos=>aos.aosName):[]
         return(
@@ -67,6 +89,7 @@ u
                     ref={aos => this.aos = aos}
                     openOnFocus
                     onNewRequest={this.handleChooseAos}
+                    onUpdateInput={this.onUpdateAosInput}
                     disabled={selectedCourseCode===null}
                     floatingLabelText={"Area of Study"}
                     fullWidth
@@ -74,6 +97,15 @@ u
                     hintText="Type anything"
                     dataSource={aosDatasource}
                 />
+                <TextField
+                    fullWidth
+                    disabled={selectedAosCode===null}
+                    floatingLabelText={"Commencement Year"}
+                    defaultValue={new Date().getUTCFullYear()}
+                    onChange={e=>this.updateYear(e.target.value)}
+                    errorText={!isCommencementYearValid&&"Invalid commencement year"}
+                />
+                <FlatButton onClick={()=>this.loadCourse()} fullWidth disabled={!selectedAosCode||!isCommencementYearValid}>Load Course</FlatButton>
             </Dialog>
         )
     }

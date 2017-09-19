@@ -13,17 +13,26 @@ export const parsePropertyMapToSnapshot = propertyMap => {
     return propertyMapToSnapshot(teachingPeriods)
 }
 
-export const propertyMapToSnapshot = teachingPeriods => {
+export const parsePropertyMapToSnapshotWithCommencementYear = (propertyMap,commencementYear) => {
+    const teachingPeriods = JSON.parse(propertyMap["teachingPeriods"].value)
+    return propertyMapToSnapshot(teachingPeriods,commencementYear)
+}
+
+export const propertyMapToSnapshot = (teachingPeriods,commencementYear) => {
     let snapshot = {
         snapshotName:null,
         courseCode:null,
         courseName:null,
         teachingPeriods: {}
     }
+    if(!commencementYear){
+        const date = new Date()
+        commencementYear = date.getFullYear()
+    }
     teachingPeriods.forEach(teachingPeriod=>{
         const {year,code,units} = teachingPeriod
-        const date = new Date()
-        let teachingPeriodYear = date.getYear()+1900+parseInt(year)
+
+        let teachingPeriodYear = parseInt(commencementYear)+parseInt(year)
         const teachingPeriodCode = `${teachingPeriodYear}-${code}`
         snapshot.teachingPeriods[teachingPeriodCode] = {units:[],unitsPlaceholders:[]}
         units.forEach(unit=>{
