@@ -55,15 +55,17 @@ u
         if(aos){
             this.setState({selectedAosCode:aos.aosCode})
         }
-        // if(aos) {
-        //     getCourseMapByAosCode(aos.aosCode)
-        // }
     }
 
     loadCourse = () => {
-        const {getCourseMapByAosCode} = this.props
+        const {getCourseMapByAosCode,setIsLoadCourseModalOpen} = this.props
         const {selectedAosCode,commencementYear} = this.state
         getCourseMapByAosCode(selectedAosCode,commencementYear)
+        this.setState({
+            selectedCourseCode:null,
+            selectedAosCode:null,
+        })
+        setIsLoadCourseModalOpen(false)
     }
 
     render(){
