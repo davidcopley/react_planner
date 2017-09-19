@@ -16,7 +16,7 @@ class TeachingPeriod extends React.Component {
         } else {
             unitWidth = 800 / (totalCredits / 6)
         }
-        return unitWidth
+        return Math.floor(unitWidth)
     }
     renderUnits = totalCredits => {
         const {teachingPeriods, teachingPeriodCode, isFirst, isLast} = this.props

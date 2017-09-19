@@ -83,7 +83,8 @@ class Unit extends React.Component {
                     maxWidth: myUnitWidth,
                     border: "2px solid #ffffff",
                     borderLeft: isHovering ? "5px solid red" : undefined,
-                    background: canDrop ? "#d9ffcd" : myUnitIsDuplicate ? "#ff5648" : myUnitIsInvalidTimeslot ? "#f606ff" : facultyColors[faculty] ? facultyColors[faculty] : "#f3f3f3",
+                    background: myUnitIsDuplicate ? "#ff5648" : myUnitIsInvalidTimeslot ? "#f606ff" : facultyColors[faculty] ? facultyColors[faculty] : "#f3f3f3",
+                    opacity: canDrop ? 0.5 : 1,
                     flexGrow: 1,
                     alignItems: "center",
                     color: facultyFontColorMap[faculty],
@@ -93,7 +94,7 @@ class Unit extends React.Component {
                     {myUnit.name}<br/>
                     Credits: {myUnitCredit}<br style={{marginBottom:"auto"}}/>
                     <IconButton
-                        style={{position:"absolute",top:0,right:0}}
+                        style={{position:"absolute",top:-8,right:-8,zIndex:0}}
                         iconStyle={{height:18,width:18,fill:facultyFontColorMap[faculty]}}
                         onClick={() => removeUnit(index, teachingPeriodCode)}
                     >
