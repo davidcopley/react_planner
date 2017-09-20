@@ -8,9 +8,9 @@ import DeferredUnit from "../Unit/DeferredUnit"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
 import {
     getNextSpecialTeachingPeriodKey,
-    getPrevSpecialTeachingPeriodKey,
     getTeachingPeriodString,
-    getPrevTeachingPeriodKey
+    getPrevTeachingPeriodKey,
+    getPrevGeneralTeachingPeriodKey
 } from "../../tools/teachingPeriodKeys"
 import {FlatButton} from "material-ui"
 import {
@@ -79,16 +79,29 @@ const TeachingPeriod = props => {
     const {teachingPeriods, teachingPeriod, teachingPeriodCredits, teachingPeriodCode, isFirst, isLast, addTeachingPeriod} = props
     let isDeferred = teachingPeriod["isDeferred"]
     isDeferred = isDeferred && !isFirst && !isLast
+    const isSpecial = teachingPeriodCode.match(/WINTER|SUMMER/)
+    console.log(isSpecial)
     const nextSpecialTeachingPeriodKey = getNextSpecialTeachingPeriodKey(teachingPeriodCode)
     const prevTeachingPeriod = getPrevTeachingPeriodKey(teachingPeriodCode)
+    const prevGeneralTeachingPeriod = getPrevGeneralTeachingPeriodKey(teachingPeriodCode)
     const shouldShowAddSpecialTeachingPeriod = !(nextSpecialTeachingPeriodKey in teachingPeriods)
     return (
         <span>
                 {isFirst &&
-                <FlatButton
+                <span>
+                    {!isSpecial &&
+                        <FlatButton
+                            fullWidth
+                            style={{fontSize: 13, zIndex: 0, borderTop: "1px solid #dddddd"}}
+                            onClick={() => addTeachingPeriod(prevGeneralTeachingPeriod)}>Add {getTeachingPeriodString(prevGeneralTeachingPeriod)}
+                        </FlatButton>
+                    }
+                    <FlatButton
                     fullWidth
-                    style={{fontSize: 13, zIndex: 0}}
-                    onClick={() => addTeachingPeriod(prevTeachingPeriod)}>Add {getTeachingPeriodString(prevTeachingPeriod)}</FlatButton>
+                    style={{fontSize: 13, zIndex: 0, borderTop: "1px solid #dddddd"}}
+                    onClick={() => addTeachingPeriod(prevTeachingPeriod)}>Add {getTeachingPeriodString(prevTeachingPeriod)}
+                    </FlatButton>
+                </span>
                 }
             <div id={teachingPeriodCode}
                  style={{
