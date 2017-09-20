@@ -48,7 +48,7 @@ export const getPrevTeachingPeriodKey = currentTeachingPeriodKey => {
             nextSemesterNumber = 1
             //SUMMER
         } else {
-            nextYear = year -1
+            nextYear = year
             nextSemesterNumber = 2
         }
     }
@@ -81,8 +81,7 @@ export const getPrevSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
     if (!currentTeachingPeriodKey) {
         const date = new Date()
         const prevSeason = date.getMonth() < 7 ? "SUMMER" : "WINTER"
-        const prevYear = prevSeason === "SUMMER" ? date.getYear() - 1 : date.getYear()
-        return `${prevYear + 1900}-${prevSeason}-01`
+        return `${date.getFullYear()}-${prevSeason}-01`
     }
     const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
     let year = parseInt(teachingPeriodSplitted[0],10)
