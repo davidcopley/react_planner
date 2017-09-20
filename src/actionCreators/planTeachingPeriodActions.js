@@ -22,9 +22,26 @@ export const calculateTeachingPeriodCredits = () => (dispatch, getState) => {
             teachingPeriodsCredits[teachingPeriodKey] = 0
         } else {
             const teachingPeriodUnits = teachingPeriod["units"]
-            const teachingPeriodTotalCredits = teachingPeriodUnits.reduce((totalCredits, unitCode) => {let unitCredit = units[unitCode]["credit"];unitCredit = unitCredit===0?6:unitCredit;return unitCredit + totalCredits}, 0)
-            planCourseCredit += teachingPeriodTotalCredits
-            teachingPeriodsCredits[teachingPeriodKey] = teachingPeriodTotalCredits
+            const teachingPeriodUnitsPlaceholders = teachingPeriod["unitsPlaceholders"]
+            const teachingPeriodTotalCredits = teachingPeriodUnits.reduce((totalCredits, unitCode) => {
+                let unitCredit = units[unitCode]["credit"];
+                unitCredit = unitCredit===0?6:unitCredit;
+                return unitCredit + totalCredits}, 0
+            )
+            let teachingPeriodUnitsPlaceholdersTotalCredits = 0
+            if(teachingPeriodUnitsPlaceholders) {
+                teachingPeriodUnitsPlaceholdersTotalCredits = teachingPeriodUnitsPlaceholders.reduce((totalCredits, placeholder) => {
+                    const {unitCode} = placeholder
+                    if (unitCode) {
+                        let unitCredit = units[unitCode]["credit"];
+                        unitCredit = unitCredit === 0 ? 6 : unitCredit;
+                        return unitCredit + totalCredits
+                    }
+                    return totalCredits
+                }, 0)
+            }
+            planCourseCredit += teachingPeriodTotalCredits + teachingPeriodUnitsPlaceholdersTotalCredits
+            teachingPeriodsCredits[teachingPeriodKey] = teachingPeriodTotalCredits + teachingPeriodUnitsPlaceholdersTotalCredits
         }
     })
     dispatch(setTeachingPeriodsCredits(teachingPeriodsCredits))
