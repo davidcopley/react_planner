@@ -10,6 +10,9 @@ const EmptyUnitTargetDrop = {
         const {teachingPeriodCode, index, dragSource, moveUnit, insertUnit} = props
         if (dragSource.isUnitsMenuUnit) {
             insertUnit(dragSource.unitCode, index, teachingPeriodCode)
+        }else if(dragSource.isPlaceholderUnit){
+            console.log(dragSource)
+            insertUnit(dragSource.unitCode, index, teachingPeriodCode)
         } else {
             //on drop, move unit from index of teaching period to index of other teaching period
             moveUnit(dragSource.index, dragSource.teachingPeriodCode, index, teachingPeriodCode)

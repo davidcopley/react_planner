@@ -34,6 +34,21 @@ class TeachingPeriod extends React.Component {
                     teachingPeriodTotalCredits={totalCredits}
                 />
             )
+            let indexCounter = unitsArray.length
+            const emptyUnits = (24 - totalCredits - (numPlaceholderUnits * 6)) / 6;
+            if (emptyUnits > 0) {
+                for (let i = 0; i < emptyUnits; i++) {
+                    unitsArray.push(
+                        <EmptyUnit
+                            isDeferred={isDeferred}
+                            index={indexCounter}
+                            teachingPeriodCode={teachingPeriodCode}
+                            key={`emptyUnit${i}`}
+                        />
+                    )
+                    indexCounter+=1
+                }
+            }
             let placeholderUnitsArray = []
             if (numPlaceholderUnits) {
                 placeholderUnitsArray = unitsPlaceholders.map((placeholder, i) =>
@@ -47,19 +62,7 @@ class TeachingPeriod extends React.Component {
             }
             unitsArray = unitsArray.concat(placeholderUnitsArray)
         }
-        const emptyUnits = (24 - totalCredits - (numPlaceholderUnits * 6)) / 6;
-        if (emptyUnits > 0) {
-            for (let i = 0; i < emptyUnits; i++) {
-                unitsArray.push(
-                    <EmptyUnit
-                        isDeferred={isDeferred}
-                        index={i}
-                        teachingPeriodCode={teachingPeriodCode}
-                        key={`emptyUnit${i}`}
-                    />
-                )
-            }
-        }
+
         return (
             <div style={{display: "flex",minWidth:800,maxWidth:800}}>
                 {unitsArray}

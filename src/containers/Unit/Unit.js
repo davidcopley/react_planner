@@ -29,7 +29,7 @@ const UnitSourceDrag = {
 const UnitTargetDrop = {
     drop(props, monitor, component){
         const {teachingPeriodCode, index, dragSource, moveUnit, insertUnit} = props
-        if (dragSource.isUnitsMenuUnit) {
+        if (dragSource.isUnitsMenuUnit||dragSource.isPlaceholderUnit) {
             insertUnit(dragSource.unitCode, index, teachingPeriodCode)
         } else {
             //on drop, move unit from index of teaching period to index of other teaching period
