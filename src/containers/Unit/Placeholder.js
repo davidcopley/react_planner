@@ -35,10 +35,9 @@ const collectDrop = (connect, monitor) => {
     }
 }
 
-class Placeholder extends React.Component {
+const Placeholder = props => {
 
-    render() {
-        const {connectDropTarget, isHovering, canDrop, removeUnitFromPlaceholder, placeholder, index, teachingPeriodCode, units} = this.props
+        const {connectDropTarget, isHovering, canDrop, removeUnitFromPlaceholder, placeholder, index, teachingPeriodCode, units} = props
         const {placeholderText, unitCode} = placeholder
         let credit = 6
         if(unitCode){
@@ -61,7 +60,7 @@ class Placeholder extends React.Component {
                 </div>
             </div>
         ))
-    }
+
 }
 
 const mapStateToProps = state => {

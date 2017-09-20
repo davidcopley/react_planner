@@ -7,7 +7,7 @@ import {moveUnit, removeUnit, removeUnitFromPlaceholder} from "../../actionCreat
 import "./UnitsMenuUnit.css"
 import {getUnitByUnitCode} from "../../selectors/unitsDatabaseSelectors"
 import {IconButton} from "material-ui"
-import {facultyFontColorMap,facultyColors} from "../../constants/colors"
+import {facultyFontColorMap, facultyColors} from "../../constants/colors"
 import Close from "material-ui/svg-icons/navigation/close"
 import Info from "material-ui/svg-icons/action/info-outline"
 
@@ -22,13 +22,13 @@ const UnitSourceDrag = {
             credit
         }
     },
-    endDrag(props,monitor,component){
-        if(!monitor.didDrop()){
+    endDrag(props, monitor, component){
+        if (!monitor.didDrop()) {
             console.log("did not drop")
             return
         }
-        const {index,teachingPeriodCode,removeUnitFromPlaceholder} = props
-        removeUnitFromPlaceholder(index,teachingPeriodCode)
+        const {index, teachingPeriodCode, removeUnitFromPlaceholder} = props
+        removeUnitFromPlaceholder(index, teachingPeriodCode)
     }
 }
 
@@ -38,48 +38,62 @@ const collectDrag = (connect, monitor) => {
     };
 }
 
-class PlaceholderUnit extends React.Component {
-    render() {
-        const {unit, unitCode, index, teachingPeriodCode,removeUnitFromPlaceholder,placeholderText} = this.props
-        const {credit,name,faculty} = unit
-        const {connectDragSource} = this.props;
-        return connectDragSource(
-            <div
-                className="units-menu-unit"
-                style={{
-                    minHeight: 110,
-                    maxHeight:110,
-                    boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
-                    background: facultyColors[faculty],
-                    flexGrow: 1,
-                    alignItems: "center",
-                    color:facultyFontColorMap[faculty]
-                }}>
-                <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13,height:88,position:"relative"}}>
-                    {unitCode}<br/>
-                    {name}<br/>
-                    Credits: {credit}<br/>
-                    <span style={{fontSize:8}}>
+const PlaceholderUnit = props => {
+
+    const {unit, unitCode, index, teachingPeriodCode, removeUnitFromPlaceholder, placeholderText} = props
+    const {credit, name, faculty} = unit
+    const {connectDragSource} = props;
+    return connectDragSource(
+        <div
+            className="units-menu-unit"
+            style={{
+                minHeight: 110,
+                maxHeight: 110,
+                boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
+                background: facultyColors[faculty],
+                flexGrow: 1,
+                alignItems: "center",
+                color: facultyFontColorMap[faculty]
+            }}>
+            <div style={{
+                padding: 16,
+                userSelect: "none",
+                overflow: "hidden",
+                fontSize: 13,
+                height: 88,
+                position: "relative"
+            }}>
+                {unitCode}<br/>
+                {name}<br/>
+                Credits: {credit}<br/>
+                <span style={{fontSize: 8, lineHeight: 1}}>
                     ({placeholderText})
                     </span>
-                    <IconButton
-                        style={{position:"absolute",top:-8,right:-8,zIndex:0}}
-                        iconStyle={{height:15,width:15,fill:facultyFontColorMap[faculty]}}
-                        onClick={() => removeUnitFromPlaceholder(index,teachingPeriodCode)}
-                    >
-                        <Close/>
-                    </IconButton>
-                </div>
-
+                <IconButton
+                    style={{position: "absolute", top: -8, right: -8, zIndex: 0}}
+                    iconStyle={{height: 15, width: 15, fill: facultyFontColorMap[faculty]}}
+                    onClick={() => removeUnitFromPlaceholder(index, teachingPeriodCode)}
+                >
+                    <Close/>
+                </IconButton>
+                <IconButton
+                    style={{position: "absolute", bottom: 0, right: -8, zIndex: 0}}
+                    iconStyle={{height: 15, width: 15, fill: facultyFontColorMap[faculty]}}
+                >
+                    <Info/>
+                </IconButton>
             </div>
-        )
-    }
+
+        </div>
+    )
+
 }
 
-const mapStateToProps = (state,props) => {
+const mapStateToProps = (state, props) => {
     return {
-        unit: getUnitByUnitCode(state,props),
-        duplicateUnits: state.unitValidationReducer.duplicateUnits}
+        unit: getUnitByUnitCode(state, props),
+        duplicateUnits: state.unitValidationReducer.duplicateUnits
+    }
 }
 
 export default compose(connect(mapStateToProps, {

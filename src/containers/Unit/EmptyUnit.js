@@ -10,7 +10,7 @@ const EmptyUnitTargetDrop = {
         const {teachingPeriodCode, index, dragSource, moveUnit, insertUnit} = props
         if (dragSource.isUnitsMenuUnit) {
             insertUnit(dragSource.unitCode, index, teachingPeriodCode)
-        }else if(dragSource.isPlaceholderUnit){
+        } else if (dragSource.isPlaceholderUnit) {
             console.log(dragSource)
             insertUnit(dragSource.unitCode, index, teachingPeriodCode)
         } else {
@@ -35,25 +35,25 @@ const collectDrop = (connect, monitor) => {
     }
 }
 
-class EmptyUnit extends React.Component {
-    render() {
-        const {connectDropTarget, isHovering, canDrop, setIsUnitsMenuOpen} = this.props
-        return (compose(connectDropTarget)(
-            <div onClick={() => setIsUnitsMenuOpen(true)} className={"empty-unit"} style={{
-                minHeight: 120,
-                maxHeight: 120,
-                border: isHovering ? "2px solid red" : "1px solid #ffffff",
-                flexGrow: 1,
-                flex:6,
-                userSelect: "none",
-                background: "#f3f3f3",
-            }}>
-                <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13, height: "100%"}}>
-                    Empty
-                </div>
+const EmptyUnit = props => {
+
+    const {connectDropTarget, isHovering, canDrop, setIsUnitsMenuOpen} = props
+    return (compose(connectDropTarget)(
+        <div onClick={() => setIsUnitsMenuOpen(true)} className={"empty-unit"} style={{
+            minHeight: 120,
+            maxHeight: 120,
+            border: isHovering ? "2px solid red" : "1px solid #ffffff",
+            flexGrow: 1,
+            flex: 6,
+            userSelect: "none",
+            background: "#f3f3f3",
+        }}>
+            <div style={{padding: 16, userSelect: "none", overflow: "hidden", fontSize: 13, height: "100%"}}>
+                Empty
             </div>
-        ))
-    }
+        </div>
+    ))
+
 }
 
 const mapStateToProps = state => {

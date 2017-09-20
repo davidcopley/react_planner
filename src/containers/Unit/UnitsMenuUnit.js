@@ -25,35 +25,35 @@ const collectDrag = (connect, monitor) => {
     };
 }
 
-class UnitsMenuUnit extends React.Component {
-    render() {
-        const {unit, unitCode} = this.props
-        const {credit,name} = unit
-        const {connectDragSource} = this.props;
-        return connectDragSource(
-            <div
-                className="units-menu-unit"
-                style={{
-                    minHeight: 100,
-                    boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
-                    background: "white",
-                    flexGrow: 1,
-                    alignItems: "center"
-                }}>
-                <div style={{padding: 10, userSelect: "none", overflow: "hidden"}}>
-                    {unitCode}<br/>
-                    {name}<br/>
-                    Credits: {credit}<br/>
-                </div>
+const UnitsMenuUnit = props => {
+    const {unit, unitCode} = props
+    const {credit, name} = unit
+    const {connectDragSource} = props;
+    return connectDragSource(
+        <div
+            className="units-menu-unit"
+            style={{
+                minHeight: 100,
+                boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
+                background: "white",
+                flexGrow: 1,
+                alignItems: "center"
+            }}>
+            <div style={{padding: 10, userSelect: "none", overflow: "hidden"}}>
+                {unitCode}<br/>
+                {name}<br/>
+                Credits: {credit}<br/>
             </div>
-        )
-    }
+        </div>
+    )
+
 }
 
-const mapStateToProps = (state,props) => {
+const mapStateToProps = (state, props) => {
     return {
-        unit: getUnitByUnitCode(state,props),
-        duplicateUnits: state.unitValidationReducer.duplicateUnits}
+        unit: getUnitByUnitCode(state, props),
+        duplicateUnits: state.unitValidationReducer.duplicateUnits
+    }
 }
 
 export default compose(connect(mapStateToProps, {
