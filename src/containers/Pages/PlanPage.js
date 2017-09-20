@@ -18,7 +18,6 @@ import unsubscribe from  "../../subscribers/planTeachingPeriodSubscriber"
 import monplanLogoWhite from "../../images/monplanLogoWhite.svg"
 import monashLogoWhite from "../../images/monashLogoWhite.svg"
 import Save from "material-ui/svg-icons/content/save"
-import Done from "material-ui/svg-icons/action/done"
 import Create from "material-ui/svg-icons/content/create"
 import Load from "material-ui/svg-icons/file/cloud-download"
 class PlanPage extends React.Component {

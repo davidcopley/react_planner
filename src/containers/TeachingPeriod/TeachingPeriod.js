@@ -25,6 +25,7 @@ const renderUnits = (props, totalCredits) => {
     let {units, unitsPlaceholders, isDeferred} = teachingPeriod
     isDeferred = isDeferred && !isFirst && !isLast
     let numPlaceholderUnits = unitsPlaceholders ? unitsPlaceholders.length : 0
+    let numNullPlaceholderUnits = unitsPlaceholders ? unitsPlaceholders.filter(ph=>ph.unitCode===null).length : 0
     let unitsArray
     if (isDeferred) {
         return [<DeferredUnit key={`${teachingPeriodCode}DeferredUnit`}/>]
@@ -40,7 +41,7 @@ const renderUnits = (props, totalCredits) => {
             />
         )
         let indexCounter = unitsArray.length
-        const emptyUnits = (24 - totalCredits - (numPlaceholderUnits * 6)) / 6;
+        const emptyUnits = (24 - totalCredits - (numNullPlaceholderUnits * 6)) / 6;
         if (emptyUnits > 0) {
             for (let i = 0; i < emptyUnits; i++) {
                 unitsArray.push(
@@ -80,7 +81,6 @@ const TeachingPeriod = props => {
     let isDeferred = teachingPeriod["isDeferred"]
     isDeferred = isDeferred && !isFirst && !isLast
     const isSpecial = teachingPeriodCode.match(/WINTER|SUMMER/)
-    console.log(isSpecial)
     const nextSpecialTeachingPeriodKey = getNextSpecialTeachingPeriodKey(teachingPeriodCode)
     const prevTeachingPeriod = getPrevTeachingPeriodKey(teachingPeriodCode)
     const prevGeneralTeachingPeriod = getPrevGeneralTeachingPeriodKey(teachingPeriodCode)

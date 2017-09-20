@@ -17,7 +17,6 @@ export const calculateTeachingPeriodCredits = () => (dispatch, getState) => {
     const teachingPeriodKeys = getTeachingPeriodsOrder(getState())||Object.keys(teachingPeriods)
     teachingPeriodKeys.forEach((teachingPeriodKey,i) => {
         const teachingPeriod = teachingPeriods[teachingPeriodKey]
-        console.log(teachingPeriod)
         if (teachingPeriod["isDeferred"]&&i!==0&&i!==(teachingPeriodKeys.length-1)) {
             console.log(teachingPeriod)
             planCourseCredit += 0
