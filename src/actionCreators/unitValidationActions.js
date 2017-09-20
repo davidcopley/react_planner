@@ -14,7 +14,11 @@ export const validateDuplicateUnits = () => (dispatch,getState) => {
             return
         }
         const teachingPeriodUnits = teachingPeriod["units"]
-        teachingPeriodUnits.forEach(unitKey => {
+        let teachingPeriodUnitsPlaceholders=[]
+        if(teachingPeriod["unitsPlaceholders"]) {
+            teachingPeriodUnitsPlaceholders = teachingPeriod["unitsPlaceholders"].filter(p => p.unitCode !== null).map(p => p.unitCode)
+        }
+        teachingPeriodUnits.concat(teachingPeriodUnitsPlaceholders).forEach(unitKey => {
             if(unitKey in unitAppearances){
                 duplicateUnits[unitKey] = true
             }else{
@@ -46,6 +50,23 @@ export const validateInvalidTimeslotUnits = () => (dispatch,getState) => {
                 }
             }
         })
+        let teachingPeriodUnitsPlaceholders=[]
+        if(teachingPeriod["unitsPlaceholders"]) {
+            teachingPeriodUnitsPlaceholders = teachingPeriod["unitsPlaceholders"].filter(p => p.unitCode !== null).map(p => p.unitCode)
+            teachingPeriodUnitsPlaceholders.forEach(unitKey => {
+                const unit = units[unitKey]
+                const {locationAndTime} = unit
+                if(locationAndTime&&locationAndTime.timesSet){
+                    const {timesSet} = locationAndTime
+                    if(!timesSet[teachingPeriodSemester]){
+                        if(!invalidTimeslotUnits[teachingPeriodKey]){
+                            invalidTimeslotUnits[teachingPeriodKey]={}
+                        }
+                        invalidTimeslotUnits[teachingPeriodKey][unitKey]={issue:`Not available in ${teachingPeriodSemester}`}
+                    }
+                }
+            })
+        }
     })
     dispatch(setInvalidTimeslotUnits(invalidTimeslotUnits))
 }

@@ -30,6 +30,31 @@ export const getNextGeneralTeachingPeriodKey = currentTeachingPeriodKey => {
     return `${nextYear}-S${nextSemesterNumber}-01`
 }
 
+export const getPrevTeachingPeriodKey = currentTeachingPeriodKey => {
+    if (!currentTeachingPeriodKey) {
+        const date = new Date()
+        return `${date.getFullYear()}-${date.getMonth() < 7 ? "S1" : "S2"}-01`
+    }
+    const teachingPeriodSplitted = currentTeachingPeriodKey.split("-")
+    const year = parseInt(teachingPeriodSplitted[0],10)
+    const semester = teachingPeriodSplitted[1]
+    let nextYear, nextSemesterNumber;
+    if (semester !== "WINTER" && semester !== "SUMMER") {
+        return getPrevSpecialTeachingPeriodKey(currentTeachingPeriodKey)
+    } else {
+        //WINTER
+        if (semester === "WINTER") {
+            nextYear = year
+            nextSemesterNumber = 1
+            //SUMMER
+        } else {
+            nextYear = year -1
+            nextSemesterNumber = 2
+        }
+    }
+    return `${nextYear}-S${nextSemesterNumber}-01`
+}
+
 export const getNextSpecialTeachingPeriodKey = currentTeachingPeriodKey => {
     if (!currentTeachingPeriodKey) {
         const date = new Date()

@@ -53,7 +53,7 @@ class Placeholder extends React.Component {
                 flexGrow: 1,
                 flex:credit,
                 userSelect: "none",
-                background: canDrop ? "#adff6d" : "#eef2ff",
+                background: "#eef2ff"
             }}>
                 <div style={{padding: unitCode?5:16, userSelect: "none", overflow: "hidden", height: "100%"}}>
                     {!unitCode&&<span style={{fontSize: 13}}>{placeholderText}</span>}

@@ -6,7 +6,7 @@ import EmptyUnit from "../Unit/EmptyUnit"
 import PlaceholderUnit from "../Unit/Placeholder"
 import DeferredUnit from "../Unit/DeferredUnit"
 import {addTeachingPeriod} from "../../actionCreators/planActions"
-import {getNextSpecialTeachingPeriodKey, getPrevSpecialTeachingPeriodKey, getTeachingPeriodString} from "../../tools/teachingPeriodKeys"
+import {getNextSpecialTeachingPeriodKey, getPrevSpecialTeachingPeriodKey, getTeachingPeriodString, getPrevTeachingPeriodKey} from "../../tools/teachingPeriodKeys"
 import {FlatButton} from "material-ui"
 import {
     getTeachingPeriodByTeachingPeriodCode,
@@ -77,17 +77,14 @@ class TeachingPeriod extends React.Component {
         isDeferred = isDeferred && !isFirst && !isLast
         const isSpecial = teachingPeriodCode.match(/SUMMER/) || teachingPeriodCode.match(/WINTER/)
         const nextSpecialTeachingPeriodKey = getNextSpecialTeachingPeriodKey(teachingPeriodCode)
-        const prevSpecialTeachingPeriodKey = getPrevSpecialTeachingPeriodKey(teachingPeriodCode)
-        const shouldShowAddPrevSpecialTeachingPeriod = !(prevSpecialTeachingPeriodKey in teachingPeriods)
+        const prevTeachingPeriod = getPrevTeachingPeriodKey(teachingPeriodCode)
         const shouldShowAddSpecialTeachingPeriod = !(nextSpecialTeachingPeriodKey in teachingPeriods)
         return (
             <span>
-                {!isSpecial && isFirst && shouldShowAddPrevSpecialTeachingPeriod &&
                 <FlatButton
                     fullWidth
                     style={{fontSize:13,zIndex:0}}
-                    onClick={() => addTeachingPeriod(prevSpecialTeachingPeriodKey)}>Add {getTeachingPeriodString(prevSpecialTeachingPeriodKey)}</FlatButton>
-                }
+                    onClick={() => addTeachingPeriod(prevTeachingPeriod)}>Add {getTeachingPeriodString(prevTeachingPeriod)}</FlatButton>
                 <div id={teachingPeriodCode}
                      style={{
                          display: "flex",

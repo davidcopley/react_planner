@@ -11,6 +11,7 @@ import "./Unit.css"
 import {getUnitByUnitCode} from "../../selectors/unitsDatabaseSelectors"
 import {getIsInvalidTimeslotUnitByUnitCode,getIsDuplicateUnitByUnitCode} from "../../selectors/unitValidationSelectors"
 import Warn from "material-ui/svg-icons/alert/warning"
+import { findDOMNode } from 'react-dom';
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
         const {teachingPeriodCode, index, setDragSource, unit, unitCode,} = props
@@ -28,6 +29,9 @@ const UnitSourceDrag = {
 }
 const UnitTargetDrop = {
     drop(props, monitor, component){
+        console.log(monitor.getClientOffset())
+        console.log(component)
+        console.log(findDOMNode(component).getBoundingClientRect())
         const {teachingPeriodCode, index, dragSource, moveUnit, insertUnit} = props
         if (dragSource.isUnitsMenuUnit||dragSource.isPlaceholderUnit) {
             insertUnit(dragSource.unitCode, index, teachingPeriodCode)
@@ -59,7 +63,7 @@ const collectDrop = (connect, monitor) => {
     return {
         connectDropTarget: connect.dropTarget(),
         isHovering: monitor.isOver(),
-        canDrop: monitor.canDrop()
+        canDrop: monitor.canDrop(),
     }
 }
 
