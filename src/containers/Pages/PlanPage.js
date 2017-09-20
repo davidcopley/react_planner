@@ -39,7 +39,7 @@ class PlanPage extends React.Component {
                     backgroundColor: "rgb(0, 108, 171)",
                     zIndex:1
                 }}/>
-                <div style={{display: "flex", width: "100%", alignItems: "center",justifyContent:"center", position: "fixed",zIndex:1,top:10}}>
+                <div style={{display: "flex", width: "100%", alignItems: "center",justifyContent:"center", position: "fixed",zIndex:1}}>
                     <div style={{width: "100%", maxWidth: 1000,display:"flex",flexDirection:"column"}}>
                         <span style={{height:34}}/>
                         <div style={{height:42}}>

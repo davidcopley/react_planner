@@ -13,9 +13,11 @@ const Menu = props => {
                 height: 80,
                 width: "100%",
                 boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
-                backgroundColor:"rgb(0, 108, 171)"
+                backgroundColor:"rgb(0, 108, 171)",
+                display:"flex",
+                alignItems:"center"
             }}>
-                <span style={{height:"100%",color: "#ffffff",verticalAlign:"middle"}}>Snapshots</span>
+                <span style={{fontWeight:500,marginLeft:24,color: "#ffffff",verticalAlign:"middle",fontSize:20}}>Snapshots</span>
             </div>
             <List>
                 {snapshotNames.map((snapshotName, snapshotIndex) =>

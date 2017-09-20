@@ -81,10 +81,12 @@ class TeachingPeriod extends React.Component {
         const shouldShowAddSpecialTeachingPeriod = !(nextSpecialTeachingPeriodKey in teachingPeriods)
         return (
             <span>
+                {isFirst &&
                 <FlatButton
                     fullWidth
                     style={{fontSize:13,zIndex:0}}
                     onClick={() => addTeachingPeriod(prevTeachingPeriod)}>Add {getTeachingPeriodString(prevTeachingPeriod)}</FlatButton>
+                }
                 <div id={teachingPeriodCode}
                      style={{
                          display: "flex",
