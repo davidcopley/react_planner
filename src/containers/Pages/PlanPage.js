@@ -48,19 +48,18 @@ class PlanPage extends React.Component {
                         </div>
                         <div style={{height:42}}>
                             <IconButton iconStyle={{fill: "#ffffff"}}
-                                        onClick={() => setIsSnapshotsMenuOpen(!isSnapshotMenuOpen)}><MenuIcon/>
+                                        onClick={() => setIsSnapshotsMenuOpen(!isSnapshotMenuOpen)}
+                                        tooltip={"open snapshots menu"}
+                            ><MenuIcon/>
                             </IconButton>
-                            <IconButton onClick={()=>saveSnapshot()} iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
+                            <IconButton onClick={()=>saveSnapshot()} iconStyle={{fill: "#ffffff"}} style={{float:"right"}} tooltip={"save snapshot"}>
                                 <Save/>
                             </IconButton>
-                            <IconButton onClick={() => setIsLoadCourseModalOpen(!isLoadCourseModalOpen)} iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
+                            <IconButton onClick={() => setIsLoadCourseModalOpen(!isLoadCourseModalOpen)} iconStyle={{fill: "#ffffff"}} style={{float:"right"}} tooltip={"load course"}>
                                 <Load/>
                             </IconButton>
-                            <IconButton onClick={()=>resetPlanCourse()} iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
+                            <IconButton onClick={()=>resetPlanCourse()} iconStyle={{fill: "#ffffff"}} style={{float:"right"}} tooltip={"create new snapshot"}>
                                 <Create/>
-                            </IconButton>
-                            <IconButton iconStyle={{fill: "#ffffff"}} style={{float:"right"}}>
-                                <Done/>
                             </IconButton>
                         </div>
                     </div>
