@@ -16,10 +16,10 @@ class PlanTeachingPeriodSubscriber{
         this.currentPlanTeachingPeriod = getTeachingPeriods(store.getState())
         //MAKE SURE ALL ACTIONS IN THE FOLLOWING IF BLOCK DOES NOT CHANGE planTeachingPeriodReducer.teachingPeriods
         if(this.currentPlanTeachingPeriod !== previousPlanTeachingPeriod){
+            store.dispatch(sortTeachingPeriodOrder())
             store.dispatch(validateDuplicateUnits())
             store.dispatch(validateInvalidTimeslotUnits())
             store.dispatch(calculateTeachingPeriodCredits())
-            store.dispatch(sortTeachingPeriodOrder())
         }
     }
 }

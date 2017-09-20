@@ -1,4 +1,4 @@
-import {getTeachingPeriods} from "../selectors/planTeachingPeriodSelectors"
+import {getTeachingPeriods,getTeachingPeriodsOrder} from "../selectors/planTeachingPeriodSelectors"
 import {getUnits} from "../selectors/unitsDatabaseSelectors"
 import {setCourseCredit,setUnitPlaceholderUnitCode} from "../actionCreators/planActions"
 
@@ -14,10 +14,12 @@ export const calculateTeachingPeriodCredits = () => (dispatch, getState) => {
     const units = getUnits(getState())
     const teachingPeriodsCredits = {}
     let planCourseCredit = 0
-    const teachingPeriodKeys = Object.keys(teachingPeriods)
+    const teachingPeriodKeys = getTeachingPeriodsOrder(getState())||Object.keys(teachingPeriods)
     teachingPeriodKeys.forEach((teachingPeriodKey,i) => {
         const teachingPeriod = teachingPeriods[teachingPeriodKey]
+        console.log(teachingPeriod)
         if (teachingPeriod["isDeferred"]&&i!==0&&i!==(teachingPeriodKeys.length-1)) {
+            console.log(teachingPeriod)
             planCourseCredit += 0
             teachingPeriodsCredits[teachingPeriodKey] = 0
         } else {
