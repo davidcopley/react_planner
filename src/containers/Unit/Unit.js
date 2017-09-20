@@ -77,7 +77,7 @@ const Unit = props => {
                     border: "2px solid #ffffff",
                     borderLeft: isHovering ? "5px solid red" : undefined,
                     background: isDuplicate || isInvalidTimeslot ? "#c5c5c5" : facultyColors[faculty] ? facultyColors[faculty] : "#f3f3f3",
-                    opacity: isDragging&&canDrop ? 1:isDragging&&!canDrop? 0.1:1 ,
+                    opacity: isHovering&&canDrop ? 1:isHovering&&!canDrop? 0.1:1 ,
                     flexGrow: 1,
                     flex:credit||6,
                     alignItems: "center",

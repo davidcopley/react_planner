@@ -6,10 +6,10 @@ class PlanTeachingPeriodSubscriber{
     constructor(){
         this.currentPlanTeachingPeriod = null
         //call actions on initialization, otherwise need to wait for teaching periods to update
-        store.dispatch(validateDuplicateUnits())
-        store.dispatch(calculateTeachingPeriodCredits())
         store.dispatch(sortTeachingPeriodOrder())
+        store.dispatch(validateDuplicateUnits())
         store.dispatch(validateInvalidTimeslotUnits())
+        store.dispatch(calculateTeachingPeriodCredits())
     }
     handlePlanTeachingPeriodChange = () => {
         const previousPlanTeachingPeriod = this.currentPlanTeachingPeriod
