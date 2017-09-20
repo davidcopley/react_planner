@@ -57,7 +57,7 @@ class Placeholder extends React.Component {
             }}>
                 <div style={{padding: unitCode?5:16, userSelect: "none", overflow: "hidden", height: "100%"}}>
                     {!unitCode&&<span style={{fontSize: 13}}>{placeholderText}</span>}
-                    {unitCode&&<PlaceholderUnit index={index} teachingPeriodCode={teachingPeriodCode} unitCode={unitCode}/>}
+                    {unitCode&&<PlaceholderUnit index={index} teachingPeriodCode={teachingPeriodCode} unitCode={unitCode} placeholderText={placeholderText}/>}
                 </div>
             </div>
         ))

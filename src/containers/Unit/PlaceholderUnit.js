@@ -9,6 +9,7 @@ import {getUnitByUnitCode} from "../../selectors/unitsDatabaseSelectors"
 import {IconButton} from "material-ui"
 import {facultyFontColorMap,facultyColors} from "../../constants/colors"
 import Close from "material-ui/svg-icons/navigation/close"
+import Info from "material-ui/svg-icons/action/info-outline"
 
 const UnitSourceDrag = {
     beginDrag(props, monitor, component){
@@ -39,7 +40,7 @@ const collectDrag = (connect, monitor) => {
 
 class PlaceholderUnit extends React.Component {
     render() {
-        const {unit, unitCode, index, teachingPeriodCode,removeUnitFromPlaceholder} = this.props
+        const {unit, unitCode, index, teachingPeriodCode,removeUnitFromPlaceholder,placeholderText} = this.props
         const {credit,name,faculty} = unit
         const {connectDragSource} = this.props;
         return connectDragSource(
@@ -58,6 +59,9 @@ class PlaceholderUnit extends React.Component {
                     {unitCode}<br/>
                     {name}<br/>
                     Credits: {credit}<br/>
+                    <span style={{fontSize:8}}>
+                    ({placeholderText})
+                    </span>
                     <IconButton
                         style={{position:"absolute",top:-8,right:-8,zIndex:0}}
                         iconStyle={{height:15,width:15,fill:facultyFontColorMap[faculty]}}
